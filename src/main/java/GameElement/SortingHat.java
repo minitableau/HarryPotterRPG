@@ -6,7 +6,9 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class SortingHat {
+
     public final String[] houses = {ConsoleColors.RED + "Gryffondor" + ConsoleColors.RESET, ConsoleColors.YELLOW + "Poufsouffle" + ConsoleColors.RESET, ConsoleColors.BLUE + "Serdaigle" + ConsoleColors.RESET, ConsoleColors.GREEN + "Serpentard" + ConsoleColors.RESET};
 
     //methode pour Eloise Midgen & Vincent Crabbe
