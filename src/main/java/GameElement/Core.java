@@ -15,6 +15,7 @@ public enum Core {
         this.index = index;
         this.type = type;
     }
+
 }
 
 
