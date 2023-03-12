@@ -1,6 +1,7 @@
 package GameElement;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Wizard extends Character {
@@ -27,9 +28,6 @@ public class Wizard extends Character {
     }
 
     public Wizard(String name, Pet pet, Wand wand, House house) {
-        super(200, 200, name, 50, 40, 1, 10);
-        this.pet = pet;
-        this.wand = wand;
-        this.house = house;
+        this(name, pet, wand, house, new ArrayList<>(), new ArrayList<>());
     }
 }

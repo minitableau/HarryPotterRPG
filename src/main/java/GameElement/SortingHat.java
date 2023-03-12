@@ -9,17 +9,18 @@ import java.util.Scanner;
 
 public class SortingHat {
 
-    public final String[] houses = {ConsoleColors.RED + "Gryffondor" + ConsoleColors.RESET, ConsoleColors.YELLOW + "Poufsouffle" + ConsoleColors.RESET, ConsoleColors.BLUE + "Serdaigle" + ConsoleColors.RESET, ConsoleColors.GREEN + "Serpentard" + ConsoleColors.RESET};
+    public final House[] houses = {House.RAVENCLAW, House.SLYTHERIN, House.GRYFFINDOR, House.HUFFLEPUFF};
 
     //methode pour Eloise Midgen & Vincent Crabbe
-    public String sort() {
+    public House sort() {
         Random random = new Random();
         int index = random.nextInt(houses.length);
         return houses[index];
+
     }
 
     //methode pour notre perso
-    public String sort(Scanner scanner) {
+    public House sort(Scanner scanner) {
         System.out.println("\t- " + ConsoleColors.ORANGE + "Choixpeau" + ConsoleColors.RESET + " : \"Humm, difficile, très difficile, beaucoup de courage, des facilités, une soif de faire tes preuves. Où puis je te mettre ?\"");
         System.out.println(ConsoleColors.BLUE + "\nChoisissez le numéro de la maison que vous ne souhaitez pas :" + ConsoleColors.RESET);
         for (int i = 0; i < houses.length; i++) {

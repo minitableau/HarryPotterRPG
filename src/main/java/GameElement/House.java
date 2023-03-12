@@ -2,22 +2,28 @@ package GameElement;
 
 import utils.ConsoleColors;
 
-public class House {
-    public void Gryffindor() {
-        String name = ConsoleColors.RED + "Gryffondor" + ConsoleColors.RESET;
+public enum House {
+    GRYFFINDOR(ConsoleColors.RED, "Gryffondor"),
+    HUFFLEPUFF(ConsoleColors.YELLOW, "Poufsouffle"),
+    RAVENCLAW(ConsoleColors.BLUE, "Serdaigle"),
+    SLYTHERIN(ConsoleColors.GREEN, "Serpentard");
+
+    final String color;
+
+    final String name;
+
+    House(String color, String name) {
+        this.color = color;
+        this.name = name;
     }
 
-    public void Hufflepuff() {
-        String name = ConsoleColors.YELLOW + "Poufsouffle" + ConsoleColors.RESET;
+    @Override
+    public String toString() {
+        return this.color + this.name + ConsoleColors.RESET;
     }
 
-    public void Ravenclaw() {
-        String name = ConsoleColors.BLUE + "Serdaigle" + ConsoleColors.RESET;
-    }
-
-    public void Slytherin() {
-        String name = ConsoleColors.GREEN + "Serpentard" + ConsoleColors.RESET;
+    public boolean isTheMostEfficiencyPotion() {
+        return this == HUFFLEPUFF;
     }
 
 }
-
