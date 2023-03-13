@@ -75,6 +75,10 @@ public abstract class Character {
     }
 
     public void attack(Character character){
+        // Contexte vous êtes à 10 metre du troll or vous savez que pour utiliser Windgarium leviosa il faut etre a 7metre ou moins pour que le sort est une chance de reussir, plus vous etes proche + les chances sont élevés
+        //Jetez des bouts de bois -20
+        //Se rapprocher
+        // utiliser WINDGARIUM LEviOSA
 
 
     }
