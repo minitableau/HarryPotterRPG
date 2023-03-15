@@ -1,5 +1,7 @@
 package GameElement;
 
+import java.util.Scanner;
+
 public abstract class Character {
 
     private int lifePoint;
@@ -14,9 +16,12 @@ public abstract class Character {
     private int efficiencyPotions;
 
     private int resistance;
+    private int mana;
+
+    private int money;
 
 
-    public Character(int lifePoint, int maxLifePoint, String name, int accuracy, int power, int efficiencyPotions, int resistance) {
+    public Character(int lifePoint, int maxLifePoint, String name, int accuracy, int power, int efficiencyPotions, int resistance, int mana, int money) {
         this.lifePoint = lifePoint;
         this.maxLifePoint = maxLifePoint;
         this.name = name;
@@ -24,6 +29,8 @@ public abstract class Character {
         this.power = power;
         this.efficiencyPotions = efficiencyPotions;
         this.resistance = resistance;
+        this.mana = mana;
+        this.money = money;
     }
 
     public int getLifePoint() {
@@ -74,12 +81,24 @@ public abstract class Character {
         this.resistance = resistance;
     }
 
-    public void attack(Character character){
-        // Contexte vous êtes à 10 metre du troll or vous savez que pour utiliser Windgarium leviosa il faut etre a 7metre ou moins pour que le sort est une chance de reussir, plus vous etes proche + les chances sont élevés
-        //Jetez des bouts de bois -20
-        //Se rapprocher
-        // utiliser WINDGARIUM LEviOSA
+    public int getMana() {
+        return mana;
+    }
 
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public void attack(Character character) {
+        //Gérer deux cas : Wizard ou AbstractEnemy
 
     }
 }
