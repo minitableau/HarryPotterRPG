@@ -24,12 +24,13 @@ public class Level1 {
 
         System.out.println("Quelque minutes plus tard un professeur arrive en paniquant dans votre cours, il annonce qu'un Troll c'est échappé et ce balade dans l'école. \nTous les élèves se mettent à crier dans tout les sens. Mais pas vous, vous pensez directement à Fleur qui est parti pleurer au toilette et n'a pas l'information. \nAinsi, à la place de suivre tout les autres et évacuer l'école pour se rendre dans le jardin vous allez en direction des toilettes des filles pour aider votre amie.\nVous réussissez à convaincre " + friends + "de venir avec vous.");
         //comnbat troll : vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. Vous engagez alors le comnat pour sauver votre amie.
-        wizard.addPotion(Potion.potionHeal);
 
+        //SET TROLL ICI
         attackTroll(wizard);
-//        if (exploreOrMakeNewFriend == 2){
-//            System.out.println("Votre ami peut aussi attaquer le troll.");
-//        }
+        for (int i = 0; i < listFriendsWithYou.size(); i++) {
+            System.out.println("\nVotre ami " + listFriendsWithYou.get(i).getName() + " peut aussi attaquer le troll.");
+            attackTroll(wizard);
+        }
     }
 
     private static int flyingLesson() {
@@ -127,7 +128,7 @@ public class Level1 {
         boolean success = false;
         boolean comeback = true;
 
-        while (distanceFromTroll >= 1 && !success && comeback) {
+        while (comeback) { //distanceFromTroll >= 1 && !success &&
             String stats = wizard.stats(wizard.getName(), wizard.getLifePoint(), wizard.getMaxLifePoint(), wizard.getMana(), wizard.getResistance(), wizard.getPower(), wizard.getMoney());
             System.out.println(stats);
             System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que le troll se situe à " + distanceFromTroll + " mètres et à " + trollLife + " points de vie ?" + ConsoleColors.RESET);
@@ -153,10 +154,12 @@ public class Level1 {
                         if (trollLife <= 0) {
                             success = true;
                         }
+                        comeback = false;
                     }
                     case 2 -> {
                         System.out.println("Vous vous rapprochez du troll.");
                         distanceFromTroll -= 1;
+                        comeback = false;
                     }
                     // s'occuper de ca avec creation des sorts
                     case 3 -> {
@@ -176,6 +179,7 @@ public class Level1 {
                         } else {
                             System.out.println("Vous êtes à " + distanceFromTroll + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%., si vous aviez mieux écouter le cours vous sauriez que pour utiliser Windgarium leviosa il faut etre à 7 mètres ou moins pour que le sort est une chance de reussir et que plus vous etes proche plus vous augementer vos chances.");
                         }
+                    comeback = false;
                     }
                     case 4 -> {
                         comeback = openBackpack(wizard);
@@ -237,67 +241,76 @@ public class Level1 {
     }
 
     private static boolean findPotions(Wizard wizard) {
-        System.out.println(ConsoleColors.BLUE + "\nPotions disponibles :" + ConsoleColors.RESET);
-        if (wizard.getPotions().size() < 1) {
-            System.out.println("Vous n'avez pas de potion");
+        int numPotions = wizard.getPotions().size();
+        if (numPotions == 0) {
+            System.out.println("Vous n'avez aucune potion disponible.");
             return true;
-        }
-        boolean comeback3 = true;
-        for (int i = 0; i < wizard.getPotions().size(); i++) {
-            System.out.println(i + 1 + " : " + wizard.getPotions().get(i).getName());
-            // proposer un choix de potion attention retour dispo
+        } else {
+            System.out.println(ConsoleColors.BLUE + "\nVeuillez choisir une potion :" + ConsoleColors.RESET);
+            for (int i = 0; i < numPotions; i++) {
+                System.out.println((i + 1) + " : " + wizard.getPotions().get(i).getName());
+            }
+            System.out.println((numPotions + 1) + " : Retourner dans le sac");
+            int choice = -1;
+            do {
+                Scanner scanner = new Scanner(System.in);
+                try {
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > numPotions + 1) {
+                        System.out.println("Veuillez entrer un choix valide.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Veuillez entrer un choix valide.");
+                    scanner.next();
+                }
+            } while (choice < 1 || choice > numPotions + 1);
+            if (choice == numPotions + 1) {
+                return true;
+            }
+            Potion chosenPotion = wizard.getPotions().get(choice - 1);
+            // Appliquer l'effet + .remove(choice-1)
+            System.out.println("Vous avez choisi la " + chosenPotion.getName() + ".");
+
+
         }
         return false;
     }
 
     private static boolean findItems(Wizard wizard) {
-        System.out.println(ConsoleColors.BLUE + "\nObjets disponibles :" + ConsoleColors.RESET);
-        if (wizard.getItems().size() < 1) {
-            System.out.println("Vous n'avez pas d'objet");
+        int numItems = wizard.getItems().size();
+        if (numItems == 0) {
+            System.out.println("Vous n'avez aucun objet disponible.");
             return true;
-        }
-        for (Item item : wizard.getItems()) {
-            System.out.println("- " + item.getName());
-            // proposer un choix d'objet attention retour dispo
+        } else {
+            System.out.println(ConsoleColors.BLUE + "\nVeuillez choisir un objet :" + ConsoleColors.RESET);
+            for (int i = 0; i < numItems; i++) {
+                System.out.println((i + 1) + " : " + wizard.getItems().get(i).getName());
+            }
+            System.out.println((numItems + 1) + " : Retourner dans le sac");
+            int choice = -1;
+            do {
+                Scanner scanner = new Scanner(System.in);
+                try {
+                    choice = scanner.nextInt();
+                    if (choice < 1 || choice > numItems + 1) {
+                        System.out.println("Veuillez entrer un choix valide.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Veuillez entrer un choix valide.");
+                    scanner.next();
+                }
+            } while (choice < 1 || choice > numItems + 1);
+            if (choice == numItems + 1) {
+                return true;
+            }
+            Item chosenItem = wizard.getItems().get(choice - 1);
+            // Appliquer l'effet + .remove(choice-1)
+            System.out.println("Vous avez choisi la " + chosenItem.getName() + ".");
+
+
         }
         return false;
     }
-
-
-//    private static boolean findPotions(Wizard wizard) {
-//        int numPotions = wizard.getPotions().size();
-//        if (numPotions == 0) {
-//            System.out.println("Vous n'avez aucune potion disponible.");
-//        } else {
-//            System.out.println(ConsoleColors.BLUE + "\nVeuillez choisir une potion :" + ConsoleColors.RESET);
-//            for (int i = 0; i < numPotions; i++) {
-//                System.out.println((i + 1) + " : " + wizard.getPotions().get(i).getName());
-//            }
-//            int choice = -1;
-//            do {
-//                Scanner scanner = new Scanner(System.in);
-//                try {
-//                    choice = scanner.nextInt();
-//                    if (choice < 1 || choice > numPotions) {
-//                        System.out.println("Veuillez entrer un choix valide.");
-//                    }
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Veuillez entrer un choix valide.");
-//                    scanner.next();
-//                }
-//            } while (choice < 1 || choice > numPotions);
-//            switch (choice) {
-//                for (int i = 0; i < numPotions; i++) {
-//                    case (1 + i) -> {
-//                        System.out.println("Vous avez choisi la " + wizard.getPotions().get(i).getName() + ".");
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-//        return true;
-//    }
-
 }
 
 
