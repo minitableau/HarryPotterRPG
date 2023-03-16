@@ -25,6 +25,5 @@ public class Friend {
         this.house = house;
     }
 
-//    public static Friend eloiseMidgen = new Friend("Eloise Midgen", null);
-//    public static Friend vincentCrabbe = new Friend("Vincent Crabbe", null);
+
 }

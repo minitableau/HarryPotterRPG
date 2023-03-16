@@ -1,5 +1,7 @@
 package GameElement;
 
+import javax.swing.plaf.SplitPaneUI;
+
 public class Spell {
     private String name;
 
@@ -16,5 +18,7 @@ public class Spell {
     }
 
     public static Spell windgardiumLeviosa = new Spell("Windgardium Leviosa");
+    public static Spell aloomora = new Spell("Aloomora");
+    // appris au lvl1 dans makefriendorexplore si choix 1
 
 }

@@ -63,7 +63,7 @@ public class Level0 {
         String ARRIVAL_AT_HOGWARTS = "Dites bonjour à " + ConsoleColors.RED + nameAnimal + ConsoleColors.RESET + " votre " + ConsoleColors.RED + animalChosen.type + ConsoleColors.RESET + " !\n" + ConsoleColors.ITALIC + "\n\tHagrid vous amène alors à la gare de Londres en vous donnant votre billet pour Poudlard voie 9_3/4" + ConsoleColors.RESET + "\n\nVous demandez à un groupe de jeunes un peu plus âgés qui ont le même style de bagage que vous : Comment se rendre à la voie 9_3/4. \nTrès gentiment, ils vous montrent le chemin : il faut foncer dans un pilier ! \nVous foncez dans le pilier avec un peu d'appréhension, mais vous arrivez bien sur le quai. Le train s'apprête à partir, vous décidez alors de monter à bord du Poudlard Express. \nVous rejoignez votre cabine, déposez vos affaires et : ";
         ScrollingText.printWithDelay(ARRIVAL_AT_HOGWARTS);
 
-        int trainChoice = trainChoice();
+        int trainChoice = trainChoice(wizard);
         SortingHat sortingHat = new SortingHat();
         House[] houses = sortingHat.houses;
 
@@ -79,8 +79,10 @@ public class Level0 {
 
         House vincentHouse = sortingHat.sort();
 
-        wizard.addFriend(new Friend("Eloise Midgen",eloiseHouse));
-        wizard.addFriend(new Friend("Vincent Crabbe",vincentHouse));
+        if (wizard.getFriends().size() !=0){
+            wizard.getFriends().get(0).setHouse(eloiseHouse);
+            wizard.getFriends().get(1).setHouse(vincentHouse);
+        }
 
         String VINCENT_SORTING_HAT = "\t- " + ConsoleColors.ORANGE + "Choixpeau" + ConsoleColors.RESET + " : \"Hummm avec toi pas la moindre hesitation " + vincentHouse + " !\"\nPuis : " + ConsoleColors.RED + name + ConsoleColors.RESET + " !";
         ScrollingText.printWithDelay(VINCENT_SORTING_HAT);
@@ -143,7 +145,7 @@ public class Level0 {
         return choice;
     }
 
-    private static int trainChoice() {
+    private static int trainChoice(Wizard wizard) {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         while (choice != 1 && choice != 2) {
@@ -161,6 +163,8 @@ public class Level0 {
                 // Eloise Midgen & Vincent Crabbe
                 if (choice == 2) {
                     System.out.println("\nVous vous rendez à la cabine voisine ou vous apercevais deux jeunes plus ou moins de votre age. Vous décidez de toqué, vous entrez et entamé une discussion. \nVous faites la connaissance de " + ConsoleColors.RED + "Eloise Midgen " + ConsoleColors.RESET + "& " + ConsoleColors.RED + "Vincent Crabbe" + ConsoleColors.RESET + " tous deux en première année comme toi. Après plusieurs heures de discussion celle-ci s'interrompe \npour laisser place au bruit du train qui freine brutalement et à une voix qui vous annonce que vous êtes arrivé.\n");
+                    wizard.addFriend(new Friend("Eloise Midgen",null));
+                    wizard.addFriend(new Friend("Vincent Crabbe",null));
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Le choix doit être un nombre.");

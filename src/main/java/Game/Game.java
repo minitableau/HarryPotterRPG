@@ -10,8 +10,10 @@ public class Game {
     private Wizard wizard;
 
     public static void main(String[] args) throws InterruptedException {
+        // initialisation
+        Wizard wizard = new Wizard(null, null, null, null);
 
-        Wizard wizard = new Wizard("name", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
+                new Wizard("name", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
 //        new Level0().level0(wizard);
         Level1.level1(wizard);
 

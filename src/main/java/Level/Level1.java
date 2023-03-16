@@ -1,31 +1,31 @@
 package Level;
 
-import GameElement.Item;
-import GameElement.Potion;
-import GameElement.Wizard;
+import GameElement.*;
 import utils.ConsoleColors;
 
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Level1 {
 
     public static void level1(Wizard wizard) throws InterruptedException {
-//        Scanner scanner = new Scanner(System.in);
-//        // Cours de balais votre professeur s'abscente, ennemy vole la colier de votre ami et s'envole avec, vous met au defi de venir le chercher alors que c'est interdit.
-//        System.out.println("Vous arrivez dans le jardin de Poudlard pour votre premier cours, qui est un cours de vol sur balais. Madame Bibine, votre professeur, vous donne les directives \npour faire voler votre balai et très vite vous remarquez avoir quelques facilités par rapport aux autres élèves. Elle doit par la suite s'absenter pour une urgence \net interdit formellement à quiconque de voler. Mais Bartemius Croupton en a décidé autrement, il vole le collier de Fleur Delacour et s'enfuit avec. \nIl vous met alors au défi de venir le chercher. Que décidez-vous de faire ?");
-//        // reconforter ou aller chercher le colier -> si chercher alors + amité + quiditch mais reprerer par M. magnonagan -point pour votre maison
-//        int flyingLesson = flyingLesson();
-//        // explorer l'ecole ou se faire de nouveau ami. -> si explorer l'ecole vous vous retrouver au 3 etages apprener l'existance de fluffy chien a 3 tete qui garde une trape sinon vous devenz ami avec  Dean Thomas
-//        int exploreOrMakeNewFriend = exploreOrMakeNewFriend();
-//        // Cours de levitation - apprentissage du sort WINGARDIUM levi oooo sa Fleur reussi du premier coup et essaye de vous aider, elle vous donne une meilleure prononciation mais cela fait rire vos camarades. Elle quitte donc le cours pour aller pleurer dans les toilettes.
-//        System.out.println("Vous assistez au cours de levitation où vous apprenez le sort WINGARDIUM LEVIOSA. Vous avez un peu de mal alors que votre amie Fleur réussit du premier coup. \nElle essaie donc de vous aider en vous donnant une meilleure prononciation : \"WINGARDIUM LEVI-OOO-SA\", mais cela fait rire vos camarades. \nElle quitte donc le cours pour aller pleurer dans les toilettes. Le professeur vous explique les modalités pour utiliser le sort lorsque nous somme un élève \nde premiere année : \"il vous faut être à 7 mètres ou moins pour que le sort est une chance de réussir, tout en sachant que plus vous êtes \nproche de l'objet à déplacer plus vos chances sont élevés\n");
-//        // FAIRE EN SORTE QUE SI AMIE ALORS NE PAS ETre SEUL ET ARRIVER AVEC SES AMIs
-//        System.out.println("Quelque minutes plus tard un professeur arrive en paniquant dans votre cours, il annonce qu'un Troll c'est échappé et ce balade dans l'école. \nTous les élèves se mettent à crier dans tout les sens. Mais pas vous, vous pensez directement à Fleur qui est parti pleurer au toilette et n'a pas l'information. \nAinsi, à la place de suivre tout les autres et évacuer l'école pour se rendre dans le jardin vous allez en direction des toilettes des filles pour aider votre amie.");
-//        //comnbat troll : vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. Vous engageez alors le comnat pour sauver votre amie.
-////        wizard.addPotion(Potion.potionHeal);
-//
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Vous arrivez dans le jardin de Poudlard pour votre premier cours, qui est un cours de vol sur balais. Madame Bibine, votre professeur, vous donne les directives \npour faire voler votre balai et très vite vous remarquez avoir quelques facilités par rapport aux autres élèves. Elle doit par la suite s'absenter pour une urgence \net interdit formellement à quiconque de voler. Mais Bartemius Croupton en a décidé autrement, il vole le collier de Fleur Delacour et s'enfuit avec. \nIl vous met alors au défi de venir le chercher. Que décidez-vous de faire ?");
+        // reconforter ou aller chercher le colier -> si chercher alors + amité + quiditch mais reprerer par M. magnonagan -point pour votre maison
+        int flyingLesson = flyingLesson();
+        // explorer l'ecole ou se faire de nouveau ami. -> si explorer l'ecole vous vous retrouver au 3 etages apprener l'existance de fluffy chien a 3 tete qui garde une trape sinon vous devenz ami avec  Dean Thomas
+        int exploreOrMakeNewFriend = exploreOrMakeNewFriend(wizard);
+        System.out.println("Vous assistez au cours de levitation où vous apprenez le sort WINGARDIUM LEVIOSA. Vous avez un peu de mal alors que votre amie Fleur réussit du premier coup. \nElle essaie donc de vous aider en vous donnant une meilleure prononciation : \"WINGARDIUM LEVI-OOO-SA\", mais cela fait rire vos camarades. \nElle quitte donc le cours pour aller pleurer dans les toilettes. Le professeur vous explique les modalités pour utiliser le sort lorsque nous somme un élève \nde premiere année : \"il vous faut être à 7 mètres ou moins pour que le sort est une chance de réussir, tout en sachant que plus vous êtes \nproche de l'objet à déplacer plus vos chances sont élevés\n");
+        wizard.addSpell(Spell.windgardiumLeviosa);
+        // FAIRE EN SORTE QUE SI AMIE ALORS NE PAS ETre SEUL ET ARRIVER AVEC SES AMIs
+        List<Friend> listFriendsWithYou = listFriendsWithYou(wizard);
+        String friends = nameFriendsWithYou(wizard, listFriendsWithYou);
+
+        // à la place de retourner la chaine de caractère retourner la liste des amis concerner pour pouvoir reutiliser apres.
+
+        System.out.println("Quelque minutes plus tard un professeur arrive en paniquant dans votre cours, il annonce qu'un Troll c'est échappé et ce balade dans l'école. \nTous les élèves se mettent à crier dans tout les sens. Mais pas vous, vous pensez directement à Fleur qui est parti pleurer au toilette et n'a pas l'information. \nAinsi, à la place de suivre tout les autres et évacuer l'école pour se rendre dans le jardin vous allez en direction des toilettes des filles pour aider votre amie.\nVous réussissez à convaincre " + friends + "de venir avec vous.");
+        //comnbat troll : vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. Vous engagez alors le comnat pour sauver votre amie.
+        wizard.addPotion(Potion.potionHeal);
+
         attackTroll(wizard);
 //        if (exploreOrMakeNewFriend == 2){
 //            System.out.println("Votre ami peut aussi attaquer le troll.");
@@ -64,7 +64,7 @@ public class Level1 {
         return choice;
     }
 
-    private static int exploreOrMakeNewFriend() {
+    private static int exploreOrMakeNewFriend(Wizard wizard) {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         while (choice != 1 && choice != 2) {
@@ -77,13 +77,14 @@ public class Level1 {
                     System.out.println("Le choix doit être 1 ou 2.");
                 }
                 if (choice == 1) {
-                    System.out.println("\nVous explorez l'école avec votre ami Fleur Delacour. Vous vous perdez plus ou moins et vous vous retrouver devant une porte verrouillé au 3ème étage \ndans la zone interdite au élève. Soudain vous entendez, des bruits de pas derriere vous. Fleur Delacour utilise un sort qu'elle connait qui permet de déverrouiller \ndes portes : \"Aloomora\". Vous vous cachez derrière celle-ci. Vous vous retournez et apercevais un énorme chien à trois têtes qui dort sur une trappe. \nVous ne faite pas de bruit et attendais un peu jusqu'a ce qu'il n'y ai plus de bruit de pas.");
+                    System.out.println("\nVous explorez l'école avec votre ami Fleur Delacour. Vous vous perdez plus ou moins et vous vous retrouver devant une porte verrouillé au 3ème étage \ndans la zone interdite au élève. Soudain vous entendez, des bruits de pas derriere vous. Fleur Delacour utilise un sort qu'elle connait qui permet de déverrouiller \ndes portes : \"Aloomora\". Vous vous cachez derrière celle-ci. Vous vous retournez et apercevais un énorme chien à trois têtes qui dort sur une trappe. \nVous ne faite pas de bruit et attendais un peu jusqu'a ce qu'il n'y ai plus de bruit de pas.\n");
                     // ajouter une nouvelle information
-                    // ajouter le sort aloomora
+                    // ajouter le sort
+                    wizard.addSpell(Spell.aloomora);
                 }
                 if (choice == 2) {
                     System.out.println("\nVous essayer de sociabiliser, sympathisé avec un élève de votre maison prénommé Dean Thomas.");
-                    // ajouter nouveau ami + amitié
+                    wizard.addFriend(new Friend("Dean Thomas", wizard.getHouse()));
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Le choix doit être un nombre.");
@@ -91,6 +92,32 @@ public class Level1 {
             }
         }
         return choice;
+    }
+
+    private static List<Friend> listFriendsWithYou(Wizard wizard) {
+        List<Friend> listFriendsWithYou = new ArrayList<>();
+        if (wizard.getFriends().size() != 0) {
+            for (int i = 0; i < wizard.getFriends().size(); i++) {
+                House house = wizard.getFriends().get(i).getHouse();
+                if (house == wizard.getHouse() && wizard.getFriends().get(i).getName() != "Fleur Delacour") {
+                    listFriendsWithYou.add(wizard.getFriends().get(i));
+
+                }
+            }
+        }
+        return listFriendsWithYou;
+    }
+
+    private static String nameFriendsWithYou(Wizard wizard, List<Friend> listFriendsWithYou) {
+        String friends = "";
+        if (listFriendsWithYou.size() != 0) {
+            for (Friend friend : listFriendsWithYou) {
+                friends += friend.getName() + ", ";
+            }
+        } else {
+            friends += "personne ";
+        }
+        return friends;
     }
 
     private static void attackTroll(Wizard wizard) {
@@ -107,7 +134,7 @@ public class Level1 {
             System.out.println("1 : Jeter des bouts de bois");
             System.out.println("2 : Se rapprocher");
             System.out.println("3 : Utiliser Windgardium Leviosa");
-            System.out.println("4 : Ouvrir l'inventaire");
+            System.out.println("4 : Ouvrir votre sac");
 
             try {
                 int choice = scanner.nextInt();
@@ -210,20 +237,21 @@ public class Level1 {
     }
 
     private static boolean findPotions(Wizard wizard) {
-        System.out.println("Potions disponibles :");
+        System.out.println(ConsoleColors.BLUE + "\nPotions disponibles :" + ConsoleColors.RESET);
         if (wizard.getPotions().size() < 1) {
             System.out.println("Vous n'avez pas de potion");
             return true;
         }
-        for (Potion potion : wizard.getPotions()) {
-            System.out.println("- " + potion.getName());
+        boolean comeback3 = true;
+        for (int i = 0; i < wizard.getPotions().size(); i++) {
+            System.out.println(i + 1 + " : " + wizard.getPotions().get(i).getName());
             // proposer un choix de potion attention retour dispo
         }
         return false;
     }
 
     private static boolean findItems(Wizard wizard) {
-        System.out.println("Objets disponibles :");
+        System.out.println(ConsoleColors.BLUE + "\nObjets disponibles :" + ConsoleColors.RESET);
         if (wizard.getItems().size() < 1) {
             System.out.println("Vous n'avez pas d'objet");
             return true;
@@ -234,6 +262,42 @@ public class Level1 {
         }
         return false;
     }
+
+
+//    private static boolean findPotions(Wizard wizard) {
+//        int numPotions = wizard.getPotions().size();
+//        if (numPotions == 0) {
+//            System.out.println("Vous n'avez aucune potion disponible.");
+//        } else {
+//            System.out.println(ConsoleColors.BLUE + "\nVeuillez choisir une potion :" + ConsoleColors.RESET);
+//            for (int i = 0; i < numPotions; i++) {
+//                System.out.println((i + 1) + " : " + wizard.getPotions().get(i).getName());
+//            }
+//            int choice = -1;
+//            do {
+//                Scanner scanner = new Scanner(System.in);
+//                try {
+//                    choice = scanner.nextInt();
+//                    if (choice < 1 || choice > numPotions) {
+//                        System.out.println("Veuillez entrer un choix valide.");
+//                    }
+//                } catch (InputMismatchException e) {
+//                    System.out.println("Veuillez entrer un choix valide.");
+//                    scanner.next();
+//                }
+//            } while (choice < 1 || choice > numPotions);
+//            switch (choice) {
+//                for (int i = 0; i < numPotions; i++) {
+//                    case (1 + i) -> {
+//                        System.out.println("Vous avez choisi la " + wizard.getPotions().get(i).getName() + ".");
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//        return true;
+//    }
+
 }
 
 
