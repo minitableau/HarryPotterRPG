@@ -56,7 +56,7 @@ public class Level0 {
         Pet animalChosen = Pet.values()[animalChoice - 1];
 
         String ANIMAL_NAME = ConsoleColors.BLUE + "\nHagrid vous demande alors comment vous allez l'appeler :" + ConsoleColors.RESET;
-        ScrollingText.printWithDelay(ANIMAL_NAME);
+        ScrollingText.printWithDelay(ANIMAL_NAME,0);
 
         String nameAnimal = scanner.nextLine();
 
@@ -104,71 +104,86 @@ public class Level0 {
     }
 
 
-    private static int readGesture() {
+    private static int readGesture() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         int gesture = 0;
         while (gesture != 1 && gesture != 2) {
-            System.out.println(ConsoleColors.BLUE + "\nChoisissez un geste : " + ConsoleColors.RESET);
-            System.out.println("1 : Faire un petit geste\n2 : Faire un grand geste");
+            String CHOOSE_GESTURE = ConsoleColors.BLUE + "\nChoisissez un geste : " + ConsoleColors.RESET;
+            ScrollingText.printWithDelay(CHOOSE_GESTURE,0);
+            String DO_GESTURE ="1 : Faire un petit geste\n2 : Faire un grand geste";
+            ScrollingText.printWithDelay(DO_GESTURE,0);
             try {
                 gesture = scanner.nextInt();
                 scanner.nextLine();
                 if (gesture != 1 && gesture != 2) {
-                    System.out.println("Le choix doit être 1 ou 2.");
+                    String VALID_INT ="Le choix doit être 1 ou 2.";
+                    ScrollingText.printWithDelay(VALID_INT,0);
+
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Le choix doit être un nombre.");
+                String NEED_INT ="Le choix doit être un nombre.";
+                ScrollingText.printWithDelay(NEED_INT,0);
+
                 scanner.nextLine();
             }
         }
         return gesture;
     }
 
-    private static int animalChoice() {
+    private static int animalChoice() throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         while (choice < 1 || choice > Pet.values().length) {
-            System.out.println(ConsoleColors.BLUE + "\nChoisissez un animal : " + ConsoleColors.RESET);
+            String CHOOSE_ANIMAL = ConsoleColors.BLUE + "\nChoisissez un animal : " + ConsoleColors.RESET;
+            ScrollingText.printWithDelay(CHOOSE_ANIMAL,0);
             for (Pet pet : Pet.values()) {
-                System.out.println(pet.index + " : " + pet.type);
+                String PRINT_ANIMAL = pet.index + " : " + pet.type;
+                ScrollingText.printWithDelay(PRINT_ANIMAL,0);
             }
             try {
                 choice = scanner.nextInt();
                 scanner.nextLine();
                 if (choice < 1 || choice > Pet.values().length) {
-                    System.out.println("Le choice doit être un nombre entre 1 et " + Pet.values().length + ".");
+                    String VALID_INT ="Le choice doit être un nombre entre 1 et " + Pet.values().length + ".";
+                    ScrollingText.printWithDelay(VALID_INT,0);
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Le choice doit être un nombre.");
-                scanner.nextLine();
+                String NEED_INT ="Le choix doit être un nombre.";
+                ScrollingText.printWithDelay(NEED_INT,0);
             }
         }
         return choice;
     }
 
-    private static int trainChoice(Wizard wizard) {
+    private static int trainChoice(Wizard wizard) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         while (choice != 1 && choice != 2) {
-            System.out.println(ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET);
-            System.out.println("1 : choisissez de dormir\n2 : choisissez d'aller à la rencontre des autres passagers");
+            String CHOOSE_WHAT = ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET;
+            ScrollingText.printWithDelay(CHOOSE_WHAT,0);
+            String THE_CHOOSE ="1 : choisissez de dormir\n2 : choisissez d'aller à la rencontre des autres passagers";
+            ScrollingText.printWithDelay(THE_CHOOSE,0);
             try {
                 choice = scanner.nextInt();
                 scanner.nextLine();
                 if (choice != 1 && choice != 2) {
-                    System.out.println("Le choix doit être 1 ou 2.");
+                    String VALID_INT ="Le choix doit être 1 ou 2.";
+                    ScrollingText.printWithDelay(VALID_INT,0);
                 }
                 if (choice == 1) {
-                    System.out.println("\nVous vous couchez dans votre cabine et dormez jusqu'à ce que le train freine brutalement et qu'une voix vous annonce que vous êtes arrivé.");
+                    String SLEEP_TIME ="\nVous vous couchez dans votre cabine et dormez jusqu'à ce que le train freine brutalement et qu'une voix vous annonce que vous êtes arrivé.";
+                    ScrollingText.printWithDelay(SLEEP_TIME);
                 }
                 // Eloise Midgen & Vincent Crabbe
                 if (choice == 2) {
-                    System.out.println("\nVous vous rendez à la cabine voisine ou vous apercevais deux jeunes plus ou moins de votre age. Vous décidez de toqué, vous entrez et entamé une discussion. \nVous faites la connaissance de " + ConsoleColors.RED + "Eloise Midgen " + ConsoleColors.RESET + "& " + ConsoleColors.RED + "Vincent Crabbe" + ConsoleColors.RESET + " tous deux en première année comme toi. Après plusieurs heures de discussion celle-ci s'interrompe \npour laisser place au bruit du train qui freine brutalement et à une voix qui vous annonce que vous êtes arrivé.\n");
+                    String FRIENDS_TIME ="\nVous vous rendez à la cabine voisine ou vous apercevais deux jeunes plus ou moins de votre age. Vous décidez de toqué, vous entrez et entamé une discussion. \nVous faites la connaissance de " + ConsoleColors.RED + "Eloise Midgen " + ConsoleColors.RESET + "& " + ConsoleColors.RED + "Vincent Crabbe" + ConsoleColors.RESET + " tous deux en première année comme toi. Après plusieurs heures de discussion celle-ci s'interrompe \npour laisser place au bruit du train qui freine brutalement et à une voix qui vous annonce que vous êtes arrivé.\n";
+                    ScrollingText.printWithDelay(FRIENDS_TIME);
                     wizard.addFriend(new Friend("Eloise Midgen", null));
                     wizard.addFriend(new Friend("Vincent Crabbe", null));
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Le choix doit être un nombre.");
+                String NEED_INT ="Le choix doit être un nombre.";
+                ScrollingText.printWithDelay(NEED_INT,0);
                 scanner.nextLine();
             }
         }

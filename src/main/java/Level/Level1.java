@@ -9,7 +9,7 @@ public class Level1 {
 
     public static void level1(Wizard wizard) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Vous arrivez dans le jardin de Poudlard pour votre premier cours, qui est un cours de vol sur balais. Madame Bibine, votre professeur, vous donne les directives \npour faire voler votre balai et très vite vous remarquez avoir quelques facilités par rapport aux autres élèves. Elle doit par la suite s'absenter pour une urgence \net interdit formellement à quiconque de voler. Mais Bartemius Croupton en a décidé autrement, il vole le collier de Fleur Delacour et s'enfuit avec. \nIl vous met alors au défi de venir le chercher. Que décidez-vous de faire ?");
+        System.out.println("\nVous arrivez dans le jardin de Poudlard pour votre premier cours, qui est un cours de vol sur balais. Madame Bibine, votre professeur, vous donne les directives \npour faire voler votre balai et très vite vous remarquez avoir quelques facilités par rapport aux autres élèves. Elle doit par la suite s'absenter pour une urgence \net interdit formellement à quiconque de voler. Mais Bartemius Croupton en a décidé autrement, il vole le collier de Fleur Delacour et s'enfuit avec. \nIl vous met alors au défi de venir le chercher. Que décidez-vous de faire ?");
         // reconforter ou aller chercher le colier -> si chercher alors + amité + quiditch mais reprerer par M. magnonagan -point pour votre maison
         int flyingLesson = flyingLesson();
         // explorer l'ecole ou se faire de nouveau ami. -> si explorer l'ecole vous vous retrouver au 3 etages apprener l'existance de fluffy chien a 3 tete qui garde une trape sinon vous devenz ami avec  Dean Thomas

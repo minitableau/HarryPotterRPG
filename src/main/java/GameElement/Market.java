@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class Market {
     public static void market(Wizard wizard) {
+        int money = wizard.getMoney();
         boolean purchaseProgress = true;
+        System.out.println(ConsoleColors.ITALIC +"\n\tVous arrivez dans un magasin de potion."+ConsoleColors.RESET);
         while (purchaseProgress) {
-            int money = wizard.getMoney();
-            System.out.println("\nVous arrivez dans un magasin de potion, vous disposez de " + money + " mornilles.");
+            money = wizard.getMoney();
+            System.out.println(ConsoleColors.GREEN + "\nVous disposez de " + money + " mornilles." + ConsoleColors.RESET);
             System.out.println(ConsoleColors.BLUE + "Voici les potions disponibles à l'achat :" + ConsoleColors.RESET);
             System.out.println("1 : La " + Potion.potionHeal.getName() + ", vous ajoute : " + Potion.potionHeal.getValue() + " de vie, son coût est de " + Potion.potionHeal.getCost() + " mornilles.");
             System.out.println("2 : La " + Potion.potionDamage.getName() + ", vous ajoute : " + Potion.potionDamage.getValue() + "% de dégât, son coût est de " + Potion.potionDamage.getCost() + " mornilles.");

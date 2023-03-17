@@ -13,15 +13,10 @@ public class Game {
         // initialisation
         Wizard wizard = new Wizard(null, null, null, null);
 
-                new Wizard("name", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
-//        new Level0().level0(wizard);
+//        new Wizard("name", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
+        new Level0().level0(wizard);
         Market.market(wizard);
-//        wizard.addPotion(Potion.potionHeal);
-//        wizard.addPotion(Potion.potionHeal);
-//        wizard.addPotion(Potion.potionHeal);
         wizard.addItem(Item.gryffindorSword);
-//        wizard.addItem(Item.gryffindorSword);
-//        wizard.addItem(Item.gryffindorSword);
         Level1.level1(wizard);
 
     }
