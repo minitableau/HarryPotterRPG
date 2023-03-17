@@ -24,12 +24,12 @@ public class Wizard extends Character {
     public void defend() {
     }
 
-    public String stats(String name, int lifePoint, int maxLifePoint, int mana, int resistance, int power, int money) {
-        return "\nStatistiques de " + name + " : " + "❤️ " + lifePoint + "/" + maxLifePoint + " |" + " 💧 " + mana + "/100 |" + " 🛡️ + " + resistance + "% |" + " 💪 + " + power + "% |" + " 💵 " + money + "$";
+    public String stats(String name, int lifePoint, int maxLifePoint, int mana, int resistance, int power, int accuracy, int EfficiencyPotions, int money) {
+        return "\nStatistiques de " + name + " : " + "❤️ " + lifePoint + "/" + maxLifePoint + " |" + " 💧 " + mana + "/100 |" + " 🛡️ + " + resistance + "% |" + " 💪 + " + power + "% |" + " 🎯 + " + accuracy + "% |" + " ⚗️ + " + EfficiencyPotions + "% |" + " 💵 " + money + "$";
     }
 
     public Wizard(String name, Pet pet, Wand wand, House house, List<Spell> knownSpells, List<Potion> potions, List<Item> items, List<Friend> friends) {
-        super(100, 100, name, 0, 0, 1, 0, 100, 100);
+        super(100, 100, name, 0, 0, 0, 0, 100, 100);
         this.name = name;
         this.pet = pet;
         this.wand = wand;

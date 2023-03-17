@@ -79,7 +79,7 @@ public class Level0 {
 
         House vincentHouse = sortingHat.sort();
 
-        if (wizard.getFriends().size() !=0){
+        if (wizard.getFriends().size() != 0) {
             wizard.getFriends().get(0).setHouse(eloiseHouse);
             wizard.getFriends().get(1).setHouse(vincentHouse);
         }
@@ -95,11 +95,12 @@ public class Level0 {
         String MEETINGS_AT_HOGWARTS = "\nVous allez vous asseoir avec votre maison et rencontrer : Fleur Delacour qui à l'air de connaitre beaucoup de chose sur la magie. Elle devient votre ami. \nVous rencontrer aussi Bartemius Croupton qui se moque de vous et votre amie.";
         ScrollingText.printWithDelay(MEETINGS_AT_HOGWARTS);
 
-        wizard.addFriend(new Friend("Fleur Delacour",characterHouse));
+        wizard.addFriend(new Friend("Fleur Delacour", characterHouse));
         wizard.setName(name);
         wizard.setPet(animalChosen);
         wizard.setWand(wand);
         wizard.setHouse(characterHouse);
+        characterHouse.setHouseBonus(wizard);
     }
 
 
@@ -163,8 +164,8 @@ public class Level0 {
                 // Eloise Midgen & Vincent Crabbe
                 if (choice == 2) {
                     System.out.println("\nVous vous rendez à la cabine voisine ou vous apercevais deux jeunes plus ou moins de votre age. Vous décidez de toqué, vous entrez et entamé une discussion. \nVous faites la connaissance de " + ConsoleColors.RED + "Eloise Midgen " + ConsoleColors.RESET + "& " + ConsoleColors.RED + "Vincent Crabbe" + ConsoleColors.RESET + " tous deux en première année comme toi. Après plusieurs heures de discussion celle-ci s'interrompe \npour laisser place au bruit du train qui freine brutalement et à une voix qui vous annonce que vous êtes arrivé.\n");
-                    wizard.addFriend(new Friend("Eloise Midgen",null));
-                    wizard.addFriend(new Friend("Vincent Crabbe",null));
+                    wizard.addFriend(new Friend("Eloise Midgen", null));
+                    wizard.addFriend(new Friend("Vincent Crabbe", null));
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Le choix doit être un nombre.");

@@ -81,14 +81,13 @@ public class Level1 {
                 }
                 if (choice == 1) {
                     System.out.println("\nVous ne répondait pas à la provocation de Bartemius Croupton et essayer réconforter Fleur Delacour, cela fonctionne assez bien mais elle reste triste. ");
-                    // gagner point d'amité
+                    // gagner point d'amitié ?
                     System.out.println("Madame Bibine revient, félicite la classe pour son sérieux et termine son cours. Elle vous libère quelque minutes en avance car vous avez était discipliné");
                 }
                 if (choice == 2) {
                     System.out.println("\nVous vous engagez dans une course-poursuite contre Bartemius Croupton. Vous parvenez à le rattraper, mais il décide alors de lancer le collier en direction du lac. \nVous accélérez et réussissez à rattraper le collier juste avant qu'il ne tombe dans l'eau. Vous revenez donc avec le groupe, cependant Madame Bibine est revenu et vous êtes donc \npuni : votre maison perd 30 points. Malgré tout, votre professeur vous propose d'intégrer l'équipe de Quidditch car elle a été impressionnée par votre performance.\n");
                     // faire maison perd 30 points
                     // faire intégrer équipe Quidditch
-                    // gagner nouveau ami ?
                     System.out.println("Après quelque explication en retenu votre professeur comprend les motivations de ce vol interdit, elle vous laisse donc partir quelque minutes en avance.");
                 }
             } catch (InputMismatchException e) {
@@ -114,7 +113,6 @@ public class Level1 {
                 if (choice == 1) {
                     System.out.println("\nVous explorez l'école avec votre ami Fleur Delacour. Vous vous perdez plus ou moins et vous vous retrouver devant une porte verrouillé au 3ème étage \ndans la zone interdite au élève. Soudain vous entendez, des bruits de pas derriere vous. Fleur Delacour utilise un sort qu'elle connait qui permet de déverrouiller \ndes portes : \"Aloomora\". Vous vous cachez derrière celle-ci. Vous vous retournez et apercevais un énorme chien à trois têtes qui dort sur une trappe. \nVous ne faite pas de bruit et attendais un peu jusqu'a ce qu'il n'y ai plus de bruit de pas.\n");
                     // ajouter une nouvelle information
-                    // ajouter le sort
                     wizard.addSpell(Spell.aloomora);
                 }
                 if (choice == 2) {
@@ -163,7 +161,7 @@ public class Level1 {
         boolean comeback = true;
 
         while (comeback) { //distanceFromTroll >= 1 && !success &&
-            String stats = wizard.stats(wizard.getName(), wizard.getLifePoint(), wizard.getMaxLifePoint(), wizard.getMana(), wizard.getResistance(), wizard.getPower(), wizard.getMoney());
+            String stats = wizard.stats(wizard.getName(), wizard.getLifePoint(), wizard.getMaxLifePoint(), wizard.getMana(), wizard.getResistanceBonus(), wizard.getPowerBonus(),wizard.getAccuracyBonus(), wizard.getEfficiencyPotionsBonus(), wizard.getMoney());
             System.out.println(stats);
             System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que le troll se situe à " + distanceFromTroll + " mètres et à " + trollLife + " points de vie ?" + ConsoleColors.RESET);
             System.out.println("1 : Jeter des bouts de bois");
@@ -182,7 +180,7 @@ public class Level1 {
 
                 switch (choice) {
                     case 1 -> {
-                        int dommage = 20;
+                        int dommage = 20 + (20 * wizard.getPowerBonus()) / 100;
                         System.out.println("Vous jetez des bouts de bois sur le troll. Il perd " + dommage + " points de vie");
                         enemy.setLifePoints(enemy.getLifePoints() - dommage);
                         if (enemy.getLifePoints() <= 0) {
@@ -200,7 +198,7 @@ public class Level1 {
                         int chanceOfSuccess = 0;
                         if (enemy.getDistance() <= 7) {
                             System.out.println("Vous utilisez Windgardium Leviosa sur la massue du troll !");
-                            chanceOfSuccess = 100 - (enemy.getDistance() * 5); //ajouter la precision de maison / potion.
+                            chanceOfSuccess = 100 - (enemy.getDistance() * 5) + wizard.getAccuracyBonus();
                             System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%.");
                             Random random = new Random();
                             int randomValue = random.nextInt(101);
@@ -211,7 +209,7 @@ public class Level1 {
                                 System.out.println("Vous ratez votre sort de justesse.");
                             }
                         } else {
-                            System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%., si vous aviez mieux écouter le cours vous sauriez que pour utiliser Windgarium leviosa il faut etre à 7 mètres ou moins pour que le sort est une chance de reussir et que plus vous etes proche plus vous augementer vos chances.");
+                            System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%., si vous aviez mieux écouter le cours vous sauriez que pour utiliser Windgarium leviosa \nil faut etre à 7 mètres ou moins pour que le sort est une chance de reussir et que plus vous etes proche plus vous augementer vos chances.");
                         }
                         comeback = false;
                     }
@@ -295,9 +293,21 @@ public class Level1 {
                 return true;
             }
             Potion chosenPotion = wizard.getPotions().get(choice - 1);
-            // Appliquer l'effet + .remove(choice-1)
             System.out.println("Vous avez choisi la " + chosenPotion.getName() + ".");
-
+            if (chosenPotion == Potion.potionHeal) {
+                wizard.setLifePoint(wizard.getLifePoint() + chosenPotion.getValue());
+//                wizard.setMaxLifePoint(wizard.getMaxLifePoint() + chosenPotion.getValue());
+                wizard.getPotions().remove(choice - 1);
+            } else if (chosenPotion == Potion.potionDamage) {
+                wizard.setPowerBonus(wizard.getPowerBonus() + chosenPotion.getValue());
+                wizard.getPotions().remove(choice - 1);
+            } else if (chosenPotion == Potion.potionResistance) {
+                wizard.setResistanceBonus(wizard.getResistanceBonus() + chosenPotion.getValue());
+                wizard.getPotions().remove(choice - 1);
+            } else if (chosenPotion == Potion.potionPrecision) {
+                wizard.setAccuracyBonus(wizard.getAccuracyBonus() + chosenPotion.getValue());
+                wizard.getPotions().remove(choice - 1);
+            }
 
         }
         return false;
@@ -348,8 +358,9 @@ public class Level1 {
         Random random = new Random();
         int randomValue = random.nextInt(101);
         if (randomValue <= chanceOfSuccess) {
-            wizard.setLifePoint(wizardLife - Enemy.troll.getDommage());
-            System.out.println("La massue du troll, vous frappe et vous enlève " + Enemy.troll.getDommage() + " points de vie.");
+            int dommage = Enemy.troll.getDommage() - (Enemy.troll.getDommage() * wizard.getResistanceBonus()) / 100;
+            wizard.setLifePoint(wizardLife - dommage);
+            System.out.println("La massue du troll, vous frappe et vous enlève " + dommage + " points de vie.");
             if (wizard.getLifePoint() <= 0) {
                 System.out.println("Vous êtes mort! Le troll vous a vaincu.");
                 return true;

@@ -9,30 +9,30 @@ import java.util.Scanner;
 public abstract class Character {
 
     private int lifePoint;
-    private final int maxLifePoint;
+    private int maxLifePoint;
 
     private final String name;
 
-    private int accuracy;
+    private int accuracyBonus;
 
-    private int power;
+    private int powerBonus;
 
-    private int efficiencyPotions;
+    private int efficiencyPotionsBonus;
 
-    private int resistance;
+    private int resistanceBonus;
     private int mana;
 
     private int money;
 
 
-    public Character(int lifePoint, int maxLifePoint, String name, int accuracy, int power, int efficiencyPotions, int resistance, int mana, int money) {
+    public Character(int lifePoint, int maxLifePoint, String name, int accuracyBonus, int powerBonus, int efficiencyPotionsBonus, int resistanceBonus, int mana, int money) {
         this.lifePoint = lifePoint;
         this.maxLifePoint = maxLifePoint;
         this.name = name;
-        this.accuracy = accuracy;
-        this.power = power;
-        this.efficiencyPotions = efficiencyPotions;
-        this.resistance = resistance;
+        this.accuracyBonus = accuracyBonus;
+        this.powerBonus = powerBonus;
+        this.efficiencyPotionsBonus = efficiencyPotionsBonus;
+        this.resistanceBonus = resistanceBonus;
         this.mana = mana;
         this.money = money;
     }
@@ -49,40 +49,44 @@ public abstract class Character {
         return maxLifePoint;
     }
 
+    public void setMaxLifePoint(int maxLifePoint) {
+        this.maxLifePoint = maxLifePoint;
+    }
+
     public String getName() {
         return name;
     }
 
-    public int getAccuracy() {
-        return accuracy;
+    public int getAccuracyBonus() {
+        return accuracyBonus;
     }
 
-    public void setAccuracy(int accuracy) {
-        this.accuracy = accuracy;
+    public void setAccuracyBonus(int accuracyBonus) {
+        this.accuracyBonus = accuracyBonus;
     }
 
-    public int getPower() {
-        return power;
+    public int getPowerBonus() {
+        return powerBonus;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public void setPowerBonus(int powerBonus) {
+        this.powerBonus = powerBonus;
     }
 
-    public int getEfficiencyPotions() {
-        return efficiencyPotions;
+    public int getEfficiencyPotionsBonus() {
+        return efficiencyPotionsBonus;
     }
 
-    public void setEfficiencyPotions(int efficiencyPotions) {
-        this.efficiencyPotions = efficiencyPotions;
+    public void setEfficiencyPotionsBonus(int efficiencyPotionsBonus) {
+        this.efficiencyPotionsBonus = efficiencyPotionsBonus;
     }
 
-    public int getResistance() {
-        return resistance;
+    public int getResistanceBonus() {
+        return resistanceBonus;
     }
 
-    public void setResistance(int resistance) {
-        this.resistance = resistance;
+    public void setResistanceBonus(int resistanceBonus) {
+        this.resistanceBonus = resistanceBonus;
     }
 
     public int getMana() {

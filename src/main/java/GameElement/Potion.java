@@ -4,11 +4,13 @@ public class Potion {
     private String name;
     private String type;
     private int value;
+    private int cost;
 
-    public Potion(String name, String type, int value) {
+    public Potion(String name, String type, int value, int cost) {
         this.name = name;
         this.type = type;
         this.value = value;
+        this.cost = cost;
     }
 
     public String getName() {
@@ -35,10 +37,18 @@ public class Potion {
         this.value = value;
     }
 
-    public static Potion potionHeal = new Potion("Potion de soin", "soin", 20);
-    public static Potion potionDamage = new Potion("Potion de dégât", "dégât", 30);
-    public static Potion potionPrecision = new Potion("Potion de précision", "précision", 10);
-    public static Potion potionResistance = new Potion("Potion de résistance", "résistance", 15);
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public static Potion potionHeal = new Potion("Potion de soin", "soin", 20, 10);
+    public static Potion potionDamage = new Potion("Potion de dégât", "dégât", 10, 30);
+    public static Potion potionPrecision = new Potion("Potion de précision", "précision", 5, 30);
+    public static Potion potionResistance = new Potion("Potion de résistance", "résistance", 10, 30);
 
 }
 
