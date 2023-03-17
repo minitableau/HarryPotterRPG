@@ -1,5 +1,9 @@
 package GameElement;
 
+import utils.ConsoleColors;
+
+import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public abstract class Character {
@@ -101,4 +105,5 @@ public abstract class Character {
         //Gérer deux cas : Wizard ou AbstractEnemy
 
     }
+
 }

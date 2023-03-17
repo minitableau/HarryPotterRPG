@@ -26,11 +26,45 @@ public class Level1 {
         //comnbat troll : vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. Vous engagez alors le comnat pour sauver votre amie.
 
         //SET TROLL ICI
-        attackTroll(wizard);
-        for (int i = 0; i < listFriendsWithYou.size(); i++) {
-            System.out.println("\nVotre ami " + listFriendsWithYou.get(i).getName() + " peut aussi attaquer le troll.");
-            attackTroll(wizard);
+        Enemy enemy = Enemy.troll;
+        boolean trollAlive = false;
+        boolean wizardAlive = false;
+        while (enemy.getDistance() >= 1 && !trollAlive && !wizardAlive) {
+            trollAlive = wizardAttackTroll(wizard, enemy);
+            if (enemy.getDistance() < 1) {
+                break;
+            }
+            if (trollAlive) {
+                break;
+            }
+            for (int i = 0; i < listFriendsWithYou.size(); i++) {
+                System.out.println("\nVotre ami " + listFriendsWithYou.get(i).getName() + " peut aussi attaquer le troll.");
+                trollAlive = wizardAttackTroll(wizard, enemy);
+                if (enemy.getDistance() < 1) {
+                    break;
+                }
+                if (trollAlive) {
+                    break;
+                }
+            }
+            if (enemy.getDistance() < 1) {
+                break;
+            }
+            if (trollAlive) {
+                break;
+            }
+            wizardAlive = trollAttackWizard(wizard, enemy);
+
         }
+
+        if (enemy.getDistance() < 1) {
+            System.out.println("Quel idée de se coller à un troll ! Celui-ci vous attrape et vous mange.");
+        }
+
+        if (trollAlive) {
+            System.out.println("Vous avez vaincu le troll !");
+        }
+
     }
 
     private static int flyingLesson() {
@@ -121,10 +155,10 @@ public class Level1 {
         return friends;
     }
 
-    private static void attackTroll(Wizard wizard) {
+    private static boolean wizardAttackTroll(Wizard wizard, Enemy enemy) {
         Scanner scanner = new Scanner(System.in);
-        int distanceFromTroll = 10;
-        int trollLife = 100;
+        int distanceFromTroll = enemy.getDistance();
+        int trollLife = enemy.getLifePoints();
         boolean success = false;
         boolean comeback = true;
 
@@ -150,36 +184,36 @@ public class Level1 {
                     case 1 -> {
                         int dommage = 20;
                         System.out.println("Vous jetez des bouts de bois sur le troll. Il perd " + dommage + " points de vie");
-                        trollLife -= dommage;
-                        if (trollLife <= 0) {
-                            success = true;
+                        enemy.setLifePoints(enemy.getLifePoints() - dommage);
+                        if (enemy.getLifePoints() <= 0) {
+                            return true;
                         }
                         comeback = false;
                     }
                     case 2 -> {
                         System.out.println("Vous vous rapprochez du troll.");
-                        distanceFromTroll -= 1;
+                        enemy.setDistance(enemy.getDistance() - 1);
                         comeback = false;
                     }
                     // s'occuper de ca avec creation des sorts
                     case 3 -> {
                         int chanceOfSuccess = 0;
-                        if (distanceFromTroll <= 7) {
+                        if (enemy.getDistance() <= 7) {
                             System.out.println("Vous utilisez Windgardium Leviosa sur la massue du troll !");
-                            chanceOfSuccess = 100 - (distanceFromTroll * 5);
-                            System.out.println("Vous êtes à " + distanceFromTroll + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%.");
+                            chanceOfSuccess = 100 - (enemy.getDistance() * 5); //ajouter la precision de maison / potion.
+                            System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%.");
                             Random random = new Random();
                             int randomValue = random.nextInt(101);
                             if (randomValue <= chanceOfSuccess) {
-                                success = true;
                                 System.out.println("Votre sort atteint la massue du troll, vous diriger alors la massue plusieurs mètres au dessus de ca tete et la laisser tombé ce qui assomme le troll.");
+                                return true;
                             } else {
                                 System.out.println("Vous ratez votre sort de justesse.");
                             }
                         } else {
-                            System.out.println("Vous êtes à " + distanceFromTroll + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%., si vous aviez mieux écouter le cours vous sauriez que pour utiliser Windgarium leviosa il faut etre à 7 mètres ou moins pour que le sort est une chance de reussir et que plus vous etes proche plus vous augementer vos chances.");
+                            System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%., si vous aviez mieux écouter le cours vous sauriez que pour utiliser Windgarium leviosa il faut etre à 7 mètres ou moins pour que le sort est une chance de reussir et que plus vous etes proche plus vous augementer vos chances.");
                         }
-                    comeback = false;
+                        comeback = false;
                     }
                     case 4 -> {
                         comeback = openBackpack(wizard);
@@ -193,14 +227,7 @@ public class Level1 {
                 scanner.nextLine();
             }
         }
-
-        if (distanceFromTroll < 1) {
-            System.out.println("Quel idée de se coller à un troll ! Celui-ci vous attrape et vous mange.");
-        }
-
-        if (success) {
-            System.out.println("Vous avez vaincu le troll !");
-        }
+        return false;
     }
 
     private static boolean openBackpack(Wizard wizard) {
@@ -308,6 +335,27 @@ public class Level1 {
             System.out.println("Vous avez choisi la " + chosenItem.getName() + ".");
 
 
+        }
+        return false;
+    }
+
+    private static boolean trollAttackWizard(Wizard wizard, Enemy enemy) {
+        Scanner scanner = new Scanner(System.in);
+        int wizardLife = wizard.getLifePoint();
+        int chanceOfSuccess = 0;
+        chanceOfSuccess = 40 + listFriendsWithYou(wizard).size() * 20;
+        System.out.println("\nVous êtes " + (int) (listFriendsWithYou(wizard).size() + 1) + " contre le troll. La probabilité qu'il vous touche est de " + chanceOfSuccess + "%.");
+        Random random = new Random();
+        int randomValue = random.nextInt(101);
+        if (randomValue <= chanceOfSuccess) {
+            wizard.setLifePoint(wizardLife - Enemy.troll.getDommage());
+            System.out.println("La massue du troll, vous frappe et vous enlève " + Enemy.troll.getDommage() + " points de vie.");
+            if (wizard.getLifePoint() <= 0) {
+                System.out.println("Vous êtes mort! Le troll vous a vaincu.");
+                return true;
+            }
+        } else {
+            System.out.println("Le troll essaie de vous frapper avec ca massue mais vous arrivez à l'éviter.");
         }
         return false;
     }
