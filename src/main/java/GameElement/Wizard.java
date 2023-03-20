@@ -13,6 +13,9 @@ public class Wizard extends Character {
 
     private House house;
 
+    private int housePoints;
+    private List<Knowledge> knowledges;
+
     private List<Spell> knownSpells;
 
     private List<Potion> potions;
@@ -28,7 +31,7 @@ public class Wizard extends Character {
         return "\nStatistiques de " + name + " : " + "❤️ " + lifePoint + "/" + maxLifePoint + " |" + " 💧 " + mana + "/100 |" + " 🛡️ + " + resistance + "% |" + " 💪 + " + power + "% |" + " 🎯 + " + accuracy + "% |" + " ⚗️ + " + EfficiencyPotions + "% |" + " 💵 " + money + "$";
     }
 
-    public Wizard(String name, Pet pet, Wand wand, House house, List<Spell> knownSpells, List<Potion> potions, List<Item> items, List<Friend> friends) {
+    public Wizard(String name, Pet pet, Wand wand, House house, List<Spell> knownSpells, List<Potion> potions, List<Item> items, List<Friend> friends, int housePoints, List<Knowledge> knowledges) {
         super(100, 100, name, 0, 0, 0, 0, 100, 100);
         this.name = name;
         this.pet = pet;
@@ -38,10 +41,12 @@ public class Wizard extends Character {
         this.potions = potions;
         this.items = items;
         this.friends = friends;
+        this.housePoints = housePoints;
+        this.knowledges = knowledges;
     }
 
     public Wizard(String name, Pet pet, Wand wand, House house) {
-        this(name, pet, wand, house, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        this(name, pet, wand, house, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 200, new ArrayList<>());
     }
 
     @Override
@@ -125,4 +130,23 @@ public class Wizard extends Character {
         this.friends.add(friend);
     }
 
+    public int getHousePoints() {
+        return housePoints;
+    }
+
+    public void setHousePoints(int housePoints) {
+        this.housePoints = housePoints;
+    }
+
+    public List<Knowledge> getKnowledges() {
+        return knowledges;
+    }
+
+    public void setKnowledges(List<Knowledge> knowledges) {
+        this.knowledges = knowledges;
+    }
+
+    public void addKnowledge(Knowledge knowledge) {
+        this.knowledges.add(knowledge);
+    }
 }

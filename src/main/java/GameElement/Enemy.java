@@ -57,5 +57,5 @@ public class Enemy {
     }
 
     public static Enemy troll = new Enemy("Troll des montagnes", "Troll", 100,10, 30);
-
+    public static Enemy basilic = new Enemy("Basilic de Salazar Serpentard", "Basilic", 100,3, 30);
 }
