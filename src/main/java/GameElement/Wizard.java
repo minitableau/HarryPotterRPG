@@ -32,7 +32,7 @@ public class Wizard extends Character {
     }
 
     public Wizard(String name, Pet pet, Wand wand, House house, List<Spell> knownSpells, List<Potion> potions, List<Item> items, List<Friend> friends, int housePoints, List<Knowledge> knowledges) {
-        super(100, 100, name, 0, 0, 0, 0, 100, 100);
+        super(100, 100, name, 0, 0, 0, 0, 100, 100, true);
         this.name = name;
         this.pet = pet;
         this.wand = wand;
@@ -47,6 +47,12 @@ public class Wizard extends Character {
 
     public Wizard(String name, Pet pet, Wand wand, House house) {
         this(name, pet, wand, house, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 200, new ArrayList<>());
+    }
+
+    public void CheckIsAlive(Wizard wizard) {
+        if (wizard.getLifePoint() <= 0) {
+            wizard.setIsAlive(false);
+        }
     }
 
     @Override
@@ -149,4 +155,7 @@ public class Wizard extends Character {
     public void addKnowledge(Knowledge knowledge) {
         this.knowledges.add(knowledge);
     }
+
 }
+
+

@@ -1,6 +1,7 @@
 package Level;
 
 public class Level2 {
+    //MARKET
     // Il s'agit là, des vacances pendant celle-ci vous vous reposez et avant la rentrée vous vous rendez au marché
     // pour cela vous utilisez une cheminée
     // achat potion dispo

@@ -24,8 +24,10 @@ public abstract class Character {
 
     private int money;
 
+    private boolean isAlive;
 
-    public Character(int lifePoint, int maxLifePoint, String name, int accuracyBonus, int powerBonus, int efficiencyPotionsBonus, int resistanceBonus, int mana, int money) {
+
+    public Character(int lifePoint, int maxLifePoint, String name, int accuracyBonus, int powerBonus, int efficiencyPotionsBonus, int resistanceBonus, int mana, int money, boolean isAlive) {
         this.lifePoint = lifePoint;
         this.maxLifePoint = maxLifePoint;
         this.name = name;
@@ -35,6 +37,7 @@ public abstract class Character {
         this.resistanceBonus = resistanceBonus;
         this.mana = mana;
         this.money = money;
+        this.isAlive = isAlive;
     }
 
     public int getLifePoint() {
@@ -105,9 +108,19 @@ public abstract class Character {
         this.money = money;
     }
 
+
+    public boolean getIsAlive() {
+        return isAlive;
+    }
+
+    public void setIsAlive(boolean alive) {
+        isAlive = alive;
+    }
+
     public void attack(Character character) {
         //Gérer deux cas : Wizard ou AbstractEnemy
 
     }
+
 
 }
