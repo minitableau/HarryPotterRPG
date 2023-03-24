@@ -4,7 +4,7 @@ package Game;
 import GameElement.*;
 import Level.Level0;
 import Level.Level1;
-import MiniGame.TicTacToe.TicTacToe;
+import Level.Level2;
 
 
 public class Game {
@@ -14,12 +14,16 @@ public class Game {
         // initialisation
         Wizard wizard = new Wizard(null, null, null, null);
 
-//        new Wizard("name", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
-//        new Level0().level0(wizard);
-//        Market.market(wizard);
-        wizard.addItem(Item.gryffindorSword);
+//        Wizard wizard = new Wizard("mini", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
+        new Level0().level0(wizard);
         Level1.level1(wizard);
-
+        if (!wizard.getIsAlive()) {
+            return;
+        }
+        Level2.level2(wizard);
+        if (!wizard.getIsAlive()) {
+            return;
+        }
     }
 
 }

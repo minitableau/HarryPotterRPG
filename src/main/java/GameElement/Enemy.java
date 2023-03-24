@@ -8,7 +8,7 @@ public class Enemy {
 
     private int dommage;
 
-    public Enemy(String name, String type, int lifePoints, int distance,int dommage) {
+    public Enemy(String name, String type, int lifePoints, int distance, int dommage) {
         this.name = name;
         this.type = type;
         this.lifePoints = lifePoints;
@@ -56,6 +56,6 @@ public class Enemy {
         this.dommage = dommage;
     }
 
-    public static Enemy troll = new Enemy("Troll des montagnes", "Troll", 100,10, 30);
-    public static Enemy basilic = new Enemy("Basilic de Salazar Serpentard", "Basilic", 100,3, 30);
+    public static Enemy troll = new Enemy("Troll des montagnes", "Troll", 100, 10, 30);
+    public static Enemy basilic = new Enemy("Basilic de Salazar Serpentard", "Basilic", 100, 3, 20);
 }

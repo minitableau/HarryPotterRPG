@@ -48,7 +48,7 @@ public class Potion {
     public static Potion potionHeal = new Potion("Potion de soin", "soin", 20, 10);
     public static Potion potionDamage = new Potion("Potion de dégât", "dégât", 10, 30);
     public static Potion potionPrecision = new Potion("Potion de précision", "précision", 5, 30);
-    public static Potion potionResistance = new Potion("Potion de résistance", "résistance", 10, 30);
+    public static Potion potionResistance = new Potion("Potion de résistance", "résistance", 5, 30);
 
 }
 

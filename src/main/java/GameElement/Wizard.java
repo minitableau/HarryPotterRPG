@@ -49,7 +49,7 @@ public class Wizard extends Character {
         this(name, pet, wand, house, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 200, new ArrayList<>());
     }
 
-    public void CheckIsAlive(Wizard wizard) {
+    public void checkIsAlive(Wizard wizard) {
         if (wizard.getLifePoint() <= 0) {
             wizard.setIsAlive(false);
         }

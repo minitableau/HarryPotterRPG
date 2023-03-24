@@ -25,10 +25,8 @@ public class Item {
         this.value = value;
     }
 
-    public static Item gryffindorSword = new Item("Gryffindor Sword", 20);
-//    Item potionDamage = new Item("Potion de dégât", 30);
-//    Item potionPrecision = new Item("Potion de précision", 10);
-//    Item potionResistance = new Item("Potion de résistance", 15);
+    public static Item gryffindorSword = new Item("L'épée de Gryffindor ", 100);
+
 
 }
 
