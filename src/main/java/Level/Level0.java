@@ -8,9 +8,10 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Level0 {
+public class Level0 extends AbstractLevel{
 
-    public void level0(Wizard wizard) throws InterruptedException {
+    @Override
+    public void startLevel(Wizard wizard) {
         int money = wizard.getMoney();
 
         Scanner scanner = new Scanner(System.in);
@@ -103,8 +104,7 @@ public class Level0 {
         characterHouse.setHouseBonus(wizard);
     }
 
-
-    private static int readGesture() throws InterruptedException {
+    private static int readGesture() {
         Scanner scanner = new Scanner(System.in);
         int gesture = 0;
         while (gesture != 1 && gesture != 2) {
@@ -130,7 +130,7 @@ public class Level0 {
         return gesture;
     }
 
-    private static int animalChoice() throws InterruptedException {
+    private static int animalChoice() {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         while (choice < 1 || choice > Pet.values().length) {
@@ -155,7 +155,7 @@ public class Level0 {
         return choice;
     }
 
-    private static int trainChoice(Wizard wizard) throws InterruptedException {
+    private static int trainChoice(Wizard wizard) {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
         while (choice != 1 && choice != 2) {

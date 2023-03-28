@@ -1,4 +1,4 @@
-package MiniGame.PierreFeuilleCiseau;
+package MiniGame.RockPaperScissors;
 
 import GameElement.House;
 import GameElement.Wizard;
@@ -7,7 +7,7 @@ import utils.ConsoleColors;
 import java.util.Random;
 import java.util.Scanner;
 
-public class PierreFeuilleCiseau {
+public class RockPaperScissors {
 
     // règle du jeu Bienvenue dans un match de Quidditch :
 //    Il s'agit d'une variante du jeu "Pierre-Feuille-Ciseaux". Au lieu des trois objets classiques,

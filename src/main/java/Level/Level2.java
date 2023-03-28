@@ -6,25 +6,26 @@ import utils.ConsoleColors;
 
 import java.util.*;
 
-public class Level2 {
+public class Level2 extends AbstractLevel {
 
     public static boolean tooth = false;
 
-    public static void level2(Wizard wizard) throws InterruptedException {
-        // Mais avant vous souhaitez faire le plein de fourniture pour cela vous utilisez une cheminée qui permet de transplaner, vous prononcez votre destination : \"chemin de traverse\". Et vous arrivez dans un petit magasin de potions :
+    @Override
+    public void startLevel(Wizard wizard) {
+        // Avant vous souhaitez faire le plein de fourniture pour cela vous utilisez une cheminée qui permet de transplaner, vous prononcez votre destination : \"chemin de traverse\". Et vous arrivez dans un petit magasin de potions :
         Market.market(wizard);
-        // Dans cette meme boutique vous rencontrez un elfe de maison nommée Dobby qui vous met en garde qu'il ne faut pas retourner
+        // Avant de partir vous rencontrez un elfe de maison nommée Dobby qui vous met en garde qu'il ne faut pas retourner
         // à Poudlard cette année, car un complot se prépare. Vous ne prêtez pas attention, puisque c'est là-bas que vous êtes heureux.
-
-        //Voilà les vacances terminées
-        // Apprentissage d'oculuss reparo.
+        // Vous sortez de la boutique pour vous rendre à la gare de Londres, mais vous ratez le train à cause de ce petit elfe qui vous a retardé chez le marchant de potion. Vous devez donc vous rendre à Poudlard par un autre moyen.
 
         //PROPOSER LE CHOIX DE NE PAS VOLER LA VOITURE MAIS RATEZ SON ANNEE ET REDOUBLER ?
-        // Vous vous rendez à la gare, mais ratez le train à cause de ce petit elfe que vous avez rencontré chez le marchant de potion. Vous devez donc vous rendre à Poudlard par un autre moyen.
+
+
         // Vous savez qu'il existe une voiture volante appartenant au parent de Fleur ainsi vous allez chez fleur et emprunter
         // pour une durée indéterminée cette fameuse voiture.
 
         // Après plusieurs heures de voyage. Vous arrivez enfin à Poudlard, avec le retard que vous avez pris il est déjà l'heure de votre premier cours, il s'agit d'un cours de botanique avec le professeur Chourave.
+
 
 
         skipSchool(wizard);
@@ -69,8 +70,12 @@ public class Level2 {
         // Quelque minutes après un basilic apparait vous engagez alors le combat.
         Enemy enemy = Enemy.basilic;
         Character.fight(wizard, enemy, new ArrayList<>());
+        wizard.checkIsAlive(wizard);
+        if (!wizard.getIsAlive()) {
+            return;
+        }
 
-        // utiliser des pierres = 0 degats
+        // utiliser des pierres = 0 deats
         // se rapprocher.
 
         // utilisez un sort : Accio fait tomber une dent du basilic 2 m devant vous.
@@ -79,7 +84,6 @@ public class Level2 {
         // if gryphondor + Library.    ( volé épée) + distance = 1m de base 3m
         // Vous prenez de la hauteur en montant sur une statue proche de vous et essayer de portez un coup en utilisant l'épee volé dans le bureau de Dumbeldor, celle-ci transperse le basilic et le tue
         // else  Vous prenez de la hauteur en montant sur une statue proche de vous et essayer de portez un coup en utilisant l'épee volé dans le bureau de Dumbeldor, celle-ci se brise au contact du basilic .
-
 
     }
 
@@ -130,7 +134,7 @@ public class Level2 {
 
                 }
                 if (choice == 2) {
-                    System.out.println("\nVous ne rejoignez l'équipe quidditch.\n");
+                    System.out.println("\nVous ne rejoignez pas l'équipe quidditch.\n");
 
                 }
             } catch (InputMismatchException e) {

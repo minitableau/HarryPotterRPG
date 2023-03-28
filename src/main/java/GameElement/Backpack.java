@@ -7,8 +7,7 @@ import java.util.Scanner;
 
 public class Backpack {
 
-
-    public static boolean openBackpack(Wizard wizard, Enemy enemy) {
+    public static boolean openBackpack(Wizard wizard, AbstractEnemy enemy) {
         boolean comeback2 = true;
         Scanner scanner = new Scanner(System.in);
         while (comeback2) {
@@ -95,7 +94,7 @@ public class Backpack {
         return false;
     }
 
-    private static boolean findItems(Wizard wizard, Enemy enemy) {
+    private static boolean findItems(Wizard wizard, AbstractEnemy enemy) {
         int numItems = wizard.getItems().size();
         if (numItems == 0) {
             System.out.println("Vous n'avez aucun objet disponible.");
@@ -124,20 +123,35 @@ public class Backpack {
             }
             Item chosenItem = wizard.getItems().get(choice - 1);
             System.out.println("Vous avez choisi " + chosenItem.getName() + ".");
-            if (wizard.getKnowledges().contains(Knowledge.gryffindorSword)) {
-                if (enemy.getDistance() != 1) {
-                    System.out.println("Vous frappez dans le vide avec votre épée car vous êtes trop loin.");
-                } else {
-                    if (wizard.getHouse() == House.GRYFFINDOR) {
-                        System.out.println("Vous prenez de la hauteur en montant sur une statue proche de vous et essayer de portez un coup en utilisant l'épee volé dans le bureau de Dumbledore, celle-ci transperse le basilic et le tue.");
-                        enemy.setLifePoints(0);
+            if (chosenItem == Item.gryffindorSword && enemy == Enemy.basilic) {
+                if (wizard.getKnowledges().contains(Knowledge.gryffindorSword)) {
+                    if (enemy.getDistance() != 1) {
+                        System.out.println("Vous frappez dans le vide avec votre épée car vous êtes trop loin.");
                     } else {
-                        System.out.println("Vous prenez de la hauteur en montant sur une statue proche de vous et essayer de portez un coup en utilisant l'épee volé dans le bureau de Dumbledore, celle-ci se brise au contact du basilic.");
-                        wizard.getItems().remove(choice - 1);
+                        if (wizard.getHouse() == House.GRYFFINDOR) {
+                            System.out.println("Vous prenez de la hauteur en montant sur une statue proche de vous et essayer de portez un coup en utilisant l'épee volé dans le bureau de Dumbledore, celle-ci transperse le basilic et le tue.");
+                            enemy.setLifePoints(0);
+                        } else {
+                            System.out.println("Vous prenez de la hauteur en montant sur une statue proche de vous et essayer de portez un coup en utilisant l'épee volé dans le bureau de Dumbledore, celle-ci se brise au contact du basilic.");
+                            wizard.getItems().remove(choice - 1);
+                        }
                     }
-                }
 
+                } else {
+                    System.out.println("Vous ne savez pas comment utiliser cette épée et quel et son pouvoir, vous auriez du lire plus de livre.");
+                }
+            } else if (chosenItem == Item.firework && enemy == Enemy.doloresOmbrage) {
+                wizard.getItems().remove(choice - 1);
+                System.out.println("Vous allumer un feu d'artifice en direction de Dolores Ombrage, il explose sur elle ce qui lui enlève 50 points de vie.");
+                enemy.setLifePoints(enemy.getLifePoints() - 50 - (50 * wizard.getPowerBonus()) / 100);
+                if (enemy.getLifePoints() > 0) {
+                    System.out.println("L'allumage du feu d'artifice vous à propulser vous êtes désormais à 4 mètres de Dolores Ombrage.");
+                    enemy.setDistance(4);
+                }
+            } else {
+                System.out.println("L'objet que vous utilisez n'a aucune effet sur ce combat.");
             }
+
         }
         return false;
     }

@@ -2,16 +2,17 @@ package Level;
 
 import GameElement.*;
 import GameElement.Character;
-import MiniGame.PierreFeuilleCiseau.PierreFeuilleCiseau;
+import MiniGame.RockPaperScissors.RockPaperScissors;
 import MiniGame.TicTacToe.TicTacToe;
 import utils.ConsoleColors;
 import utils.ScrollingText;
 
 import java.util.*;
 
-public class Level1 {
+public class Level1 extends AbstractLevel {
 
-    public static void level1(Wizard wizard) throws InterruptedException {
+    @Override
+    public void startLevel(Wizard wizard) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nVous arrivez dans le jardin de Poudlard pour votre premier cours, qui est un cours de vol sur balais. Madame Bibine, votre professeur, vous donne les directives \npour faire voler votre balai et très vite vous remarquez avoir quelques facilités par rapport aux autres élèves. Elle doit par la suite s'absenter pour une urgence \net interdit formellement à quiconque de voler. Mais Bartemius Croupton en a décidé autrement, il vole le collier de Fleur Delacour et s'enfuit avec. \nIl vous met alors au défi de venir le chercher. Que décidez-vous de faire ?");
         int flyingLesson = flyingLesson(wizard);
@@ -58,7 +59,6 @@ public class Level1 {
         String GO_MARKET = "\nVous passez brillamment votre première année et rentrer chez vous durant les vacances. Plusieurs semaines s'écoulent, voilà arriver la rentrée.";
         ScrollingText.printWithDelay(GO_MARKET);
         //TODO Italic
-
 
     }
 
@@ -148,338 +148,6 @@ public class Level1 {
         return friends;
     }
 
-//    private static boolean wizardAttackTroll(Wizard wizard, Enemy enemy) {
-//        Scanner scanner = new Scanner(System.in);
-//        boolean success = false;
-//        boolean comeback = true;
-//
-//        while (comeback) {
-//            String stats = wizard.stats(wizard.getName(), wizard.getLifePoint(), wizard.getMaxLifePoint(), wizard.getMana(), wizard.getResistanceBonus(), wizard.getPowerBonus(), wizard.getAccuracyBonus(), wizard.getEfficiencyPotionsBonus(), wizard.getMoney());
-//            System.out.println(stats);
-//            System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que le " + enemy.getName() + " se situe à " + enemy.getDistance() + " mètres et à " + enemy.getLifePoints() + " points de vie ?" + ConsoleColors.RESET);
-//            System.out.println("1 : Jeter des bouts de bois"); //action dif
-//            System.out.println("2 : Se rapprocher");
-//            System.out.println("3 : Utiliser un sort");
-//            System.out.println("4 : Ouvrir votre sac");
-//
-//            try {
-//                int choice = scanner.nextInt();
-//                scanner.nextLine();
-//
-//                if (choice < 1 || choice > 4) {
-//                    System.out.println("Le choix doit être 1, 2, 3 ou 4.");
-//                    continue;
-//                }
-//
-//                switch (choice) {
-//                    case 1 -> { //dif
-//                        int dommage = 20 + (20 * wizard.getPowerBonus()) / 100;
-//                        System.out.println("Vous jetez des bouts de bois sur le troll. Il perd " + dommage + " points de vie");
-//                        enemy.setLifePoints(enemy.getLifePoints() - dommage);
-//                        if (enemy.getLifePoints() <= 0) {
-//                            return true;
-//                        }
-//                        comeback = false;
-//                    }
-//                    case 2 -> {
-//                        System.out.println("Vous vous rapprochez du " + enemy.getName() + ".");
-//                        enemy.setDistance(enemy.getDistance() - 1);
-//                        comeback = false;
-//                    }
-//                    case 3 -> {
-//                        comeback = spellList(wizard, enemy);
-//                        if (enemy.getLifePoints() <= 0) {
-//                            return true;
-//                        }
-//                    }
-//                    case 4 -> {
-//                        comeback = openBackpack(wizard);
-//                    }
-//
-//                }
-//
-//
-//            } catch (InputMismatchException e) {
-//                System.out.println("Le choix doit être un nombre.");
-//                scanner.nextLine();
-//            }
-//            if (enemy.getDistance() == 1 && Level2.tooth) {
-//                System.out.println("Vous ramassez la dent du basilic pour le frappez ce qui lui enlève 50 points de vie.");
-//                enemy.setLifePoints(enemy.getLifePoints() - 50 - (50 * wizard.getPowerBonus()) / 100);
-//                if (enemy.getLifePoints() > 0) {
-//                    System.out.println("mais vous repoussez d'un mètre.");
-//                    enemy.setDistance(2);
-//                } else {
-//                    return true;
-//                }
-//
-//
-//            }
-//        }
-//        return false;
-//    }
-
-//    private static boolean spellList(Wizard wizard, Enemy enemy) {
-//        int numSpells = wizard.getKnownSpells().size();
-//        if (numSpells == 0) {
-//            System.out.println("Vous n'avez appris aucun sort.");
-//            return true;
-//        } else {
-//            System.out.println(ConsoleColors.BLUE + "\nVeuillez choisir un sort :" + ConsoleColors.RESET);
-//            for (int i = 0; i < numSpells; i++) {
-//                System.out.println((i + 1) + " : " + wizard.getKnownSpells().get(i).getName());
-//            }
-//            System.out.println((numSpells + 1) + " : Ne pas utiliser de sort.");
-//            int choice = -1;
-//            do {
-//                Scanner scanner = new Scanner(System.in);
-//                try {
-//                    choice = scanner.nextInt();
-//                    if (choice < 1 || choice > numSpells + 1) {
-//                        System.out.println("Veuillez entrer un choix valide.");
-//                    }
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Veuillez entrer un choix valide.");
-//                    scanner.next();
-//                }
-//            } while (choice < 1 || choice > numSpells + 1);
-//            if (choice == numSpells + 1) {
-//                return true;
-//            }
-//            Spell chosenSpell = wizard.getKnownSpells().get(choice - 1);
-//            System.out.println("Vous avez choisi le sort " + chosenSpell.getName() + ".");
-//            if (chosenSpell == Spell.windgardiumLeviosa && Enemy.troll == enemy) {
-//                int chanceOfSuccess = 0;
-//                if (enemy.getDistance() <= 7) {
-//                    System.out.println("Vous utilisez Windgardium Leviosa sur la massue du troll !");
-//                    chanceOfSuccess = 100 - (enemy.getDistance() * 5) + wizard.getAccuracyBonus();
-//                    System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%.");
-//                    Random random = new Random();
-//                    int randomValue = random.nextInt(101);
-//                    if (randomValue <= chanceOfSuccess) {
-//                        System.out.println("Votre sort atteint la massue du troll, vous diriger alors la massue plusieurs mètres au dessus de ca tete et la laisser tombé ce qui assomme le troll.");
-//                        enemy.setLifePoints(0);
-//                        return true;
-//                    } else {
-//                        System.out.println("Vous ratez votre sort de justesse.");
-//                    }
-//                } else {
-//                    System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du troll. Votre chance de réussite est de " + chanceOfSuccess + "%., si vous aviez mieux écouter le cours vous sauriez que pour utiliser Windgarium leviosa \nil faut etre à 7 mètres ou moins pour que le sort est une chance de reussir et que plus vous etes proche plus vous augementer vos chances.");
-//                }
-//            } else if (chosenSpell == Spell.aloomora) {
-//                //effet aloomora
-//            } else if (chosenSpell == Spell.immobulus) {
-//                // effet imobulus
-//            } else if (chosenSpell == Spell.accio && enemy == Enemy.basilic) {
-//                int chanceOfSuccess = 0;
-//                if (enemy.getDistance() <= 7) {
-//                    System.out.println("Vous utilisez Accio en visant la machoire du basilic !");
-//                    chanceOfSuccess = 100 - (enemy.getDistance() * 5) + wizard.getAccuracyBonus();
-//                    System.out.println("Vous êtes à " + enemy.getDistance() + " mètres du basilic. Votre chance de réussite est de " + chanceOfSuccess + "%.");
-//                    Random random = new Random();
-//                    int randomValue = random.nextInt(101);
-//                    if (randomValue <= chanceOfSuccess) {
-//                        System.out.println("Votre sort atteint les dents du basilic, une d'entre elles se décroche commence à venir vers vous mais vous la faite tomber au sol à 1m du basilic.");
-//                        Level2.tooth = true;
-//                        return true;
-//                    } else {
-//                        System.out.println("Vous ratez votre sort de justesse.");
-//                    }
-//                }
-//            }
-//            System.out.println("Votre sort n'a rien fait au " + enemy.getName());
-//        }
-//        return false;
-//    }
-
-//    private static boolean openBackpack(Wizard wizard) {
-//        boolean comeback2 = true;
-//        Scanner scanner = new Scanner(System.in);
-//        while (comeback2) {
-//            System.out.println(ConsoleColors.BLUE + "\nVous ouvrez votre sac, souhaitez-vous prendre quelque chose ?" + ConsoleColors.RESET);
-//            System.out.println("1 : Chercher une potion");
-//            System.out.println("2 : Chercher un objet");
-//            System.out.println("3 : Refermer le sac");
-//
-//            try {
-//                int backpackChoice = scanner.nextInt();
-//                scanner.nextLine();
-//
-//                if (backpackChoice < 1 || backpackChoice > 3) {
-//                    System.out.println("Le choix doit être 1, 2, ou 3.");
-//                }
-//
-//                switch (backpackChoice) {
-//                    case 1 -> {
-//                        comeback2 = findPotions(wizard);
-//                    }
-//                    case 2 -> {
-//                        comeback2 = findItems(wizard);
-//                    }
-//                    case 3 -> {
-//                        return true;
-//                    }
-//                }
-//
-//            } catch (InputMismatchException e) {
-//                System.out.println("Le choix doit être un nombre.");
-//                scanner.nextLine();
-//            }
-//        }
-//        return false;
-//    }
-//
-//    private static boolean findPotions(Wizard wizard) {
-//        int numPotions = wizard.getPotions().size();
-//        if (numPotions == 0) {
-//            System.out.println("Vous n'avez aucune potion disponible.");
-//            return true;
-//        } else {
-//            System.out.println(ConsoleColors.BLUE + "\nVeuillez choisir une potion :" + ConsoleColors.RESET);
-//            for (int i = 0; i < numPotions; i++) {
-//                System.out.println((i + 1) + " : " + wizard.getPotions().get(i).getName());
-//            }
-//            System.out.println((numPotions + 1) + " : Retourner dans le sac");
-//            int choice = -1;
-//            do {
-//                Scanner scanner = new Scanner(System.in);
-//                try {
-//                    choice = scanner.nextInt();
-//                    if (choice < 1 || choice > numPotions + 1) {
-//                        System.out.println("Veuillez entrer un choix valide.");
-//                    }
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Veuillez entrer un choix valide.");
-//                    scanner.next();
-//                }
-//            } while (choice < 1 || choice > numPotions + 1);
-//            if (choice == numPotions + 1) {
-//                return true;
-//            }
-//            Potion chosenPotion = wizard.getPotions().get(choice - 1);
-//            System.out.println("Vous avez choisi la " + chosenPotion.getName() + ".");
-//            if (chosenPotion == Potion.potionHeal) {
-//                if (wizard.getLifePoint() >= 80) {
-//                    wizard.setLifePoint(wizard.getMaxLifePoint());
-//                } else
-//                    wizard.setLifePoint(wizard.getLifePoint() + chosenPotion.getValue() + (chosenPotion.getValue() * wizard.getEfficiencyPotionsBonus()) / 100);
-//                wizard.getPotions().remove(choice - 1);
-//            } else if (chosenPotion == Potion.potionDamage) {
-//                wizard.setPowerBonus(wizard.getPowerBonus() + chosenPotion.getValue() + (chosenPotion.getValue() * wizard.getEfficiencyPotionsBonus()) / 100);
-//                wizard.getPotions().remove(choice - 1);
-//            } else if (chosenPotion == Potion.potionResistance) {
-//                wizard.setResistanceBonus(wizard.getResistanceBonus() + chosenPotion.getValue() + (chosenPotion.getValue() * wizard.getEfficiencyPotionsBonus()) / 100);
-//                wizard.getPotions().remove(choice - 1);
-//            } else if (chosenPotion == Potion.potionPrecision) {
-//                wizard.setAccuracyBonus(wizard.getAccuracyBonus() + chosenPotion.getValue() + (chosenPotion.getValue() * wizard.getEfficiencyPotionsBonus()) / 100);
-//                wizard.getPotions().remove(choice - 1);
-//            }
-//
-//        }
-//        return false;
-//    }
-//
-//    private static boolean findItems(Wizard wizard) {
-//        int numItems = wizard.getItems().size();
-//        if (numItems == 0) {
-//            System.out.println("Vous n'avez aucun objet disponible.");
-//            return true;
-//        } else {
-//            System.out.println(ConsoleColors.BLUE + "\nVeuillez choisir un objet :" + ConsoleColors.RESET);
-//            for (int i = 0; i < numItems; i++) {
-//                System.out.println((i + 1) + " : " + wizard.getItems().get(i).getName());
-//            }
-//            System.out.println((numItems + 1) + " : Retourner dans le sac");
-//            int choice = -1;
-//            do {
-//                Scanner scanner = new Scanner(System.in);
-//                try {
-//                    choice = scanner.nextInt();
-//                    if (choice < 1 || choice > numItems + 1) {
-//                        System.out.println("Veuillez entrer un choix valide.");
-//                    }
-//                } catch (InputMismatchException e) {
-//                    System.out.println("Veuillez entrer un choix valide.");
-//                    scanner.next();
-//                }
-//            } while (choice < 1 || choice > numItems + 1);
-//            if (choice == numItems + 1) {
-//                return true;
-//            }
-//            Item chosenItem = wizard.getItems().get(choice - 1);
-//            // Appliquer l'effet + .remove(choice-1)
-//            System.out.println("Vous avez choisi la " + chosenItem.getName() + ".");
-//
-//
-//        }
-//        return false;
-//    }
-
-//    private static boolean trollAttackWizard(Wizard wizard, Enemy enemy) {
-//        Scanner scanner = new Scanner(System.in);
-//        int wizardLife = wizard.getLifePoint();
-//        int chanceOfSuccess = 0;
-//        chanceOfSuccess = 40 + listFriendsWithYou(wizard).size() * 20;
-//        System.out.println("\nVous êtes " + (int) (listFriendsWithYou(wizard).size() + 1) + " contre le troll. La probabilité qu'il vous touche est de " + chanceOfSuccess + "%.");
-//        Random random = new Random();
-//        int randomValue = random.nextInt(101);
-//        if (randomValue <= chanceOfSuccess) {
-//            int dommage = Enemy.troll.getDommage() - (Enemy.troll.getDommage() * wizard.getResistanceBonus()) / 100;
-//            wizard.setLifePoint(wizardLife - dommage);
-//            System.out.println("La massue du troll, vous frappe et vous enlève " + dommage + " points de vie.");
-//            if (wizard.getLifePoint() <= 0) {
-//                System.out.println("Vous êtes mort! Le troll vous a vaincu.");
-//                return true;
-//            }
-//        } else {
-//            System.out.println("Le troll essaie de vous frapper avec ca massue mais vous arrivez à l'éviter.");
-//        }
-//        return false;
-//    }
-
-//    private static void fight(Wizard wizard, Enemy enemy, List<Friend> listFriendsWithYou) {
-//        boolean enemyAlive = false;
-//        boolean wizardAlive = false;
-//        while (enemy.getDistance() >= 1 && !enemyAlive && !wizardAlive) {
-//            enemyAlive = wizardAttackTroll(wizard, enemy);
-//            if (enemy.getDistance() < 1) {
-//                wizardAlive = true;
-//                break;
-//            }
-//            if (enemyAlive) {
-//                break;
-//            }
-//            for (int i = 0; i < listFriendsWithYou.size(); i++) {
-//                System.out.println("\nVotre ami " + listFriendsWithYou.get(i).getName() + " peut aussi attaquer le " + enemy.getName() + ".");
-//                enemyAlive = wizardAttackTroll(wizard, enemy);
-//                if (enemy.getDistance() < 1) {
-//                    wizardAlive = true;
-//                    break;
-//                }
-//                if (enemyAlive) {
-//                    break;
-//                }
-//            }
-//            if (enemy.getDistance() < 1) {
-//                wizardAlive = true;
-//                break;
-//            }
-//            if (enemyAlive) {
-//                break;
-//            }
-//            wizardAlive = trollAttackWizard(wizard, enemy);
-//
-//        }
-//
-//        if (enemy.getDistance() < 1) {
-//            System.out.println("Quel idée de se coller au " + enemy.getName() + " ! Celui-ci vous attrape et vous mange.");
-//        }
-//
-//        if (enemyAlive || enemy.getLifePoints() <= 0) {
-//            System.out.println("Vous avez vaincu le " + enemy.getName() + " !");
-//        }
-//    }
-
     private static void tryCape(Wizard wizard) {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
@@ -509,16 +177,16 @@ public class Level1 {
         }
     }
 
-    private static void secondaryQuest(Wizard wizard) throws InterruptedException {
+    private static void secondaryQuest(Wizard wizard) {
         String PLAY_TICTACTOE = "Vous arrivez dans une grande salle dans laquelle vous repérer un plateau de jeu dessiné au sol, sur le coté ce situe des ronds et des croix. Vous comprenez que vous allez devoir jouer une partie de TicTacToe.\n";
         ScrollingText.printWithDelay(PLAY_TICTACTOE);
         boolean win = TicTacToe.TicTacToe();
         if (win) {
-            String MEET_QUIRRELL = "\nUne porte s'ouvre devant vous, vous passez cette porte et vous voyez le professeur Quirrell celui-ci agit bizarrement, on dirait qu'il à deux personnalités, il enlève sont turban et cela fait apparaitre un autre visage. Vous comprenez qu'il s'agit de Voldemort mais trop faible pour avoir son propre corps, celui cherchait la pierre philosophale. Il ordonne alors au professeur Quirrell de vous tuez. Vous essayez de vous défendre : ";
+            String MEET_QUIRRELL = "\nUne porte s'ouvre devant vous, vous passez cette porte et vous voyez le professeur Quirrell celui-ci agit bizarrement, on dirait qu'il à deux personnalités, il enlève sont turban et cela fait apparaitre un autre visage. Vous comprenez qu'il s'agit de Voldemort mais trop faible pour avoir son propre corps, celui cherchait la pierre philosophale. Il ordonne alors au professeur Quirrell de vous tuez. Vous essayez de vous défendre : pour cela vous devez gagnez ce mini-jeu.";
             ScrollingText.printWithDelay(MEET_QUIRRELL);
             //TODO defense
-            boolean defense = true;
-            if (defense) {
+            boolean defend = wizard.defend(wizard);
+            if (defend) {
                 String DEFENSE_WIN = "\nVous arrivez à vous défendre et faite fuir Voldemort, celui abandonne la pierre philosophale mais vous etes à bout de force. Vous vous effondrez de fatigue et vous réveillez à l'hôpital. Le professeur Dumbledore est présent à votre réveil et choisi et vous explique qu'il à briser la pierre philosophale car elle était trop puissante et trop dangereuse mais ils vous offre 100 morilles car celle-ci vous appartenez.";
                 ScrollingText.printWithDelay(DEFENSE_WIN);
                 wizard.setMoney(wizard.getMoney() + 100);
@@ -551,7 +219,7 @@ public class Level1 {
     private static void simulateQuidditchMatch(Wizard wizard) {
         if (wizard.getKnowledges().contains(Knowledge.quidditch)) {
             System.out.println("\nVous allez jouez votre premier match de Quidditch avec votre maison : " + wizard.getHouse());
-            Boolean resultat = PierreFeuilleCiseau.Quidditch(wizard);
+            Boolean resultat = RockPaperScissors.Quidditch(wizard);
             if (resultat) {
                 System.out.println("\nVotre maison : " + wizard.getHouse() + " remporte 30 points");
                 wizard.setHousePoints(wizard.getHousePoints() + 30);
@@ -567,7 +235,7 @@ public class Level1 {
         }
     }
 
-    private static void exploreForbiddenCorridor(Wizard wizard) throws InterruptedException {
+    private static void exploreForbiddenCorridor(Wizard wizard) {
         if (wizard.getKnowledges().contains(Knowledge.fluffy) && wizard.getKnowledges().contains(Knowledge.fluffySleep)) {
             String GO_FLUFFY = "Vous vous rendez au troisième étage dans l'aile interdit pour rejoindre le chien à trois têtes, vous entendez de la musique, vous comprenez que quelqu'un est passé avant vous. Vous ouvrez la porte tombez sur fluffy déjà endormi, vous passez alors dans la trappe situez juste à coté de lui. ";
             ScrollingText.printWithDelay(GO_FLUFFY);
@@ -603,7 +271,7 @@ public class Level1 {
         }
     }
 
-    private static void winnerHouse(Wizard wizard) throws InterruptedException {
+    private static void winnerHouse(Wizard wizard) {
         if (wizard.getHousePoints() >= 240) {
             String HEAL = wizard.getHouse() + ".\nAinsi, la maison " + wizard.getHouse() + " voit tout ses sorciers soignez au maximum de leur points de vie";
             ScrollingText.printWithDelay(HEAL);

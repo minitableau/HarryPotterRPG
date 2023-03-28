@@ -1,6 +1,8 @@
 package GameElement;
 
 
+import MiniGame.ThirteenStick.ThirteenStick;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class Wizard extends Character {
     private List<Knowledge> knowledges;
 
     private List<Spell> knownSpells;
+    private List<ForbiddenSpell> forbiddenSpells;
 
     private List<Potion> potions;
 
@@ -24,14 +27,15 @@ public class Wizard extends Character {
 
     private List<Friend> friends;
 
-    public void defend() {
+    public boolean defend(Wizard wizard) {
+        return ThirteenStick.thirteenStick();
     }
 
     public String stats(String name, int lifePoint, int maxLifePoint, int mana, int resistance, int power, int accuracy, int EfficiencyPotions, int money) {
         return "\nStatistiques de " + name + " : " + "❤️ " + lifePoint + "/" + maxLifePoint + " |" + " 💧 " + mana + "/100 |" + " 🛡️ + " + resistance + "% |" + " 💪 + " + power + "% |" + " 🎯 + " + accuracy + "% |" + " ⚗️ + " + EfficiencyPotions + "% |" + " 💵 " + money + "$";
     }
 
-    public Wizard(String name, Pet pet, Wand wand, House house, List<Spell> knownSpells, List<Potion> potions, List<Item> items, List<Friend> friends, int housePoints, List<Knowledge> knowledges) {
+    public Wizard(String name, Pet pet, Wand wand, House house, List<Spell> knownSpells, List<Potion> potions, List<Item> items, List<Friend> friends, int housePoints, List<Knowledge> knowledges, List<ForbiddenSpell> forbiddenSpells) {
         super(100, 100, name, 0, 0, 0, 0, 100, 100, true);
         this.name = name;
         this.pet = pet;
@@ -43,10 +47,11 @@ public class Wizard extends Character {
         this.friends = friends;
         this.housePoints = housePoints;
         this.knowledges = knowledges;
+        this.forbiddenSpells = forbiddenSpells;
     }
 
     public Wizard(String name, Pet pet, Wand wand, House house) {
-        this(name, pet, wand, house, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 200, new ArrayList<>());
+        this(name, pet, wand, house, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 200, new ArrayList<>(), new ArrayList<>());
     }
 
     public void checkIsAlive(Wizard wizard) {
@@ -156,6 +161,17 @@ public class Wizard extends Character {
         this.knowledges.add(knowledge);
     }
 
+    public List<ForbiddenSpell> getForbiddenSpells() {
+        return forbiddenSpells;
+    }
+
+    public void setForbiddenSpells(List<ForbiddenSpell> forbiddenSpells) {
+        this.forbiddenSpells = forbiddenSpells;
+    }
+
+    public void addForbiddenSpells(ForbiddenSpell forbiddenSpell) {
+        this.forbiddenSpells.add(forbiddenSpell);
+    }
 }
 
 

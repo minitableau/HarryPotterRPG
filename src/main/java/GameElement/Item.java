@@ -26,6 +26,7 @@ public class Item {
     }
 
     public static Item gryffindorSword = new Item("L'épée de Gryffindor ", 100);
+    public static Item firework = new Item("Feu d'artifice ", 50);
 
 
 }

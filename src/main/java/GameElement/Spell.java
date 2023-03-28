@@ -1,20 +1,9 @@
 package GameElement;
 
-import javax.swing.plaf.SplitPaneUI;
-
-public class Spell {
-    private String name;
+public class Spell extends AbstractSpell {
 
     public Spell(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        super(name);
     }
 
     public static Spell windgardiumLeviosa = new Spell("Windgardium Leviosa");
@@ -22,6 +11,7 @@ public class Spell {
     // appris au lvl1 dans makefriendorexplore si choix 1
     public static Spell immobulus = new Spell("Immobulus");
     public static Spell accio = new Spell("Accio");
-
+    public static Spell expectoPatronum = new Spell("Expecto Patronum");
+    public static Spell feuxfousFuseboum = new Spell("Feuxfous Fuseboum");
 
 }
