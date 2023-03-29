@@ -1,8 +1,9 @@
 package Level;
 
-import GameElement.Character;
-import GameElement.Enemy;
-import GameElement.Wizard;
+import GameElement.characters.Character;
+import GameElement.characters.enemies.Enemy;
+import GameElement.characters.Wizard;
+import utils.ScrollingText;
 
 import java.util.ArrayList;
 
@@ -10,23 +11,24 @@ public class Level4 extends AbstractLevel {
 
     @Override
     public void startLevel(Wizard wizard) {
+        String StartYear = "Plusieurs semaines s'écoulent, voilà déjà la rentrée arriver. Vous vous dirigez vers Poudlard pour une nouvelle année scolaire. Vous vous rendez au magasin de potion pour acheter des potions et vos nouvelles fournitures scolaire.";
+        ScrollingText.printWithDelay(StartYear);
+
+        String IntroLvl4 = "En début d'année, vous vous inscrivez pour participer au plus grand tournoi de sorcier du monde magique sans trop vous reseignez, vous savez jsute que c'est un honneur d'être tiré au sort et que si c'est le cas vous rencontrerez de très grand sorcier. L'année file et voila je jour du tirage. Vous vous retrouvez être un des gagnants du tirage au sort pour le Tournoi des Trois Sorciers, mais votre victoire s'est avérée être une malédiction. En effet, lors d'une des épreuves vous tombez nez à nez face à Voldemort et Peter Pettigrew dans un cimetière sombre et lugubre. Vous comprenez que cela n'était pas du tout prévu dans le tournoi. Vous vous savez pas assez puissant pour vaincre Voldemort et Peter Pettigrew sachant que vous êtes seul et connaissez pas beaucoup de sort. Vous devez trouver un moyen de vous échapper rapidement. Vous apercevez un objet brillant au loin, qui pourrait être le portolion dont vous avez besoin d'atteindre pour vous échapper. Vous vous dites que si vous arrivez à leur échapper ca sera comme si vous aviez réussi à les vaincre du moins comme si vous aviez vaincu Peter Pettigrew.";
+        ScrollingText.printWithDelay(IntroLvl4);
+
         Enemy enemy = Enemy.peterPettigrew;
         Character.fight(wizard, enemy, new ArrayList<>());
         wizard.checkIsAlive(wizard);
         if (!wizard.getIsAlive()) {
             return;
         }
+
+        String SuccessfulEscape = "Vous essayer de comprendre ou le portolion vous à fait attérir. Vous vous retrouvez dans Poudlard, en sécurité. Vous avez réussi à échapper à Voldemort, mais vous savez que vous n'en avez pas fini avec lui. Vous terminé votre année brillamment car vous savez que vous devez vous préparer pour l'ultime bataille qui aura lieu bientôt. Cette année pas de vacance, vous décidez de travailler à Poudlard pour gagnez un peu d'argent (50 mornilles) et pouvoir travailler sur vos sorts.";
+        ScrollingText.printWithDelay(SuccessfulEscape);
+        wizard.setMoney(wizard.getMoney() + 50);
     }
-// Vous appercevais un portkey qui est votre seul chance du survie car vous n'etes pas assez puissant vos sorts et autre sont inecficace
 
 }
-//    Vous êtes le grand gagnant du Tournoi des Trois Sorciers, mais votre victoire s'est avérée être une malédiction. Vous vous retrouvez maintenant face à Voldemort et Peter Pettigrew dans un cimetière sombre et lugubre.
-//
-//        Voldemort est furieux et il se prépare à vous éliminer. Vous devez trouver un moyen de vous échapper rapidement. Vous apercevez un objet brillant au loin, qui pourrait être le Portkey que vous avez besoin d'atteindre pour vous échapper.
-//
-//        Mais atteindre le Portkey ne sera pas facile. Vous devez d'abord affronter Voldemort et Peter Pettigrew. Vous devrez utiliser toutes les compétences que vous avez acquises jusqu'à présent pour les vaincre. Utilisez des sorts défensifs tels que Protego pour vous protéger contre leurs attaques.
-//
-//        Une fois que vous les aurez vaincus, concentrez-vous sur le Portkey. Vous ne pouvez pas vous permettre de manquer votre coup. Utilisez le sort Accio pour attirer l'objet vers vous. Mais attention, Voldemort se relève et vous attaque à nouveau. Vous devez être rapide et efficace pour éviter ses attaques et saisir le Portkey avant qu'il ne soit trop tard.
-//
-//        Vous vous retrouvez alors soudainement de retour au château de Poudlard, en sécurité. Vous avez réussi à échapper à Voldemort, mais vous savez que vous n'en avez pas fini avec lui. Vous vous préparez pour l'ultime bataille qui aura lieu bientôt.
-//
+
+

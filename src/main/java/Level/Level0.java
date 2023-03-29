@@ -1,11 +1,11 @@
 package Level;
 
 import GameElement.*;
+import GameElement.characters.Wizard;
 import utils.ConsoleColors;
 import utils.ScrollingText;
 
 import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Level0 extends AbstractLevel{
@@ -15,7 +15,6 @@ public class Level0 extends AbstractLevel{
         int money = wizard.getMoney();
 
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
 
         String HAGRID_ARRIVAL_MESSAGE = "Vous entendez frapper à la porte. En l'ouvrant, vous trouvez un homme gigantesque, un demi-géant, avec une barbe sauvage et des yeux pétillants.\n\"Bonjour, je suis Rubeus Hagrid gardien des clés et des lieux à Poudlard\", dit-il en souriant. \"Je viens chercher un jeune sorcier de 11 ans pour l'emmener à Poudlard.\n" + ConsoleColors.BLUE + "Et vous êtes...?" + ConsoleColors.RESET;
         ScrollingText.printWithDelay(HAGRID_ARRIVAL_MESSAGE);
@@ -137,7 +136,7 @@ public class Level0 extends AbstractLevel{
             String CHOOSE_ANIMAL = ConsoleColors.BLUE + "\nChoisissez un animal : " + ConsoleColors.RESET;
             ScrollingText.printWithDelay(CHOOSE_ANIMAL,0);
             for (Pet pet : Pet.values()) {
-                String PRINT_ANIMAL = pet.index + " : " + pet.type;
+                String PRINT_ANIMAL = pet.ordinal() + 1 + " : " + pet.type;
                 ScrollingText.printWithDelay(PRINT_ANIMAL,0);
             }
             try {

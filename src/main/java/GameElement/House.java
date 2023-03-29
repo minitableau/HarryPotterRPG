@@ -1,5 +1,6 @@
 package GameElement;
 
+import GameElement.characters.Wizard;
 import utils.ConsoleColors;
 
 public enum House {
@@ -25,18 +26,10 @@ public enum House {
     public void setHouseBonus(Wizard wizard) {
         House house = wizard.getHouse();
         switch (house) {
-            case HUFFLEPUFF:
-                wizard.setEfficiencyPotionsBonus(10);
-                break;
-            case SLYTHERIN:
-                wizard.setPowerBonus(10);
-                break;
-            case GRYFFINDOR:
-                wizard.setResistanceBonus(10);
-                break;
-            case RAVENCLAW:
-                wizard.setAccuracyBonus(10);
-                break;
+            case HUFFLEPUFF -> wizard.setEfficiencyPotionsBonus(10);
+            case SLYTHERIN -> wizard.setPowerBonus(10);
+            case GRYFFINDOR -> wizard.setResistanceBonus(10);
+            case RAVENCLAW -> wizard.setAccuracyBonus(10);
         }
     }
 

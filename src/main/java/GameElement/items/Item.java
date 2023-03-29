@@ -1,4 +1,4 @@
-package GameElement;
+package GameElement.items;
 
 public class Item {
     private String name;

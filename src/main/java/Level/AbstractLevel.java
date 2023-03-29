@@ -1,6 +1,6 @@
 package Level;
 
-import GameElement.Wizard;
+import GameElement.characters.Wizard;
 
 public abstract class AbstractLevel {
 

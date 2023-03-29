@@ -1,11 +1,12 @@
 package Level;
 
-import GameElement.Character;
-import GameElement.Enemy;
+import GameElement.characters.Character;
+import GameElement.characters.enemies.Enemy;
 import GameElement.House;
-import GameElement.Wizard;
+import GameElement.characters.Wizard;
 import utils.ConsoleColors;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class Level6 extends AbstractLevel {
             return;
         }
         Enemy enemy = Enemy.deathEater;
-        Character.fight(wizard, enemy, wizard.getFriends());
+        Character.fight(wizard, enemy, new ArrayList<>());
         wizard.checkIsAlive(wizard);
         if (!wizard.getIsAlive()) {
             return;

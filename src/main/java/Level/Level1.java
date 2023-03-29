@@ -1,7 +1,12 @@
 package Level;
 
 import GameElement.*;
-import GameElement.Character;
+import GameElement.characters.Character;
+import GameElement.characters.enemies.Enemy;
+import GameElement.characters.Wizard;
+import GameElement.characters.enemies.Troll;
+import GameElement.spells.Spell;
+import GameElement.spells.WindgardiumLeviosa;
 import MiniGame.RockPaperScissors.RockPaperScissors;
 import MiniGame.TicTacToe.TicTacToe;
 import utils.ConsoleColors;
@@ -18,17 +23,17 @@ public class Level1 extends AbstractLevel {
         int flyingLesson = flyingLesson(wizard);
         int exploreOrMakeNewFriend = exploreOrMakeNewFriend(wizard);
         System.out.println("Vous assistez au cours de levitation où vous apprenez le sort WINGARDIUM LEVIOSA. Vous avez un peu de mal alors que votre amie Fleur réussit du premier coup. \nElle essaie donc de vous aider en vous donnant une meilleure prononciation : \"WINGARDIUM LEVI-OOO-SA\", mais cela fait rire vos camarades. \nElle quitte donc le cours pour aller pleurer dans les toilettes. Le professeur vous explique les modalités pour utiliser le sort lorsque nous somme un élève \nde premiere année : \"il vous faut être à 7 mètres ou moins pour que le sort est une chance de réussir, tout en sachant que plus vous êtes \nproche de l'objet à déplacer plus vos chances sont élevés\n");
-        wizard.addSpell(Spell.windgardiumLeviosa);
+        wizard.addSpell(new WindgardiumLeviosa());
         List<Friend> listFriendsWithYou = listFriendsWithYou(wizard);
         String friends = nameFriendsWithYou(wizard, listFriendsWithYou);
         System.out.println("Quelque minutes plus tard un professeur arrive en paniquant dans votre cours, il annonce qu'un Troll c'est échappé et ce balade dans l'école. \nTous les élèves se mettent à crier dans tout les sens. Mais pas vous, vous pensez directement à Fleur qui est parti pleurer au toilette et n'a pas l'information. \nAinsi, à la place de suivre tout les autres et évacuer l'école pour se rendre dans le jardin vous allez en direction des toilettes des filles pour aider votre amie.\nVous réussissez à convaincre " + friends + "de venir avec vous.");
         System.out.println("Vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. Vous engagez alors le comnbat pour sauver votre amie.");
-        Enemy enemy = Enemy.troll;
-        Character.fight(wizard, enemy, listFriendsWithYou);
-        wizard.checkIsAlive(wizard);
-        if (!wizard.getIsAlive()) {
-            return;
-        }
+        Troll enemy = new Troll();
+        wizard.fight(enemy);
+//        wizard.checkIsAlive(wizard);
+//        if (!wizard.getIsAlive()) {
+//            return;
+//        }
 
         String AFTER_TROLL = "Peu de temps après un groupe de professeur arrivent dans les toilettes et vous trouve avec le troll assommé au sol, ils vous demande alors que faites-vous là. Votre amie Fleur Delacour prend la parole et ce dénonce en disant qu'elle chercher à voir le troll de plus près pour étendre ses connaissances et qu'elle pensait pouvoir le vaincre avec ses compétences avancés sur les trolls. Votre maison perd alors 20 points, mais les professeurs reconnaissent que battre ce troll avec les connaissances de premiere année relève de l'exploit. Ils font gagner à votre maison 10 points par personne ayant permis de battre ce troll.";
         ScrollingText.printWithDelay(AFTER_TROLL);
@@ -55,6 +60,7 @@ public class Level1 extends AbstractLevel {
         ScrollingText.printWithDelay(FIN_ANNEE);
 
         winnerHouse(wizard);
+
 
         String GO_MARKET = "\nVous passez brillamment votre première année et rentrer chez vous durant les vacances. Plusieurs semaines s'écoulent, voilà arriver la rentrée.";
         ScrollingText.printWithDelay(GO_MARKET);
@@ -216,9 +222,9 @@ public class Level1 extends AbstractLevel {
         }
     }
 
-    private static void simulateQuidditchMatch(Wizard wizard) {
+    public static void simulateQuidditchMatch(Wizard wizard) {
         if (wizard.getKnowledges().contains(Knowledge.quidditch)) {
-            System.out.println("\nVous allez jouez votre premier match de Quidditch avec votre maison : " + wizard.getHouse());
+            System.out.println("\nVous allez jouez un match de Quidditch avec votre maison : " + wizard.getHouse());
             Boolean resultat = RockPaperScissors.Quidditch(wizard);
             if (resultat) {
                 System.out.println("\nVotre maison : " + wizard.getHouse() + " remporte 30 points");
@@ -228,10 +234,9 @@ public class Level1 extends AbstractLevel {
                 wizard.setHousePoints(wizard.getHousePoints() - 15);
             }
         } else {
-            System.out.println("\nVous assistez pour la première fois à un match de Quidditch de votre maison, cependant ils sont désavantagé car il leur manque un joueur.");
+            System.out.println("\nVous assistez à un match de Quidditch de votre maison, cependant ils sont désavantagé car il leur manque un joueur.");
             System.out.println("\nVotre maison : " + wizard.getHouse() + " perd le match et donc 30 points");
             wizard.setHousePoints(wizard.getHousePoints() - 30);
-            // Lacarum inflamarae -> permet d'enflammer un objet
         }
     }
 
@@ -271,7 +276,7 @@ public class Level1 extends AbstractLevel {
         }
     }
 
-    private static void winnerHouse(Wizard wizard) {
+    public static void winnerHouse(Wizard wizard) {
         if (wizard.getHousePoints() >= 240) {
             String HEAL = wizard.getHouse() + ".\nAinsi, la maison " + wizard.getHouse() + " voit tout ses sorciers soignez au maximum de leur points de vie";
             ScrollingText.printWithDelay(HEAL);
@@ -285,6 +290,7 @@ public class Level1 extends AbstractLevel {
             String HEAL_OTHER = otherHouse + ". \nAinsi, la maison " + otherHouse + " voit tout ses sorciers soignez au maximum de leur point de vie";
             ScrollingText.printWithDelay(HEAL_OTHER);
         }
+        wizard.setHousePoints(200);
     }
 }
 

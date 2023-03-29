@@ -1,18 +1,16 @@
 package GameElement;
 
 public enum Core {
-    DragonHeartstring(1, "Fil de coeur de dragon"),
-    PhoenixFeather(2, "Plume de phénix"),
-    UnicornTailHair(3, "Poil de queue de licorne"),
-    VeelaHair(4, "Poils de Veela"),
-    ThestralTailHair(5, "Poils de queue du Thestral"),
-    TrollWhisker(6, "Moustache de troll");
+    DragonHeartstring("Fil de coeur de dragon"),
+    PhoenixFeather("Plume de phénix"),
+    UnicornTailHair("Poil de queue de licorne"),
+    VeelaHair("Poils de Veela"),
+    ThestralTailHair("Poils de queue du Thestral"),
+    TrollWhisker("Moustache de troll");
 
-    public final int index;
     public final String type;
 
-    Core(int index, String type) {
-        this.index = index;
+    Core(String type) {
         this.type = type;
     }
 

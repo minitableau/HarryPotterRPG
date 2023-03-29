@@ -1,19 +1,32 @@
 package Level;
 
-import GameElement.Boss;
-import GameElement.Character;
-import GameElement.Wizard;
+import GameElement.characters.enemies.Boss;
+import GameElement.characters.Character;
+import GameElement.characters.Wizard;
+
+import java.util.ArrayList;
 
 public class Level7 extends AbstractLevel {
+
+    public static boolean expelliarmusOn = false;
+    public static boolean petrificusTotalus = false;
 
     @Override
     public void startLevel(Wizard wizard) {
         Boss enemy;// & Boss enemy = Boss.voldemort;
         if (Level6.areYouDeathEater) {
             enemy = Boss.minervaMcGonagall;
-            Character.fight(wizard, enemy, wizard.getFriends());
+            Character.fight(wizard, enemy, new ArrayList<>());
         } else {
+            // bellatrixLestrange se place devant Voldemort vous allez devoir vaincre bellatrixLestrange pour pouvoir atteindre Voldemort.
             enemy = Boss.bellatrixLestrange;
+            Character.fight(wizard, enemy, wizard.getFriends());
+            wizard.checkIsAlive(wizard);
+            if (!wizard.getIsAlive()) {
+                return;
+            }
+            // Voila l'heure du combat final, vous pouvez attaquer voldemort.
+            enemy = Boss.voldemort;
             Character.fight(wizard, enemy, wizard.getFriends());
         }
         wizard.checkIsAlive(wizard);

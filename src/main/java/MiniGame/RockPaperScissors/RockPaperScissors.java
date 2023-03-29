@@ -1,7 +1,7 @@
 package MiniGame.RockPaperScissors;
 
 import GameElement.House;
-import GameElement.Wizard;
+import GameElement.characters.Wizard;
 import utils.ConsoleColors;
 
 import java.util.Random;

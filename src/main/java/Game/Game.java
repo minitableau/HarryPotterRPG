@@ -2,6 +2,9 @@ package Game;
 
 
 import GameElement.*;
+import GameElement.characters.Wizard;
+import GameElement.spells.ForbiddenSpell;
+import GameElement.spells.Spell;
 import Level.*;
 
 
