@@ -29,7 +29,7 @@ public class Wizard extends Character {
     private int efficiencyPotionsBonus;
     private int resistanceBonus;
     private int mana;
-    private int money;
+    private int money = 100;
 
     public Wizard(String name, Pet pet, Wand wand, House house) {
         super(name);
@@ -48,7 +48,7 @@ public class Wizard extends Character {
         }
 
         System.out.println("\n" + this);
-        System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que le " + enemy.getName() + " se situe à " + enemy.getDistance() + " mètres et à " + enemy.getLifePoint() + " points de vie ?" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que " + enemy.getName() + " se situe à " + enemy.getDistance() + " mètres et à " + enemy.getLifePoint() + " points de vie ?" + ConsoleColors.RESET);
         System.out.println("1 : " + enemy.whatAWizardCanDoAgainstMe());
         System.out.println("2 : Se rapprocher");
         System.out.println("3 : Utiliser un sort");
@@ -122,7 +122,7 @@ public class Wizard extends Character {
             if (enemy.getType().equals("Humain")) {
                 System.out.println("Vous avez vaincu " + enemy.getName() + " !");
             } else {
-                System.out.println("Vous avez vaincu le " + enemy.getName() + " !");
+                System.out.println("Vous avez vaincu " + enemy.getName() + " !");
                 Level2.tooth = false;
             }
         }

@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Troll extends Enemy {
     public Troll() {
-        super("Troll des montagnes", "Troll", 10, 1);
-    }//30
+        super("un Troll des montagnes", "Troll", 10, 30);
+    }
 
     @Override
     public void attack(Character character) {

@@ -17,8 +17,8 @@ import java.util.List;
 public class Voldemort extends Boss {
 
     public Voldemort() {
-        super("Voldemort", "Human", 10, 1);
-    }//30
+        super("Voldemort", "Human", 10, 10);
+    }
 
     @Override
     public void attack(Character character) {

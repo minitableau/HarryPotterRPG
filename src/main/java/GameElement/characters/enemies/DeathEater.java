@@ -11,11 +11,11 @@ import java.util.List;
 public class DeathEater extends Enemy {
 
     public DeathEater() {
-        super("DeathEater", "Humain", 5, 1);
-    }//10
+        super("des Mangemorts", "Humain", 5, 10);
+    }
 
     @Override
-    public void attack(Character character) { // same Peter mais modif texte
+    public void attack(Character character) {
         Wizard wizard = (Wizard) character;
         int chanceOfSuccess = 70;
         System.out.println("\nLa probabilité qu'ils vous touchent est de " + chanceOfSuccess + "%.");

@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Dementor extends Enemy {
     public Dementor() {
-        super("Détraqueurs", "Détraqueurs", 8, 1);
-    }//20
+        super("des Détraqueurs", "Détraqueurs", 8, 20);
+    }
 
     @Override
     public void attack(Character character) {

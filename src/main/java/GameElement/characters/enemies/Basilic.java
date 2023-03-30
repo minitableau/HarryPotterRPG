@@ -11,8 +11,8 @@ import java.util.List;
 
 public class Basilic extends Enemy {
     public Basilic() {
-        super("Basilic de Salazar Serpentard", "Basilic", 3, 1);
-    }//30
+        super("un Basilic de Salazar Serpentard", "Basilic", 3, 30);
+    }
 
     @Override
     public void attack(Character character) {

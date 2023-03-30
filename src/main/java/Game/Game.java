@@ -13,7 +13,7 @@ public class Game {
 //         initialisation.
         Wizard wizard = new Wizard(null, null, null, null);
 
-//        Wizard wizard = new Wizard("mini", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
+//        Wizard wizard = new Wizard("mini", Pet.Owl, new Wand(Core.PhoenixFeather, 23), House.SLYTHERIN);
 
         AbstractLevel[] levels = new AbstractLevel[]{
                 new Level0(),

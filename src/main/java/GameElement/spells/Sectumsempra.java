@@ -4,6 +4,7 @@ import GameElement.characters.Character;
 import GameElement.characters.Wizard;
 import GameElement.characters.enemies.DeathEater;
 import GameElement.characters.enemies.MinervaMcGonagall;
+import GameElement.characters.enemies.PeterPettigrew;
 import utils.MathUtils;
 
 public class Sectumsempra extends ForbiddenSpell {
@@ -15,19 +16,21 @@ public class Sectumsempra extends ForbiddenSpell {
     public void cast(Wizard wizard, Character target) {
 
         if (target instanceof DeathEater deatheater) {
-            castOnMangemorts(wizard, deatheater);
+            castOnDeathEater(wizard, deatheater);
+        } else if (target instanceof MinervaMcGonagall minervaMcGonagall) {
+            castOnMinervaMcGonagall(wizard, minervaMcGonagall);
         } else {
             System.out.println("Votre sort n'a rien fait au " + target.getName());
         }
 
     }
 
-    private void castOnMangemorts(Wizard wizard, DeathEater deatheater) {
+    private void castOnDeathEater(Wizard wizard, DeathEater deatheater) {
         int chanceOfSuccess = 0;
         if (deatheater.getDistance() <= 5) {
-            System.out.println("Vous utilisez sectumsempra sur un des deatheater!");
+            System.out.println("Vous utilisez sectumsempra sur un des mangemorts!");
             chanceOfSuccess = getChanceOfSuccess(wizard, deatheater);
-            System.out.println("Vous êtes à " + deatheater.getDistance() + " mètres des deatheater. Votre chance de réussite est de " + chanceOfSuccess + "%.");
+            System.out.println("Vous êtes à " + deatheater.getDistance() + " mètres des mangemorts. Votre chance de réussite est de " + chanceOfSuccess + "%.");
             int randomValue = MathUtils.random(100);
             if (randomValue <= chanceOfSuccess) {
                 System.out.println("Votre sort atteint les deatheater, ils perdents " + (30 + (30 * wizard.getPowerBonus()) / 100) + " points de vie.");

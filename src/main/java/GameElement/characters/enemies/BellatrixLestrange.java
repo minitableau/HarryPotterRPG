@@ -10,8 +10,8 @@ import java.util.List;
 public class BellatrixLestrange extends Boss {
 
     public BellatrixLestrange() {
-        super("Bellatrix Lestrange", "Human", 10, 1);
-    }//30
+        super("Bellatrix Lestrange", "Human", 10, 20);
+    }
 
     @Override
     public void attack(Character character) { // same McGonagall mais modif texte

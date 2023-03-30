@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DoloresOmbrage extends Enemy {
     public DoloresOmbrage() {
-        super("Dolores Ombrage", "Humain", 4, 1);//10
+        super("Dolores Ombrage", "Humain", 4, 10);
     }
 
     @Override

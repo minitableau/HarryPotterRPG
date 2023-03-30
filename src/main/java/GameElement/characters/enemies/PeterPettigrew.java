@@ -11,8 +11,8 @@ import java.util.List;
 public class PeterPettigrew extends Enemy {
 
     public PeterPettigrew() {
-        super("Peter Pettigrew", "Humain", 10, 1);
-    }//20
+        super("Peter Pettigrew", "Humain", 10, 20);
+    }
 
     @Override
     public void attack(Character character) {

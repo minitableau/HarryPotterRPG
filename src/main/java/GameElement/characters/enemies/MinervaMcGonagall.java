@@ -13,8 +13,8 @@ import java.util.List;
 public class MinervaMcGonagall extends Boss {
 
     public MinervaMcGonagall() {
-        super("Minerva McGonagall", "Humain", 7, 1);
-    }//30
+        super("Minerva McGonagall", "Humain", 7, 30);
+    }
 
     @Override
     public void attack(Character character) { // same Peter mais modif texte
