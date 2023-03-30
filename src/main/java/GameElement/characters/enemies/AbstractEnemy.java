@@ -1,6 +1,7 @@
 package GameElement.characters.enemies;
 
 import GameElement.characters.Character;
+import GameElement.characters.Wizard;
 
 public abstract class AbstractEnemy extends Character {
     private final String type;
@@ -13,6 +14,12 @@ public abstract class AbstractEnemy extends Character {
         this.distance = distance;
         this.dommage = dommage;
     }
+
+    public abstract String whatAWizardCanDoAgainstMe();
+
+    public abstract void onWizardAttack(Wizard wizard);
+
+    public abstract void onWizardBackpackOpen(Wizard wizard);
 
     public String getType() {
         return type;

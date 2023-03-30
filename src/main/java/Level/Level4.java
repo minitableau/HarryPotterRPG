@@ -1,11 +1,9 @@
 package Level;
 
-import GameElement.characters.Character;
-import GameElement.characters.enemies.Enemy;
 import GameElement.characters.Wizard;
+import GameElement.characters.enemies.Enemy;
+import GameElement.characters.enemies.PeterPettigrew;
 import utils.ScrollingText;
-
-import java.util.ArrayList;
 
 public class Level4 extends AbstractLevel {
 
@@ -17,10 +15,9 @@ public class Level4 extends AbstractLevel {
         String IntroLvl4 = "En début d'année, vous vous inscrivez pour participer au plus grand tournoi de sorcier du monde magique sans trop vous reseignez, vous savez jsute que c'est un honneur d'être tiré au sort et que si c'est le cas vous rencontrerez de très grand sorcier. L'année file et voila je jour du tirage. Vous vous retrouvez être un des gagnants du tirage au sort pour le Tournoi des Trois Sorciers, mais votre victoire s'est avérée être une malédiction. En effet, lors d'une des épreuves vous tombez nez à nez face à Voldemort et Peter Pettigrew dans un cimetière sombre et lugubre. Vous comprenez que cela n'était pas du tout prévu dans le tournoi. Vous vous savez pas assez puissant pour vaincre Voldemort et Peter Pettigrew sachant que vous êtes seul et connaissez pas beaucoup de sort. Vous devez trouver un moyen de vous échapper rapidement. Vous apercevez un objet brillant au loin, qui pourrait être le portolion dont vous avez besoin d'atteindre pour vous échapper. Vous vous dites que si vous arrivez à leur échapper ca sera comme si vous aviez réussi à les vaincre du moins comme si vous aviez vaincu Peter Pettigrew.";
         ScrollingText.printWithDelay(IntroLvl4);
 
-        Enemy enemy = Enemy.peterPettigrew;
-        Character.fight(wizard, enemy, new ArrayList<>());
-        wizard.checkIsAlive(wizard);
-        if (!wizard.getIsAlive()) {
+        Enemy enemy = new PeterPettigrew();
+        wizard.attack(enemy);
+        if (!wizard.isAlive()) {
             return;
         }
 

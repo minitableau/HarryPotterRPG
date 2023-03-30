@@ -26,6 +26,17 @@ public class Mangemorts extends Enemy {
         } else {
             System.out.println("Les mangemorts lancent des sorts mais vous arrivez à les éviter.");
         }
+    }
 
+    @Override
+    public void onWizardAttack(Wizard wizard) {
+        int dommage = 5 + (5 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des compas sur les mangemorts. Ils perdent " + dommage + " points de vie");
+        this.takeDamage(dommage);
+    }
+
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return "Jeter des compas";
     }
 }

@@ -13,26 +13,27 @@ public class Level7 extends AbstractLevel {
 
     @Override
     public void startLevel(Wizard wizard) {
-        Boss enemy;// & Boss enemy = Boss.voldemort;
-        if (Level6.areYouDeathEater) {
-            enemy = Boss.minervaMcGonagall;
-            Character.fight(wizard, enemy, new ArrayList<>());
-        } else {
-            // bellatrixLestrange se place devant Voldemort vous allez devoir vaincre bellatrixLestrange pour pouvoir atteindre Voldemort.
-            enemy = Boss.bellatrixLestrange;
-            Character.fight(wizard, enemy, wizard.getFriends());
-            wizard.checkIsAlive(wizard);
-            if (!wizard.getIsAlive()) {
-                return;
-            }
-            // Voila l'heure du combat final, vous pouvez attaquer voldemort.
-            enemy = Boss.voldemort;
-            Character.fight(wizard, enemy, wizard.getFriends());
-        }
-        wizard.checkIsAlive(wizard);
-        if (!wizard.getIsAlive()) {
-            return;
-        }
+//        Boss enemy;// & Boss enemy = Boss.voldemort;
+//        if (Level6.areYouDeathEater) {
+//            enemy = Boss.minervaMcGonagall;
+//            Character.fight(wizard, enemy, new ArrayList<>());
+//        } else {
+//            // bellatrixLestrange se place devant Voldemort vous allez devoir vaincre bellatrixLestrange pour pouvoir atteindre Voldemort.
+//            enemy = Boss.bellatrixLestrange;
+//            Character.fight(wizard, enemy, wizard.getFriends());
+//            wizard.checkIsAlive(wizard);
+//            if (!wizard.getIsAlive()) {
+//                return;
+//            }
+//            // Voila l'heure du combat final, vous pouvez attaquer voldemort.
+//            enemy = Boss.voldemort;
+//            Character.fight(wizard, enemy, wizard.getFriends());
+//        }
+//        wizard.checkIsAlive(wizard);
+//        if (!wizard.getIsAlive()) {
+//            return;
+//        }
+//    }
     }
 }
 

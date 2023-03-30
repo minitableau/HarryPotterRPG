@@ -29,10 +29,7 @@ public class CheckWin {
                 }
             }
         }
-        if (!fullBoard) {
-            return false;
-        }
-        return true;
+        return fullBoard;
     }
 
 }

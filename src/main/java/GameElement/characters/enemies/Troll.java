@@ -15,7 +15,7 @@ public class Troll extends Enemy {
     @Override
     public void attack(Character character) {
         Wizard wizard = (Wizard) character;
-        List<Friend> sameHomeWizardFriends = wizard.getFriendsSameHome();
+        List<Friend> sameHomeWizardFriends = wizard.getFriendsSameHome(List.of("Fleur Delacour"));
 
         int chanceOfSuccess = 40 + sameHomeWizardFriends.size() * 20;
         System.out.println("\nVous êtes " + (int) (sameHomeWizardFriends.size() + 1) + " contre le troll. La probabilité qu'il vous touche est de " + chanceOfSuccess + "%.");
@@ -30,5 +30,17 @@ public class Troll extends Enemy {
         } else {
             System.out.println("Le troll essaie de vous frapper avec ca massue mais vous arrivez à l'éviter.");
         }
+    }
+
+    @Override
+    public void onWizardAttack(Wizard wizard) {
+        int dommage = 20 + (20 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des bouts de bois sur le troll. Il perd " + dommage + " points de vie");
+        this.takeDamage(dommage);
+    }
+
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return "Jeter des bouts de bois";
     }
 }

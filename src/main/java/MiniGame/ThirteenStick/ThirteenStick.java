@@ -20,8 +20,9 @@ public class ThirteenStick {
         while (batonsRestants > 1) {
             System.out.println("Il reste " + batonsRestants + " bâton(s) sur la table.");
 
+            int choix;
             if (joueur1Tour) {
-                int choix = 0;
+                choix = 0;
                 boolean choixValide = false;
                 while (!choixValide) {
                     System.out.print("A vous de jouer! Combien de bâtons voulez-vous prendre (1, 2 ou 3)? ");
@@ -39,12 +40,11 @@ public class ThirteenStick {
                     }
                 }
 
-                batonsRestants -= choix;
             } else {
-                int choix = random.nextInt(Math.min(3, batonsRestants)) + 1;
+                choix = random.nextInt(Math.min(3, batonsRestants)) + 1;
                 System.out.println("L'ordinateur prend " + choix + " bâton(s).");
-                batonsRestants -= choix;
             }
+            batonsRestants -= choix;
 
             joueur1Tour = !joueur1Tour;
         }

@@ -32,4 +32,16 @@ public class Detraqueur extends Enemy {
             System.out.println("Le détraqueur essaie de vous rappelez de mauvais souvenir mais vous arrivez à résister.");
         }
     }
+
+    @Override
+    public void onWizardAttack(Wizard wizard) {
+        int dommage = 0 + (0 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des bouts de bois sur le détraqueur. Il perd " + dommage + " points de vie");
+        this.takeDamage(dommage);
+    }
+
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return "Jeter des bouts de bois";
+    }
 }

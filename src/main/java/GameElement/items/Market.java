@@ -2,8 +2,7 @@ package GameElement.items;
 
 import GameElement.characters.Wizard;
 import utils.ConsoleColors;
-
-import java.util.Scanner;
+import utils.InteractionUtils;
 
 public class Market {
 
@@ -29,16 +28,10 @@ public class Market {
 
             System.out.println(potions.length + 1 + " : Quitter le magasin.");
 
-            Scanner scanner = new Scanner(System.in);
-            int choice = scanner.nextInt();
+            int choice = InteractionUtils.askForInt(1, potions.length + 1);
 
             if (choice == potions.length + 1) {
                 break;
-            }
-
-            if (choice < 1 || choice > potions.length + 1) {
-                System.out.println("Le choix doit être compris entre 1 et " + (potions.length + 1) + ".");
-                continue;
             }
 
             Potion potion = potions[choice - 1];

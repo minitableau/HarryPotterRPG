@@ -28,7 +28,11 @@ public class BellatrixLestrange extends Boss {
         } else {
             System.out.println("Bellatrix Lestrange lance un sort mais vous arrivez à l'éviter.");
         }
+    }
 
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return null;
     }
 }
 

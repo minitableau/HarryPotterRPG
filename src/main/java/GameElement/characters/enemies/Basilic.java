@@ -2,6 +2,7 @@ package GameElement.characters.enemies;
 
 import GameElement.characters.Character;
 import GameElement.characters.Wizard;
+import Level.Level2;
 import utils.MathUtils;
 
 public class Basilic extends Enemy {
@@ -24,6 +25,30 @@ public class Basilic extends Enemy {
             }
         } else {
             System.out.println("Le basilic essaie de vous frapper avec ca queue mais vous arrivez à l'éviter.");
+        }
+    }
+
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return "Jeter des pierres";
+    }
+
+    @Override
+    public void onWizardAttack(Wizard wizard) {
+        int dommage = 1 + (1 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des pierre sur le Basilic. Il perd " + dommage + " points de vie");
+        this.takeDamage(dommage);
+    }
+
+    @Override
+    public void onWizardBackpackOpen(Wizard wizard) {
+        if (this.getDistance() == 1 && Level2.tooth) {
+            System.out.println("Vous ramassez la dent du basilic pour le frappez ce qui lui enlève 50 points de vie.");
+            this.takeDamage(50 + (50 * wizard.getPowerBonus()) / 100);
+            if (this.isAlive()) {
+                System.out.println("mais vous repoussez d'un mètre.");
+                this.setDistance(2);
+            }
         }
     }
 }

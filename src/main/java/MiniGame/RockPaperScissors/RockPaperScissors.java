@@ -3,9 +3,9 @@ package MiniGame.RockPaperScissors;
 import GameElement.House;
 import GameElement.characters.Wizard;
 import utils.ConsoleColors;
+import utils.InteractionUtils;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class RockPaperScissors {
 
@@ -20,7 +20,6 @@ public class RockPaperScissors {
     //Idée si choix Quidditch au niveau 1 alors commencé la partie avec 1-0.
     public static Boolean Quidditch(Wizard wizard) {
         System.out.println("Bienvenue au match de Quidditch les règles sont simples : Il s'agit d'une variante du jeu \"Pierre-Feuille-Ciseaux\". Au lieu des trois objets classiques, \nles joueurs doivent choisir entre trois personnages : le Batteur, le Poursuiveur et l'Attrapeur. Les règles du jeu sont simples : le Batteur bat l'Attrapeur, l'Attrapeur bat le Poursuiveur, et le Poursuiveur bat le Batteur. Le premier joueur à atteindre un score de 3 points gagne la partie. Pour jouer, chaque joueur choisit secrètement un personnage, puis les deux choix sont révélés simultanément. Le joueur qui a choisi le personnage qui bat l'autre remporte un point. En cas d'égalité, aucun point n'est attribué. Le jeu continue jusqu'à ce qu'un joueur atteigne le score de 3 points.");
-        Scanner sc = new Scanner(System.in);
         Random rand = new Random();
 
         House otherHouse;
@@ -36,18 +35,7 @@ public class RockPaperScissors {
             int ordi = rand.nextInt(3);
 
             System.out.print(ConsoleColors.BLUE + "\nEntrez votre choix" + ConsoleColors.RESET + " \n1 : Batteur \n2 : Poursuiveur \n3 : Attrapeur");
-            int joueur = -1;
-            do {
-                if (sc.hasNextInt()) {
-                    joueur = sc.nextInt();
-                    if (joueur < 1 || joueur > 3) {
-                        System.out.println("Veuillez entrer un nombre entre 1 et 3");
-                    }
-                } else {
-                    System.out.println("Veuillez entrer un nombre valide");
-                    sc.next();
-                }
-            } while (joueur < 1 || joueur > 3);
+            int joueur = InteractionUtils.askForInt(1, 3);
             joueur--;
 
             System.out.println("\n" + otherHouse + " : " + choix[ordi]);

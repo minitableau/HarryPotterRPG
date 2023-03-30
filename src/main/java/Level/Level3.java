@@ -1,10 +1,10 @@
 package Level;
 
-import GameElement.characters.Character;
+import GameElement.characters.Wizard;
+import GameElement.characters.enemies.Detraqueur;
 import GameElement.characters.enemies.Enemy;
 import GameElement.items.Market;
-import GameElement.characters.Wizard;
-import GameElement.spells.Spell;
+import GameElement.spells.ExpectoPatronum;
 import utils.ScrollingText;
 
 public class Level3 extends AbstractLevel {
@@ -20,7 +20,7 @@ public class Level3 extends AbstractLevel {
 
         String PatronusLearn = "Vous assistez au cours de Sortilèges donné par le professeur Lupin. Il vous apprend les bases de la fabrication d'un Patronus, et vous explique comment le lancer correctement. Pour qu'il effraie un détraqueur il faut être à 5 mètres ou moins. Vous vous entraînez ensuite avec vos camarades de classe.";
         ScrollingText.printWithDelay(PatronusLearn);
-        wizard.addSpell(Spell.expectoPatronum);
+        wizard.addSpell(new ExpectoPatronum());
 
         String TrainPatronus = "Vous pratiquez pendant plusieurs mois votre sortilège sur des cibles volantes qui ressemblent aux Détraqueurs, tout en évitant les obstacles sur le terrain de Quidditch. Vous devez faire preuve de précision et de rapidité pour vaincre vos ennemis.";
         ScrollingText.printWithDelay(TrainPatronus);
@@ -28,10 +28,10 @@ public class Level3 extends AbstractLevel {
         String ReadyToFight = "Vous vous sentez prêt à affronter les Détraqueurs. Vous vous dirigez vers la forêt interdite pour les combattre.";
         ScrollingText.printWithDelay(ReadyToFight);
 
-        Enemy enemy = Enemy.dementors;
-        Character.fight(wizard, enemy, wizard.getFriends());
-        wizard.checkIsAlive(wizard);
-        if (!wizard.getIsAlive()) {
+        Enemy enemy = new Detraqueur();
+        wizard.fight(enemy);
+
+        if (!wizard.isAlive()) {
             return;
         }
 

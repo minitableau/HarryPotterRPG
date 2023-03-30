@@ -1,14 +1,11 @@
 package Level;
 
-import GameElement.characters.Character;
-import GameElement.characters.enemies.Enemy;
 import GameElement.House;
 import GameElement.characters.Wizard;
+import GameElement.characters.enemies.Enemy;
+import GameElement.characters.enemies.Mangemorts;
 import utils.ConsoleColors;
-
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import utils.InteractionUtils;
 
 public class Level6 extends AbstractLevel {
     public static boolean areYouDeathEater = false;
@@ -23,40 +20,29 @@ public class Level6 extends AbstractLevel {
         if (areYouDeathEater) {
             return;
         }
-        Enemy enemy = Enemy.deathEater;
-        Character.fight(wizard, enemy, new ArrayList<>());
-        wizard.checkIsAlive(wizard);
-        if (!wizard.getIsAlive()) {
+        Enemy enemy = new Mangemorts();
+        wizard.fight(enemy);
+        if (!wizard.isAlive()) {
             return;
         }
     }
 
-    private static void joinDeathEater(Wizard wizard) {
-        Scanner scanner = new Scanner(System.in);
-        int choice = 0;
-        while (choice != 1 && choice != 2) {
-            System.out.println(ConsoleColors.BLUE + "\nSouhaitez vous rejoindre les mangemorts  : " + ConsoleColors.RESET);
-            System.out.println("1 : Oui.\n2 : Non.");
-            try {
-                choice = scanner.nextInt();
-                scanner.nextLine();
-                if (choice != 1 && choice != 2) {
-                    System.out.println("Le choix doit être 1 ou 2.");
-                }
-                if (choice == 1) {
-                    System.out.println("\nVous rejoignez les mangemorts !");
-                    areYouDeathEater = true;
+    private void joinDeathEater(Wizard wizard) {
+        System.out.println(ConsoleColors.BLUE + "\nSouhaitez vous rejoindre les mangemorts  : " + ConsoleColors.RESET);
+        System.out.println("1 : Oui.\n2 : Non.");
 
-                }
-                if (choice == 2) {
-                    System.out.println("\nVous ne rejoignez pas les mangemorts.\n");
+        int choice = InteractionUtils.askForInt(1, 2);
 
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Le choix doit être un nombre.");
-                scanner.nextLine();
-            }
+        if (choice == 1) {
+            System.out.println("\nVous rejoignez les mangemorts !");
+            areYouDeathEater = true;
+
         }
+        if (choice == 2) {
+            System.out.println("\nVous ne rejoignez pas les mangemorts.\n");
+
+        }
+
     }
 }
 

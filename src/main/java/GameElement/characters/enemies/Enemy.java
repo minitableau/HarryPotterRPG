@@ -1,12 +1,27 @@
 package GameElement.characters.enemies;
 
 import GameElement.characters.Character;
+import GameElement.characters.Wizard;
 
 public class Enemy extends AbstractEnemy {
 
 
     public Enemy(String name, String type, int distance, int dommage) {
         super(name, type, distance, dommage);
+    }
+
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return "Attaquer";
+    }
+
+    @Override
+    public void onWizardAttack(Wizard wizard) {
+
+    }
+
+    @Override
+    public void onWizardBackpackOpen(Wizard wizard) {
     }
 
     @Override

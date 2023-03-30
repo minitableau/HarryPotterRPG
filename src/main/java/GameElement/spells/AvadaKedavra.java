@@ -23,7 +23,7 @@ public class AvadaKedavra extends ForbiddenSpell {
     }
 
     private void castOnVoldemort(Wizard wizard, Voldemort voldemort) {
-        int chanceOfSuccess = 0;
+        int chanceOfSuccess;
         System.out.println("Vous utilisez AvadaKedavra sur Voldemort!");
         chanceOfSuccess = getChanceOfSuccess(wizard, voldemort);
         System.out.println("Vous êtes à " + voldemort.getDistance() + " mètres de Voldemort. Votre chance de réussite est de " + chanceOfSuccess + "%.");

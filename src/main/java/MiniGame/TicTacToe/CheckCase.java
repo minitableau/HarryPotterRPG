@@ -40,9 +40,8 @@ public class CheckCase {
         if (row < 0 || row > 2 || col < 0 || col > 2) {
             System.out.println("Case invalide. Veuillez choisir une case entre 0 et 2.");
             return false;
-        } else if (board[row][col] != ' ') {
-            return false;
         }
-        return true;
+
+        return board[row][col] == ' ';
     }
 }

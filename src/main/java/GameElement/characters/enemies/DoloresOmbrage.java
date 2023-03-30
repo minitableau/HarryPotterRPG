@@ -3,6 +3,8 @@ package GameElement.characters.enemies;
 import GameElement.Friend;
 import GameElement.characters.Character;
 import GameElement.characters.Wizard;
+import GameElement.items.Item;
+import Level.Level5;
 import utils.MathUtils;
 
 import java.util.List;
@@ -29,5 +31,26 @@ public class DoloresOmbrage extends Enemy {
         } else {
             System.out.println("Dolores Ombrage lance un sort mais vous arrivez à l'éviter.");
         }
+    }
+
+    @Override
+    public void onWizardAttack(Wizard wizard) {
+        int dommage = 0 + (0 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des stylos sur Dolores Ombrage. Elle perd " + dommage + " points de vie");
+        this.takeDamage(dommage);
+    }
+
+    @Override
+    public void onWizardBackpackOpen(Wizard wizard) {
+        if (this.getDistance() == 3 && Level5.firework) {
+            System.out.println("Vous ramassez un feu d'artifice.");
+            wizard.getBackpack().addItem(Item.firework);
+            Level5.firework = false;
+        }
+    }
+
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return "Jeter des stylos";
     }
 }

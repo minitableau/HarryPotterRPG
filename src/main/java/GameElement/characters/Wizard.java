@@ -3,16 +3,15 @@ package GameElement.characters;
 
 import GameElement.*;
 import GameElement.characters.enemies.AbstractEnemy;
-import GameElement.characters.enemies.Troll;
 import GameElement.items.Backpack;
 import GameElement.spells.AbstractSpell;
-import GameElement.spells.ForbiddenSpell;
 import Level.Level2;
 import MiniGame.ThirteenStick.ThirteenStick;
 import utils.ConsoleColors;
 import utils.InteractionUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Wizard extends Character {
@@ -45,63 +44,59 @@ public class Wizard extends Character {
 
     @Override
     public void attack(Character character) {
-        if (character instanceof Troll characterTroll) {
-            attackTroll(characterTroll);
+        if (!(character instanceof AbstractEnemy enemy)) {
+            return;
         }
-    }
 
-    private void attackTroll(Troll characterTroll) {
+
+        System.out.println(this);
+        System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que le " + enemy.getName() + " se situe à " + enemy.getDistance() + " mètres et à " + enemy.getLifePoint() + " points de vie ?" + ConsoleColors.RESET);
+        System.out.println("1 : " + enemy.whatAWizardCanDoAgainstMe());
+        System.out.println("2 : Se rapprocher");
+        System.out.println("3 : Utiliser un sort");
+        System.out.println("4 : Ouvrir votre sac");
+
+        int choice = InteractionUtils.askForInt(1, 4);
         while (true) {
-            System.out.println(this);
-            System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que le " + characterTroll.getName() + " se situe à " + characterTroll.getDistance() + " mètres et à " + characterTroll.getLifePoint() + " points de vie ?" + ConsoleColors.RESET);
-            System.out.println("1 : Jeter des bouts de bois");
-            System.out.println("2 : Se rapprocher");
-            System.out.println("3 : Utiliser un sort");
-            System.out.println("4 : Ouvrir votre sac");
-
-            int choice = InteractionUtils.askForInt(1, 4);
-
             if (choice == 1) {
-                int dommage = 20 + (20 * this.getPowerBonus()) / 100;
-                System.out.println("Vous jetez des bouts de bois sur le troll. Il perd " + dommage + " points de vie");
-                characterTroll.takeDamage(dommage);
-                if (!characterTroll.isAlive()) {
-                    break;
-                }
+                enemy.onWizardAttack(this);
+                break;
             } else if (choice == 2) {
-                System.out.println("Vous vous rapprochez du " + characterTroll.getName() + ".");
-                characterTroll.setDistance(characterTroll.getDistance() - 1);
-            } else if (choice == 3) {
+                System.out.println("Vous vous rapprochez du " + enemy.getName() + ".");
+                enemy.setDistance(enemy.getDistance() - 1);
+                break;
+            } else if (choice == 3) { //retour arriere
                 AbstractSpell spell = this.selectSpell();
                 if (spell != null) {
-                    spell.cast(this, characterTroll);
-                    if (!characterTroll.isAlive()) {
-                        break;
-                    }
+                    spell.cast(this, enemy);
+                    break;
                 }
-            } else if (choice == 4) {
-                this.getBackpack().open(characterTroll);
+            } else if (choice == 4) { //retour arriere
+                this.getBackpack().open(enemy);
+                enemy.onWizardBackpackOpen(this);
             }
         }
     }
 
+
     public void fight(AbstractEnemy enemy) {
-        while (enemy.getDistance() >= 1 && !enemy.isAlive() && !this.isAlive()) {
+        while (enemy.getDistance() >= 1 && enemy.isAlive() && this.isAlive()) {
             attack(enemy);
             if (enemy.getDistance() < 1) {
                 break;
             }
-            if (enemy.isAlive()) {
+            if (!enemy.isAlive()) {
                 break;
             }
-            for (Friend friend : this.friends) {
-                System.out.println("\nVotre ami " + friend.getName() + " peut aussi attaquer le " + enemy.getName() + ".");
+            List<Friend> sameHomeWizardFriends = this.getFriendsSameHome(List.of("Fleur Delacour"));
+            for (int i = 0; i < sameHomeWizardFriends.size(); i++) {
+                System.out.println("\nVotre ami " + sameHomeWizardFriends.get(i).getName() + " peut aussi attaquer le " + enemy.getName() + ".");
                 attack(enemy);
-                if (enemy.getDistance() < 1 || enemy.isAlive()) {
+                if (enemy.getDistance() < 1 || !enemy.isAlive()) {
                     break;
                 }
             }
-            if (enemy.getDistance() < 1 || enemy.isAlive()) {
+            if (enemy.getDistance() < 1 || !enemy.isAlive()) {
                 break;
             }
 
@@ -211,13 +206,13 @@ public class Wizard extends Character {
     }
 
     public List<Friend> getFriendsSameHome() {
-        return getFriendsSameHome(new ArrayList<>());
+        return getFriendsSameHome(new ArrayList<String>());
     }
 
-    public List<Friend> getFriendsSameHome(List<Friend> excludes) {
+    public List<Friend> getFriendsSameHome(List<String> excludesNames) {
         List<Friend> friendsSameHome = new ArrayList<>();
         for (Friend friend : friends) {
-            if (friend.getHouse() == house && !excludes.contains(friend)) {
+            if (friend.getHouse() == house && !excludesNames.contains(friend.getName())) {
                 friendsSameHome.add(friend);
             }
         }
@@ -242,10 +237,6 @@ public class Wizard extends Character {
 
     public void addKnowledge(Knowledge knowledge) {
         this.knowledges.add(knowledge);
-    }
-
-    public List<ForbiddenSpell> getForbiddenSpells() {
-        return forbiddenSpells;
     }
 
     public Backpack getBackpack() {
