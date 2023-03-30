@@ -2,7 +2,6 @@ package GameElement.spells;
 
 import GameElement.characters.Character;
 import GameElement.characters.Wizard;
-import GameElement.characters.enemies.Mangemorts;
 import GameElement.characters.enemies.Voldemort;
 import utils.MathUtils;
 

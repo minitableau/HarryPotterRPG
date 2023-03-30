@@ -89,19 +89,7 @@ public class Backpack {
                 System.out.println((i + 1) + " : " + potions.get(i).getName());
             }
             System.out.println((numPotions + 1) + " : Retourner dans le sac");
-            int choice = -1;
-            do {
-                Scanner scanner = new Scanner(System.in);
-                try {
-                    choice = scanner.nextInt();
-                    if (choice < 1 || choice > numPotions + 1) {
-                        System.out.println("Veuillez entrer un choix valide.");
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Veuillez entrer un choix valide.");
-                    scanner.next();
-                }
-            } while (choice < 1 || choice > numPotions + 1);
+            int choice = InteractionUtils.askForInt(1, numPotions + 1);
             if (choice == numPotions + 1) {
                 return true;
             }
@@ -125,24 +113,13 @@ public class Backpack {
                 System.out.println((i + 1) + " : " + items.get(i).getName());
             }
             System.out.println((numItems + 1) + " : Retourner dans le sac");
-            int choice = -1;
-            do {
-                Scanner scanner = new Scanner(System.in);
-                try {
-                    choice = scanner.nextInt();
-                    if (choice < 1 || choice > numItems + 1) {
-                        System.out.println("Veuillez entrer un choix valide.");
-                    }
-                } catch (InputMismatchException e) {
-                    System.out.println("Veuillez entrer un choix valide.");
-                    scanner.next();
-                }
-            } while (choice < 1 || choice > numItems + 1);
+            int choice = InteractionUtils.askForInt(1, numItems + 1);
             if (choice == numItems + 1) {
                 return true;
             }
             Item chosenItem = items.get(choice - 1);
             System.out.println("Vous avez choisi " + chosenItem.getName() + ".");
+
             if (chosenItem == Item.gryffindorSword && enemy instanceof Basilic) {
                 if (wizard.getKnowledges().contains(Knowledge.gryffindorSword)) {
                     if (enemy.getDistance() != 1) {
@@ -160,6 +137,7 @@ public class Backpack {
                 } else {
                     System.out.println("Vous ne savez pas comment utiliser cette épée et quel et son pouvoir, vous auriez du lire plus de livre.");
                 }
+
             } else if (chosenItem == Item.firework && enemy instanceof DoloresOmbrage) {
                 items.remove(choice - 1);
                 System.out.println("Vous allumer un feu d'artifice en direction de Dolores Ombrage, il explose sur elle ce qui lui enlève 50 points de vie.");
@@ -168,6 +146,7 @@ public class Backpack {
                     System.out.println("L'allumage du feu d'artifice vous à propulser vous êtes désormais à 4 mètres de Dolores Ombrage.");
                     enemy.setDistance(4);
                 }
+
             } else {
                 System.out.println("L'objet que vous utilisez n'a aucune effet sur ce combat.");
             }

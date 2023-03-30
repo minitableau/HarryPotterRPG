@@ -3,6 +3,7 @@
 package GameElement.characters.enemies;
 
 import GameElement.Core;
+import GameElement.Friend;
 import GameElement.characters.Character;
 import GameElement.characters.Wizard;
 import GameElement.spells.AvadaKedavra;
@@ -10,11 +11,14 @@ import GameElement.spells.ForbiddenSpell;
 import Level.Level7;
 import utils.MathUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Voldemort extends Boss {
 
     public Voldemort() {
-        super("Voldemort", "Human", 10, 30);
-    }
+        super("Voldemort", "Human", 10, 1);
+    }//30
 
     @Override
     public void attack(Character character) {
@@ -41,15 +45,33 @@ public class Voldemort extends Boss {
                 System.out.println("Un conseil protéger vous à nouveau avec Expelliarmus car celui-ci ne fait donc plus effet et vous êtes donc à nouveau vulnérable.");
             }
         } else if (randomValue <= chanceOfSuccess) {
-            int dommage = this.getDommage() - (this.getDommage() * wizard.getResistanceBonus()) / 100;
-            wizard.takeDamage(dommage);
-            System.out.println("Voldemort, vous touche et vous enlève " + dommage + " points de vie.");
+            int damage = this.getDamage() - (this.getDamage() * wizard.getResistanceBonus()) / 100;
+            wizard.takeDamage(damage);
+            System.out.println("Voldemort, vous touche et vous enlève " + damage + " points de vie.");
             if (!wizard.isAlive()) {
                 System.out.println("Vous êtes mort! Voldemort vous a vaincu.");
             }
         } else {
             System.out.println("Voldemort lance un sort mais vous arrivez à l'éviter.");
         }
+
+    }
+
+    @Override
+    public String whatAWizardCanDoAgainstMe() {
+        return "Jeter des pierres";
+    }
+
+    @Override
+    public void onWizardAttack(Wizard wizard) {
+        int damage = 1 + (1 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des pierre sur Bellatrix Lestrange. Elle perd " + damage + " points de vie");
+        this.takeDamage(damage);
+    }
+
+    @Override
+    public List<Friend> whichFriendsCanTheWizardHave(Wizard wizard) {
+        return wizard.getFriendsSameHome();
 
     }
 }

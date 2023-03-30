@@ -1,8 +1,12 @@
 package Level;
 
+import GameElement.characters.enemies.BellatrixLestrange;
 import GameElement.characters.enemies.Boss;
 import GameElement.characters.Character;
 import GameElement.characters.Wizard;
+import GameElement.characters.enemies.MinervaMcGonagall;
+import GameElement.characters.enemies.Voldemort;
+import utils.ScrollingText;
 
 import java.util.ArrayList;
 
@@ -13,43 +17,25 @@ public class Level7 extends AbstractLevel {
 
     @Override
     public void startLevel(Wizard wizard) {
-//        Boss enemy;// & Boss enemy = Boss.voldemort;
-//        if (Level6.areYouDeathEater) {
-//            enemy = Boss.minervaMcGonagall;
-//            Character.fight(wizard, enemy, new ArrayList<>());
-//        } else {
-//            // bellatrixLestrange se place devant Voldemort vous allez devoir vaincre bellatrixLestrange pour pouvoir atteindre Voldemort.
-//            enemy = Boss.bellatrixLestrange;
-//            Character.fight(wizard, enemy, wizard.getFriends());
-//            wizard.checkIsAlive(wizard);
-//            if (!wizard.getIsAlive()) {
-//                return;
-//            }
-//            // Voila l'heure du combat final, vous pouvez attaquer voldemort.
-//            enemy = Boss.voldemort;
-//            Character.fight(wizard, enemy, wizard.getFriends());
-//        }
-//        wizard.checkIsAlive(wizard);
-//        if (!wizard.getIsAlive()) {
-//            return;
-//        }
-//    }
+        Boss enemy;
+        if (Level6.areYouDeathEater) {
+            String NewFight = "Vous décendez dans la cours de Poudlard dans laquelle vous trouvez le professeur McGonagall qui essaie de vous arretez. Vous engagez le combat seul contre elle pour montrer de quoi vous etes capable.";
+            ScrollingText.printWithDelay(NewFight);
+            enemy = new MinervaMcGonagall();
+            wizard.fight(enemy);
+        } else {
+            String NewFight = "Vous décendez dans la cours de Poudlard dans laquelle vous trouvez Voldmort et Bellatrix Lestrange. Bellatrix Lestrange se place alors devant Voldemort. Vous allez donc devoir vaincre Bellatrix Lestrange pour pouvoir atteindre Voldemort.";
+            ScrollingText.printWithDelay(NewFight);
+            enemy = new BellatrixLestrange();
+            wizard.fight(enemy);
+            if (!wizard.isAlive()) return;
+            String FightContinue = "Vous pouvez désormais attaquer Voldemort.";
+            ScrollingText.printWithDelay(FightContinue);
+            enemy = new Voldemort();
+            wizard.fight(enemy);
+        }
+        if (!wizard.isAlive()) return;
+        String Victory = "Vous avez réussi à survive à tous les niveaux, vous avez fini le jeu. Bravo !";
+        ScrollingText.printWithDelay(Victory);
     }
 }
-
-
-//    Vous êtes face à Voldemort et Bellatrix Lestrange, prêts à en découdre une fois pour toutes. Vous savez que c'est un combat à mort, et que la moindre erreur pourrait vous coûter la vie.
-//
-//        Voldemort commence à lancer des sorts dès le début du combat, mais vous parvenez à les éviter grâce à vos réflexes. Vous cherchez une ouverture pour lancer votre propre attaque.
-//
-//        Bellatrix Lestrange tente de vous distraire en lançant des sorts de confusion, mais vous restez concentré sur votre objectif. Vous savez que c'est votre seule chance de vaincre Voldemort et mettre fin à la guerre une fois pour toutes.
-//
-//        Voldemort utilise son sort de prédilection, Avada Kedavra, mais vous parvenez à le contrer avec le sortilège de Protection, Protego. Bellatrix Lestrange lance alors un sortilège de désarmement, Expelliarmus, mais vous réussissez à esquiver de justesse.
-//
-//        Vous enchaînez alors avec votre propre sortilège, Sectumsempra, qui atteint Voldemort de plein fouet. Le combat continue de plus belle, avec des sorts lancés dans tous les sens.
-//
-//        Bellatrix Lestrange tente de vous attaquer par derrière, mais vous vous retournez à temps pour lui lancer un sortilège de désarmement, la mettant hors d'état de nuire.
-//
-//        Il ne reste plus que vous et Voldemort. Vous vous regardez dans les yeux, sachant que c'est la fin. Vous lancez alors votre ultime sort, Expelliarmus, qui désarme Voldemort.
-//
-//        Voldemort est vaincu. La guerre est terminée. Vous avez accompli votre mission.

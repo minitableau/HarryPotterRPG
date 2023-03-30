@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DoloresOmbrage extends Enemy {
     public DoloresOmbrage() {
-        super("Dolores Ombrage", "Humain", 4, 10);
+        super("Dolores Ombrage", "Humain", 4, 1);//10
     }
 
     @Override
@@ -22,9 +22,9 @@ public class DoloresOmbrage extends Enemy {
         System.out.println("\nVous êtes " + (sameHomeWizardFriends.size() + 1) + " contre Dolores Ombrage. La probabilité qu'elle vous touche est de " + chanceOfSuccess + "%.");
         int randomValue = MathUtils.random(100);
         if (randomValue <= chanceOfSuccess) {
-            int dommage = this.getDommage() - (this.getDommage() * wizard.getResistanceBonus()) / 100;
-            wizard.takeDamage(dommage);
-            System.out.println("Dolores Ombrage, vous touche et vous enlève " + dommage + " points de vie.");
+            int damage = this.getDamage() - (this.getDamage() * wizard.getResistanceBonus()) / 100;
+            wizard.takeDamage(damage);
+            System.out.println("Dolores Ombrage, vous touche et vous enlève " + damage + " points de vie.");
             if (!wizard.isAlive()) {
                 System.out.println("Vous êtes mort! Dolores Ombrage vous à vaincu.");
             }
@@ -35,14 +35,14 @@ public class DoloresOmbrage extends Enemy {
 
     @Override
     public void onWizardAttack(Wizard wizard) {
-        int dommage = 0 + (0 * wizard.getPowerBonus()) / 100;
-        System.out.println("Vous jetez des stylos sur Dolores Ombrage. Elle perd " + dommage + " points de vie");
-        this.takeDamage(dommage);
+        int damage = 0 + (0 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des stylos sur Dolores Ombrage. Elle perd " + damage + " points de vie");
+        this.takeDamage(damage);
     }
 
     @Override
     public void onWizardBackpackOpen(Wizard wizard) {
-        if (this.getDistance() == 3 && Level5.firework) {
+        if (this.getDistance() <= 3 && Level5.firework) {
             System.out.println("Vous ramassez un feu d'artifice.");
             wizard.getBackpack().addItem(Item.firework);
             Level5.firework = false;
@@ -52,5 +52,11 @@ public class DoloresOmbrage extends Enemy {
     @Override
     public String whatAWizardCanDoAgainstMe() {
         return "Jeter des stylos";
+    }
+
+    @Override
+    public List<Friend> whichFriendsCanTheWizardHave(Wizard wizard) {
+        return wizard.getFriendsSameHome();
+
     }
 }

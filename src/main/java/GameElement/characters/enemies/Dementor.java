@@ -7,10 +7,10 @@ import utils.MathUtils;
 
 import java.util.List;
 
-public class Detraqueur extends Enemy {
-    public Detraqueur() {
-        super("Détraqueurs", "Détraqueurs", 8, 20);
-    }
+public class Dementor extends Enemy {
+    public Dementor() {
+        super("Détraqueurs", "Détraqueurs", 8, 1);
+    }//20
 
     @Override
     public void attack(Character character) {
@@ -22,9 +22,9 @@ public class Detraqueur extends Enemy {
 
         int randomValue = MathUtils.random(100);
         if (randomValue <= chanceOfSuccess) {
-            int dommage = this.getDommage() - (this.getDommage() * wizard.getResistanceBonus()) / 100;
-            wizard.takeDamage(dommage);
-            System.out.println("Le détraqueur reveille en vous des souvenirs très douloureux vous perdez " + dommage + " points de vie.");
+            int damage = this.getDamage() - (this.getDamage() * wizard.getResistanceBonus()) / 100;
+            wizard.takeDamage(damage);
+            System.out.println("Le détraqueur reveille en vous des souvenirs très douloureux vous perdez " + damage + " points de vie.");
             if (!wizard.isAlive()) {
                 System.out.println("Vous êtes mort! Le détraqueur vous a vaincu.");
             }
@@ -35,13 +35,20 @@ public class Detraqueur extends Enemy {
 
     @Override
     public void onWizardAttack(Wizard wizard) {
-        int dommage = 0 + (0 * wizard.getPowerBonus()) / 100;
-        System.out.println("Vous jetez des bouts de bois sur le détraqueur. Il perd " + dommage + " points de vie");
-        this.takeDamage(dommage);
+        int damage = 0 + (0 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des bouts de bois sur le détraqueur. Il perd " + damage + " points de vie");
+        this.takeDamage(damage);
     }
 
     @Override
     public String whatAWizardCanDoAgainstMe() {
         return "Jeter des bouts de bois";
     }
+
+    @Override
+    public List<Friend> whichFriendsCanTheWizardHave(Wizard wizard) {
+        return wizard.getFriendsSameHome();
+
+    }
+
 }

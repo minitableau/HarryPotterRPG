@@ -2,10 +2,8 @@ package GameElement.spells;
 
 import GameElement.characters.Character;
 import GameElement.characters.Wizard;
-import GameElement.characters.enemies.Detraqueur;
 import GameElement.characters.enemies.Voldemort;
 import Level.Level7;
-import utils.MathUtils;
 
 public class Expelliarmus extends Spell {
     public Expelliarmus() {

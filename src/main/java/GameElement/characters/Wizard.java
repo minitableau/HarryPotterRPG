@@ -11,7 +11,6 @@ import utils.ConsoleColors;
 import utils.InteractionUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Wizard extends Character {
@@ -48,8 +47,7 @@ public class Wizard extends Character {
             return;
         }
 
-
-        System.out.println(this);
+        System.out.println("\n" + this);
         System.out.println(ConsoleColors.BLUE + "\nQue voulez-vous faire sachant que le " + enemy.getName() + " se situe à " + enemy.getDistance() + " mètres et à " + enemy.getLifePoint() + " points de vie ?" + ConsoleColors.RESET);
         System.out.println("1 : " + enemy.whatAWizardCanDoAgainstMe());
         System.out.println("2 : Se rapprocher");
@@ -64,16 +62,24 @@ public class Wizard extends Character {
             } else if (choice == 2) {
                 System.out.println("Vous vous rapprochez du " + enemy.getName() + ".");
                 enemy.setDistance(enemy.getDistance() - 1);
+                enemy.onWizardBackpackOpen(this);
                 break;
-            } else if (choice == 3) { //retour arriere
+            } else if (choice == 3) {
                 AbstractSpell spell = this.selectSpell();
                 if (spell != null) {
                     spell.cast(this, enemy);
-                    break;
+                    enemy.onWizardBackpackOpen(this);
+                } else {
+                    attack(character);
                 }
-            } else if (choice == 4) { //retour arriere
-                this.getBackpack().open(enemy);
-                enemy.onWizardBackpackOpen(this);
+                break;
+            } else if (choice == 4) {
+                boolean shouldBreak = this.getBackpack().open(enemy);
+                if (shouldBreak) {
+                    attack(character);
+                }
+                break;
+
             }
         }
     }
@@ -88,9 +94,9 @@ public class Wizard extends Character {
             if (!enemy.isAlive()) {
                 break;
             }
-            List<Friend> sameHomeWizardFriends = this.getFriendsSameHome(List.of("Fleur Delacour"));
-            for (int i = 0; i < sameHomeWizardFriends.size(); i++) {
-                System.out.println("\nVotre ami " + sameHomeWizardFriends.get(i).getName() + " peut aussi attaquer le " + enemy.getName() + ".");
+            List<Friend> sameHomeWizardFriends = enemy.whichFriendsCanTheWizardHave(this);
+            for (Friend sameHomeWizardFriend : sameHomeWizardFriends) {
+                System.out.println("\nVotre ami " + sameHomeWizardFriend.getName() + " peut aussi attaquer le " + enemy.getName() + ".");
                 attack(enemy);
                 if (enemy.getDistance() < 1 || !enemy.isAlive()) {
                     break;

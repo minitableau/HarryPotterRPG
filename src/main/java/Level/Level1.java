@@ -33,12 +33,12 @@ public class Level1 extends AbstractLevel {
         String friendsString = friendsWithYou.stream().map(Friend::getName).reduce((a, b) -> a + " et " + b).orElse("personne");
 
         System.out.println("Quelque minutes plus tard un professeur arrive en paniquant dans votre cours, il annonce qu'un Troll c'est échappé et ce balade dans l'école. \nTous les élèves se mettent à crier dans tout les sens. Mais pas vous, vous pensez directement à Fleur qui est parti pleurer au toilette et n'a pas l'information. \nAinsi, à la place de suivre tout les autres et évacuer l'école pour se rendre dans le jardin vous allez en direction des toilettes des filles pour aider votre amie.\nVous réussissez à convaincre " + friendsString + "de venir avec vous.");
-        System.out.println("Vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. Vous engagez alors le comnbat pour sauver votre amie.");
+        System.out.println("Vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. \nVous engagez alors le combat pour sauver votre amie.");
         Troll enemy = new Troll();
         wizard.fight(enemy);
-        if(!wizard.isAlive())return;
+        if (!wizard.isAlive()) return;
 
-        String AFTER_TROLL = "\nPeu de temps après un groupe de professeur arrivent dans les toilettes et vous trouve avec le troll assommé au sol, ils vous demande alors que faites-vous là. Votre amie Fleur Delacour prend la parole et ce dénonce en disant qu'elle chercher à voir le troll de plus près pour étendre ses connaissances et qu'elle pensait pouvoir le vaincre avec ses compétences avancés sur les trolls. Votre maison perd alors 20 points, mais les professeurs reconnaissent que battre ce troll avec les connaissances de premiere année relève de l'exploit. Ils font gagner à votre maison 10 points par personne ayant permis de battre ce troll.";
+        String AFTER_TROLL = "\nPeu de temps après un groupe de professeur arrivent dans les toilettes et vous trouve avec le troll assommé au sol, ils vous demande alors que faites-vous là. \nVotre amie Fleur Delacour prend la parole et ce dénonce en disant qu'elle chercher à voir le troll de plus près pour étendre ses connaissances et qu'elle pensait pouvoir \nle vaincre avec ses compétences avancés sur les trolls. Votre maison perd alors 20 points, mais les professeurs reconnaissent que battre ce troll avec les connaissances \nde premiere année relève de l'exploit. Ils font gagner à votre maison 10 points par personne ayant permis de battre ce troll.";
         ScrollingText.printWithDelay(AFTER_TROLL);
         wizard.setHousePoints(wizard.getHousePoints() - 20);
         wizard.setHousePoints(wizard.getHousePoints() + 10);
@@ -46,7 +46,7 @@ public class Level1 extends AbstractLevel {
 
         simulateQuidditchMatch(wizard);
 
-        String CHRISTMAS = "Arrive la moitié de l'année et la période de noel, vous voyait tous les membres de votre maison recevoir des cadeaux et vous vous vous doutiez que vous n'aurait rien car vous n'avez jamais rien eu. Mais a votre grande surprise quand vous vous rendez à votre dortoir vous trouvez sur votre lit un cadeau d'un inconnu. Il s'agit la d'une cape d'invisibilité.\n";
+        String CHRISTMAS = "Arrive la moitié de l'année et la période de noel, vous voyait tous les membres de votre maison recevoir des cadeaux et vous vous vous doutiez que vous n'aurait rien car \nvous n'avez jamais rien eu. Mais a votre grande surprise quand vous vous rendez à votre dortoir vous trouvez sur votre lit un cadeau d'un inconnu. \nIl s'agit la d'une cape d'invisibilité.\n";
         ScrollingText.printWithDelay(CHRISTMAS);
 
 
@@ -127,25 +127,24 @@ public class Level1 extends AbstractLevel {
     }
 
     private void secondaryQuest(Wizard wizard) {
-        String PLAY_TICTACTOE = "Vous arrivez dans une grande salle dans laquelle vous repérer un plateau de jeu dessiné au sol, sur le coté ce situe des ronds et des croix. Vous comprenez que vous allez devoir jouer une partie de TicTacToe.\n";
+        String PLAY_TICTACTOE = "Vous arrivez dans une grande salle dans laquelle vous repérer un plateau de jeu dessiné au sol, sur le coté ce situe des ronds et des croix. \nVous comprenez que vous allez devoir jouer une partie de TicTacToe.\n";
         ScrollingText.printWithDelay(PLAY_TICTACTOE);
         boolean win = TicTacToe.TicTacToe();
         if (win) {
-            String MEET_QUIRRELL = "\nUne porte s'ouvre devant vous, vous passez cette porte et vous voyez le professeur Quirrell celui-ci agit bizarrement, on dirait qu'il à deux personnalités, il enlève sont turban et cela fait apparaitre un autre visage. Vous comprenez qu'il s'agit de Voldemort mais trop faible pour avoir son propre corps, celui cherchait la pierre philosophale. Il ordonne alors au professeur Quirrell de vous tuez. Vous essayez de vous défendre : pour cela vous devez gagnez ce mini-jeu.";
+            String MEET_QUIRRELL = "\nUne porte s'ouvre devant vous, vous passez cette porte et vous voyez le professeur Quirrell celui-ci agit bizarrement, on dirait qu'il à deux personnalités, \nil enlève sont turban et cela fait apparaitre un autre visage. Vous comprenez qu'il s'agit de Voldemort mais trop faible pour avoir son propre corps, \ncelui cherchait la pierre philosophale. Il ordonne alors au professeur Quirrell de vous tuez. Vous essayez de vous défendre : pour cela vous devez gagnez ce mini-jeu.";
             ScrollingText.printWithDelay(MEET_QUIRRELL);
             //TODO defense
             boolean defend = wizard.defend(wizard);
             if (defend) {
-                String DEFENSE_WIN = "\nVous arrivez à vous défendre et faite fuir Voldemort, celui abandonne la pierre philosophale mais vous etes à bout de force. Vous vous effondrez de fatigue et vous réveillez à l'hôpital. Le professeur Dumbledore est présent à votre réveil et choisi et vous explique qu'il à briser la pierre philosophale car elle était trop puissante et trop dangereuse mais ils vous offre 100 morilles car celle-ci vous appartenez.";
+                String DEFENSE_WIN = "\nVous arrivez à vous défendre et faite fuir Voldemort, celui abandonne la pierre philosophale mais vous etes à bout de force. Vous vous effondrez de fatigue et \nvous réveillez à l'hôpital. Le professeur Dumbledore est présent à votre réveil et choisi et vous explique qu'il à briser la pierre philosophale car elle était \ntrop puissante et trop dangereuse mais ils vous offre 100 morilles car celle-ci vous appartenez.";
                 ScrollingText.printWithDelay(DEFENSE_WIN);
                 wizard.setMoney(wizard.getMoney() + 100);
             } else {
-                String DEFENSE_FAIL = "\nVous n'arrivez pas à vous défendre, vous perdez 50 points de vie";
+                String DEFENSE_FAIL = "\nVous n'arrivez pas à vous défendre, vous perdez 50 points de vie.";
                 ScrollingText.printWithDelay(DEFENSE_FAIL);
                 wizard.takeDamage(50);
-                if (!wizard.isAlive()) {
-                    return;
-                }
+                if (!wizard.isAlive()) return;
+
                 String DEFENSE_FAIL2 = "Vous vous retrouvez à l'hôpital. Le professeur Dumbledore est présent à votre réveil et choisi de punir votre maison car vous avez pris des risques inconsidérés malgré les règles. Celle-ci perd 20 points";
                 ScrollingText.printWithDelay(DEFENSE_FAIL2);
                 wizard.setHousePoints(wizard.getHousePoints() - 20);
@@ -182,12 +181,12 @@ public class Level1 extends AbstractLevel {
 
     private void exploreForbiddenCorridor(Wizard wizard) {
         if (wizard.getKnowledges().contains(Knowledge.fluffy) && wizard.getKnowledges().contains(Knowledge.fluffySleep)) {
-            String GO_FLUFFY = "Vous vous rendez au troisième étage dans l'aile interdit pour rejoindre le chien à trois têtes, vous entendez de la musique, vous comprenez que quelqu'un est passé avant vous. Vous ouvrez la porte tombez sur fluffy déjà endormi, vous passez alors dans la trappe situez juste à coté de lui. ";
+            String GO_FLUFFY = "Vous vous rendez au troisième étage dans l'aile interdit pour rejoindre le chien à trois têtes, vous entendez de la musique, vous comprenez que quelqu'un est passé avant vous. \nVous ouvrez la porte tombez sur fluffy déjà endormi, vous passez alors dans la trappe situez juste à coté de lui. ";
             ScrollingText.printWithDelay(GO_FLUFFY);
             secondaryQuest(wizard);
 
         } else if (wizard.getKnowledges().contains(Knowledge.fluffy)) {
-            String GO_FLUFFY2 = "Vous vous rendez au troisième étage dans l'aile interdit pour rejoindre le chien à trois têtes, car vous vous dites que la pierre philosolophale doit être là bas. Vous entendez de la musique, vous comprenez pas pourquoi. Vous ouvrez la porte tombez sur fluffy endormi, vous vous dirigez vers la trappe situez juste à coté de lui mais le chiens se réveil au moment ou vous vous apprêtiez à passer, vous arrivez à passez mais le chien vous griffe et vous perdez 30 points de vie. ";
+            String GO_FLUFFY2 = "Vous vous rendez au troisième étage dans l'aile interdit pour rejoindre le chien à trois têtes, car vous vous dites que la pierre philosolophale doit être là bas. \nVous entendez de la musique, vous comprenez pas pourquoi. Vous ouvrez la porte tombez sur fluffy endormi, vous vous dirigez vers la trappe situez juste à coté de lui \nmais le chiens se réveil au moment ou vous vous apprêtiez à passer, vous arrivez à passez mais le chien vous griffe et vous perdez 30 points de vie. ";
             ScrollingText.printWithDelay(GO_FLUFFY2);
             wizard.setLifePoint(wizard.getLifePoint() - 30);
             if (!wizard.isAlive()) {

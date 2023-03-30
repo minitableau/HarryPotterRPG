@@ -18,10 +18,10 @@ public class Level2 extends AbstractLevel {
 
     @Override
     public void startLevel(Wizard wizard) {
-        String Potions = " Avant vous souhaitez faire le plein de fourniture pour cela vous utilisez une cheminée qui permet de transplaner, vous prononcez votre destination : \"chemin de traverse\". Et vous arrivez dans un petit magasin de potions :";
+        String Potions = "Avant vous souhaitez faire le plein de fourniture pour cela vous utilisez une cheminée qui permet de transplaner, vous prononcez votre destination : \"chemin de traverse\". \nEt vous arrivez dans un petit magasin de potions :";
         ScrollingText.printWithDelay(Potions);
         Market.market(wizard);
-        String WarningElfDobby = "Avant de partir vous rencontrez un elfe de maison nommée Dobby qui vous met en garde qu'il ne faut pas retourner à Poudlard cette année, car un complot se prépare. Vous ne prêtez pas attention, puisque c'est là-bas que vous êtes heureux. Vous sortez de la boutique pour vous rendre à la gare de Londres, mais vous ratez le train à cause de ce petit elfe qui vous a retardé chez le marchant de potion. Vous devez donc vous rendre à Poudlard par un autre moyen.";
+        String WarningElfDobby = "\nAvant de partir vous rencontrez un elfe de maison nommée Dobby qui vous met en garde qu'il ne faut pas retourner à Poudlard cette année, car un complot se prépare. \nVous ne prêtez pas attention, puisque c'est là-bas que vous êtes heureux. Vous sortez de la boutique pour vous rendre à la gare de Londres, mais vous ratez \nle train à cause de ce petit elfe qui vous a retardé chez le marchant de potion. Vous devez donc vous rendre à Poudlard par un autre moyen.";
         ScrollingText.printWithDelay(WarningElfDobby);
 
         //PROPOSER LE CHOIX DE NE PAS VOLER LA VOITURE MAIS RATEZ SON ANNEE ET REDOUBLER ?
@@ -32,7 +32,7 @@ public class Level2 extends AbstractLevel {
         ScrollingText.printWithDelay(FirstClass);
 
         skipSchool(wizard);
-        String AccioLearning = "Vous assistez ensuite au cours de \"Défense contre les forces du mal\" où vous rencontrez le professeur Gilderoy Lockhart. Au cours de la séance, il libère des lutins de Cornouailles dans la classe pour observer comment vous vous débrouillez. Grâce à votre amie Fleur, qui a continué à pratiquer durant les vacances, vous apprenez le sortilège Immobulus qui permet de ralentir le temps et de les attraper. Vous réalisez également qu'apprendre le sort Accio pourrait être utile pour récupérer des objets à distance. Vous profitez de l'exercice pour pratiquer le sort Accio.";
+        String AccioLearning = "Vous assistez ensuite au cours de \"Défense contre les forces du mal\" où vous rencontrez le professeur Gilderoy Lockhart. Au cours de la séance, \nil libère des lutins de Cornouailles dans la classe pour observer comment vous vous débrouillez. Grâce à votre amie Fleur, qui a continué à pratiquer durant les vacances, \nvous apprenez le sortilège Immobulus qui permet de ralentir le temps et de les attraper. Vous réalisez également qu'apprendre le sort Accio pourrait être utile pour \nrécupérer des objets à distance. Vous profitez de l'exercice pour pratiquer le sort Accio.";
         ScrollingText.printWithDelay(AccioLearning);
         wizard.addSpell(new Accio());
         wizard.addSpell(new Immobulus());
@@ -42,11 +42,11 @@ public class Level2 extends AbstractLevel {
         }
 
 
-        String SecretRoom = "En vous promenant dans le couloir vous etendez une voix etrange provenant du mur. Peu de temps apres d'autre etudiant arrive, mais eux n'entende rien. La voix provenant du mur s'arrete et vous ecoutez la disscuiton des élèves a coté de vous. Ils font circuler la rumeurs qu'une certaine chambre des Secrets aurait été ouverte, dans laquel ce siturai un monstre. Cependant, vous n'y croyait pas et retourner a vos occupation en vous questionant sur la voix provenant du mur";
+        String SecretRoom = "En vous promenant dans le couloir vous etendez une voix etrange provenant du mur. Peu de temps apres d'autre etudiant arrive, mais eux n'entende rien. \nLa voix provenant du mur s'arrete et vous ecoutez la disscuiton des élèves a coté de vous. Ils font circuler la rumeurs qu'une certaine chambre des Secrets aurait été ouverte, \ndans laquel ce siturai un monstre. Cependant, vous n'y croyait pas et retourner a vos occupation en vous questionant sur la voix provenant du mur.";
         ScrollingText.printWithDelay(SecretRoom);
         metamorphosisOrLibrary(wizard);
 
-        String ConvocationAtDumbledore = "Vous vous dirigez à nouveau vers votre dortoir et trouvez le chat de M. Rusard pétrifié à coté d'une eleve elle aussi pétrifié. M. Rusard arrive quelques secondes après et vous accuse d'avoir pétrifié son chat et cette élève. Vous etes donc convoqué chez M. Dumberldor. Vous arrivez dans son bureau, et appercevais sur une étagère le choixpeau magique qui vous parle de votre maison. Et vous demande si vous etes satisfait.";
+        String ConvocationAtDumbledore = "Vous vous dirigez à nouveau vers votre dortoir et trouvez le chat de M. Rusard pétrifié à coté d'une élève elle aussi pétrifié. M. Rusard arrive quelques secondes après \net vous accuse d'avoir pétrifié son chat et cette élève. Vous etes donc convoqué chez M. Dumberldor. Vous arrivez dans son bureau, et apercevais sur une étagère \nle choixpeau magique qui vous parle de votre maison. Et vous demande si vous êtes satisfait.";
         ScrollingText.printWithDelay(ConvocationAtDumbledore);
         goodHouse(wizard);
 
@@ -55,10 +55,10 @@ public class Level2 extends AbstractLevel {
         stealSword(wizard);
 
 
-        String Innocent = " Dumbledore arrive enfin. Il vous parle, mais ne vous soupçonne pas d'avoir pétrifié ce gens. Il pense que vous n'êtes l'auteur de ces actes. Il vous laisse donc partir mais vous demande d'être très prudent.";
+        String Innocent = "\nDumbledore arrive enfin. Il vous parle, mais ne vous soupçonne pas d'avoir pétrifié ce gens. Il pense que vous n'êtes l'auteur de ces actes. \nIl vous laisse donc partir mais vous demande d'être très prudent.";
         ScrollingText.printWithDelay(Innocent);
 
-        String TomJournal = "Vous trouvez en sortant sur une commode un journal intitulé \"Journal de Tom Jedusor\". Une fois arrivé dans votre chambre vous l'ouvrer pour le lire, mais remarqué qu'il n'y a rien d'écrit dedans. Vous vous posez des questions et essayer d'écrire votre nom. Le journal efface instantanément ce que vous avez écrit et vous répond : Bonjour, " + wizard.getName() + ". Vous essayez de confirmer les bruits de couloir sur la chambre des secrets et demandez au journal où se situe celle-ci. Celui-ci vous répond qu'elle est située dans les toilettes des filles au deuxième étage celle qui sont abandonnées, il vous précise que pour l'ouvrir il faudra faire preuve d'observation et parlé une langue que très peu maitrise : le fourchelangue. Vous décidez de vous rendre dans ces toilettes et essayer de trouver l'entrée de cette chambre des secrets. Mais soudain, la voix qui venait du mur se remet à parler. En lui répondant, cela ouvre un passage, dans lequel vous pénétrez. Vous arrivez alors dans une salle gigantesque avec plein de statue de serpent sur les côtés. Vous comprenez que la voie que vous entendiez à travers les murs était du fourche langue et donc que vous aviez le don qui permettait d'ouvrir le passage des toilettes.";
+        String TomJournal = "Vous trouvez en sortant sur une commode un journal intitulé \"Journal de Tom Jedusor\". Une fois arrivé dans votre chambre vous l'ouvrer pour le lire, \nmais remarqué qu'il n'y a rien d'écrit dedans. Vous vous posez des questions et essayer d'écrire votre nom. Le journal efface instantanément ce que vous avez écrit et \nvous répond : Bonjour, " + wizard.getName() + ". Vous essayez de confirmer les bruits de couloir sur la chambre des secrets et demandez au journal où se situe celle-ci. \nCelui-ci vous répond qu'elle est située dans les toilettes des filles au deuxième étage celle qui sont abandonnées, il vous précise que pour l'ouvrir il faudra faire preuve \nd'observation et parlé une langue que très peu maitrise : le fourchelangue. Vous décidez de vous rendre dans ces toilettes et essayer de trouver l'entrée de \ncette chambre des secrets. Mais soudain, la voix qui venait du mur se remet à parler. En lui répondant, cela ouvre un passage, dans lequel vous pénétrez. \nVous arrivez alors dans une salle gigantesque avec plein de statue de serpent sur les côtés. Vous comprenez que la voie que vous entendiez à travers les murs \nétait du fourche langue et donc que vous aviez le don qui permettait d'ouvrir le passage des toilettes.";
         ScrollingText.printWithDelay(TomJournal);
 
         String BasilicFight = "Après quelque minutes passé seul dans cette grande salle un enorme Basilic apparait vous engagez alors le combat.";
@@ -66,11 +66,9 @@ public class Level2 extends AbstractLevel {
 
         Enemy enemy = new Basilic();
         wizard.fight(enemy);
-        if (!wizard.isAlive()) {
-            return;
-        }
+        if(!wizard.isAlive())return;
 
-        String Escape = "Vous sortez de la chambre des secrets, très fiers de vous car vous avez réussi à vaincre le basilic. Vous retournez à votre chambre détruire le journal que vous avez trouvez car vous vous rendez compte du pouvoir potentiellement dangereux qu'il possède. \nVous vous endormez et rêvez de votre deuxième année à Poudlard. Pour finir, cette année un grand match de Quidditch est organisé.";
+        String Escape = "\nVous sortez de la chambre des secrets, très fiers de vous car vous avez réussi à vaincre le basilic. Vous retournez à votre chambre détruire le journal que \nvous avez trouvez car vous vous rendez compte du pouvoir potentiellement dangereux qu'il possède. \nVous vous endormez et rêvez de votre deuxième année à Poudlard. Pour finir, cette année un grand match de Quidditch est organisé.";
         ScrollingText.printWithDelay(Escape);
         Level1.simulateQuidditchMatch(wizard);
 
@@ -134,7 +132,7 @@ public class Level2 extends AbstractLevel {
             wizard.addKnowledge(Knowledge.veraVerto);
         }
         if (choice == 2) {
-            System.out.println("\nVous séchez les cours pour aller à la bibliothèque en apprendre plus sur la chambre de secret. Vous apprenez l'existence d'un basilic qui tue si on le regarde mais pouvant être tué en un coup par une épée à condition d'etre membre de la maison Gryffondor.\n");
+            System.out.println("\nVous séchez les cours pour aller à la bibliothèque en apprendre plus sur la chambre de secret. Vous apprenez l'existence d'un basilic qui tue si on le regarde \nmais pouvant être tué en un coup par une épée à condition d'etre membre de la maison Gryffondor.");
             wizard.addKnowledge(Knowledge.gryffindorSword);
 
         }

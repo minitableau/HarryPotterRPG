@@ -9,8 +9,8 @@ import java.util.List;
 
 public class Troll extends Enemy {
     public Troll() {
-        super("Troll des montagnes", "Troll", 10, 30);
-    }
+        super("Troll des montagnes", "Troll", 10, 1);
+    }//30
 
     @Override
     public void attack(Character character) {
@@ -21,9 +21,9 @@ public class Troll extends Enemy {
         System.out.println("\nVous êtes " + (int) (sameHomeWizardFriends.size() + 1) + " contre le troll. La probabilité qu'il vous touche est de " + chanceOfSuccess + "%.");
         int randomValue = MathUtils.random(100);
         if (randomValue <= chanceOfSuccess) {
-            int dommage = this.getDommage() - (this.getDommage() * wizard.getResistanceBonus()) / 100;
-            wizard.takeDamage(dommage);
-            System.out.println("La massue du troll, vous frappe et vous enlève " + dommage + " points de vie.");
+            int damage = this.getDamage() - (this.getDamage() * wizard.getResistanceBonus()) / 100;
+            wizard.takeDamage(damage);
+            System.out.println("La massue du troll, vous frappe et vous enlève " + damage + " points de vie.");
             if (!wizard.isAlive()) {
                 System.out.println("Vous êtes mort! Le troll vous a vaincu.");
             }
@@ -34,13 +34,19 @@ public class Troll extends Enemy {
 
     @Override
     public void onWizardAttack(Wizard wizard) {
-        int dommage = 20 + (20 * wizard.getPowerBonus()) / 100;
-        System.out.println("Vous jetez des bouts de bois sur le troll. Il perd " + dommage + " points de vie");
-        this.takeDamage(dommage);
+        int damage = 20 + (20 * wizard.getPowerBonus()) / 100;
+        System.out.println("Vous jetez des bouts de bois sur le troll. Il perd " + damage + " points de vie");
+        this.takeDamage(damage);
     }
 
     @Override
     public String whatAWizardCanDoAgainstMe() {
         return "Jeter des bouts de bois";
+    }
+
+    @Override
+    public List<Friend> whichFriendsCanTheWizardHave(Wizard wizard) {
+        return wizard.getFriendsSameHome(List.of("Fleur Delacour"));
+
     }
 }

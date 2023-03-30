@@ -16,10 +16,8 @@ public class Level4 extends AbstractLevel {
         ScrollingText.printWithDelay(IntroLvl4);
 
         Enemy enemy = new PeterPettigrew();
-        wizard.attack(enemy);
-        if (!wizard.isAlive()) {
-            return;
-        }
+        wizard.fight(enemy);
+        if(!wizard.isAlive())return;
 
         String SuccessfulEscape = "Vous essayer de comprendre ou le portolion vous à fait attérir. Vous vous retrouvez dans Poudlard, en sécurité. Vous avez réussi à échapper à Voldemort, mais vous savez que vous n'en avez pas fini avec lui. Vous terminé votre année brillamment car vous savez que vous devez vous préparer pour l'ultime bataille qui aura lieu bientôt. Cette année pas de vacance, vous décidez de travailler à Poudlard pour gagnez un peu d'argent (50 mornilles) et pouvoir travailler sur vos sorts.";
         ScrollingText.printWithDelay(SuccessfulEscape);

@@ -1,7 +1,7 @@
 package Level;
 
 import GameElement.characters.Wizard;
-import GameElement.characters.enemies.Detraqueur;
+import GameElement.characters.enemies.Dementor;
 import GameElement.characters.enemies.Enemy;
 import GameElement.items.Market;
 import GameElement.spells.ExpectoPatronum;
@@ -28,12 +28,9 @@ public class Level3 extends AbstractLevel {
         String ReadyToFight = "Vous vous sentez prêt à affronter les Détraqueurs. Vous vous dirigez vers la forêt interdite pour les combattre.";
         ScrollingText.printWithDelay(ReadyToFight);
 
-        Enemy enemy = new Detraqueur();
+        Enemy enemy = new Dementor();
         wizard.fight(enemy);
-
-        if (!wizard.isAlive()) {
-            return;
-        }
+        if(!wizard.isAlive())return;
 
         String YouWin = "Vous retournez à Poudlard en triomphant, avec le sentiment d'avoir accompli une grande mission. Vous êtes félicité par Dumbledore et vos camarades de classe pour avoir sauvé Poudlard des Détraqueurs, mais votre maison à pris des risques inconsidérés et sera donc éliminé de la liste des maisons pouvant être récompensé cette année. Mais peut importe, vous vous sentez fier d'avoir appris à maîtriser un sort aussi puissant. Vous partez en vacance sereinement et très fier d'avoir réussi votre troisième année.\n";
         ScrollingText.printWithDelay(YouWin);

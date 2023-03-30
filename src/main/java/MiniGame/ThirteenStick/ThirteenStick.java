@@ -7,7 +7,7 @@ public class ThirteenStick {
 
     public static boolean thirteenStick() {
         System.out.println("\nBienvenue au jeu des 13 bâtons!");
-        System.out.println("Les règles du jeu son simple. Le jeu commence avec 13 bâtons sur la table. Les joueurs à tour de rôle retirent 1, 2 ou 3 bâtons chacun leur tour, jusqu'à ce qu'il ne reste plus qu'un seul bâton. Le joueur qui retire le dernier bâton perd la partie.");
+        System.out.println("Les règles du jeu son simple. Le jeu commence avec 13 bâtons sur la table. Les joueurs à tour de rôle retirent 1, 2 ou 3 bâtons chacun leur tour, \njusqu'à ce qu'il ne reste plus qu'un seul bâton. Le joueur qui retire le dernier bâton perd la partie.");
         int batonsRestants = 13;
         boolean joueur1Tour = true;
 

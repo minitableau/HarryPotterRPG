@@ -1,21 +1,26 @@
 package GameElement.characters.enemies;
 
+import GameElement.Friend;
 import GameElement.characters.Character;
 import GameElement.characters.Wizard;
+
+import java.util.List;
 
 public abstract class AbstractEnemy extends Character {
     private final String type;
     private int distance;
-    private int dommage;
+    private int damage;
 
-    public AbstractEnemy(String name, String type, int distance, int dommage) {
+    public AbstractEnemy(String name, String type, int distance, int damage) {
         super(name);
         this.type = type;
         this.distance = distance;
-        this.dommage = dommage;
+        this.damage = damage;
     }
 
     public abstract String whatAWizardCanDoAgainstMe();
+
+    public abstract List<Friend> whichFriendsCanTheWizardHave(Wizard wizard);
 
     public abstract void onWizardAttack(Wizard wizard);
 
@@ -33,11 +38,11 @@ public abstract class AbstractEnemy extends Character {
         this.distance = distance;
     }
 
-    public int getDommage() {
-        return dommage;
+    public int getDamage() {
+        return damage;
     }
 
-    public void setDommage(int dommage) {
-        this.dommage = dommage;
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }

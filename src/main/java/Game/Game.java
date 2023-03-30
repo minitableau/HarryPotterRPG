@@ -3,7 +3,6 @@ package Game;
 
 import GameElement.*;
 import GameElement.characters.Wizard;
-import GameElement.spells.*;
 import Level.*;
 
 
@@ -18,13 +17,13 @@ public class Game {
 
         AbstractLevel[] levels = new AbstractLevel[]{
 //                new Level0(),
-                new Level1(),
+//                new Level1(),
                 new Level2(),
                 new Level3(),
                 new Level4(),
                 new Level5(),
                 new Level6(),
-//                new Level7()
+                new Level7()
         };
 
         for (AbstractLevel level : levels) {
