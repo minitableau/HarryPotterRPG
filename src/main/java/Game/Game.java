@@ -10,14 +10,14 @@ public class Game {
     private Wizard wizard;
 
     public static void main(String[] args) throws InterruptedException {
-        // initialisation
-//        Wizard wizard = new Wizard(null, null, null, null);
+//         initialisation
+        Wizard wizard = new Wizard(null, null, null, null);
 
-        Wizard wizard = new Wizard("mini", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
+//        Wizard wizard = new Wizard("mini", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
 
         AbstractLevel[] levels = new AbstractLevel[]{
-//                new Level0(),
-//                new Level1(),
+                new Level0(),
+                new Level1(),
                 new Level2(),
                 new Level3(),
                 new Level4(),
