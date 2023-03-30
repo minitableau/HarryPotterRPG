@@ -10,7 +10,7 @@ public class Game {
     private Wizard wizard;
 
     public static void main(String[] args) throws InterruptedException {
-//         initialisation
+//         initialisation.
         Wizard wizard = new Wizard(null, null, null, null);
 
 //        Wizard wizard = new Wizard("mini", Pet.Owl, new Wand(Core.DragonHeartstring, 23), House.GRYFFINDOR);
