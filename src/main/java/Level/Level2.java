@@ -25,8 +25,8 @@ public class Level2 extends AbstractLevel {
         ScrollingText.printWithDelay(WarningElfDobby);
 
         //PROPOSER LE CHOIX DE NE PAS VOLER LA VOITURE MAIS RATEZ SON ANNéE ET REDOUBLER ?
-
-        // Vous savez qu'il existe une voiture volante appartenant au parent de Fleur ainsi vous allez chez fleur et emprunter pour une durée indéterminée cette fameuse voiture.
+        String Steal = "Vous savez qu'il existe une voiture volante appartenant au parent de Fleur ainsi vous allez chez fleur et emprunter pour une durée indéterminée cette fameuse voiture.";
+        ScrollingText.printWithDelay(Steal);
 
         String FirstClass = "Après plusieurs heures de voyage. Vous arrivez enfin à Poudlard, il est déjà l'heure de votre premier cours, il s'agit d'un cours de botanique avec le professeur Chourave.";
         ScrollingText.printWithDelay(FirstClass);
