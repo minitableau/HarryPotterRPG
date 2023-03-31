@@ -2,7 +2,7 @@ package utils;
 
 public class ScrollingText {
 
-    private static int DEFAULT_SPEED = 0;
+    public static int DEFAULT_SPEED ;
 
     public static void printWithDelay(String message, int speed) {
         for (int i = 0; i < message.length(); i++) {
