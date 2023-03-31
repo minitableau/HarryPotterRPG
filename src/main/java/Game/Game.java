@@ -14,7 +14,6 @@ public class Game {
 
     public static void main(String[] args) {
         haveYouEverPlayed();
-//         initialisation.
         Wizard wizard = new Wizard(null, null, null, null);
 
 //        Wizard wizard = new Wizard("mini", Pet.Owl, new Wand(Core.PhoenixFeather, 23), House.SLYTHERIN);

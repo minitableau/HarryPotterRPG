@@ -22,7 +22,7 @@ public class Accio extends Spell {
 
     }
 
-    private void castOnBasilic(Wizard wizard, Basilic basilic) {
+    public void castOnBasilic(Wizard wizard, Basilic basilic) {
         int chanceOfSuccess = 0;
 
         System.out.println("Vous utilisez Accio en visant la machoire du basilic !");

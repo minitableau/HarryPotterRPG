@@ -21,7 +21,7 @@ public class AvadaKedavra extends ForbiddenSpell {
 
     }
 
-    private void castOnVoldemort(Wizard wizard, Voldemort voldemort) {
+    public void castOnVoldemort(Wizard wizard, Voldemort voldemort) {
         int chanceOfSuccess;
         System.out.println("Vous utilisez AvadaKedavra sur Voldemort!");
         chanceOfSuccess = getChanceOfSuccess(wizard, voldemort);
