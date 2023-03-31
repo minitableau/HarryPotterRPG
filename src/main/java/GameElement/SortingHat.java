@@ -1,9 +1,9 @@
 package GameElement;
 
 import utils.ConsoleColors;
+import utils.MathUtils;
 
 import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 
@@ -13,8 +13,7 @@ public class SortingHat {
 
     //methode pour Eloise Midgen & Vincent Crabbe
     public House sort() {
-        Random random = new Random();
-        int index = random.nextInt(houses.length);
+        int index = MathUtils.random(houses.length-1);
         return houses[index];
 
     }
@@ -43,8 +42,7 @@ public class SortingHat {
                 scanner.nextLine();
             }
         }
-        Random random = new Random();
-        int index = random.nextInt(houses.length - 1);
+        int index = MathUtils.random(houses.length - 2);
         if (index >= excludedHouseIndex - 1) {
             index++;
         }

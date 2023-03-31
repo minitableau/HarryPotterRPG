@@ -37,4 +37,33 @@ public class InteractionUtils {
     public static int askForInt(int min, int max) {
         return askForInt("", min, max);
     }
+
+    public static String askForString(String message) {
+        if (!message.isBlank() && !message.isEmpty()) {
+            ScrollingText.printWithDelay(message);
+        }
+
+        Scanner scanner = new Scanner(System.in);
+        String value;
+
+        while (true) {
+            try {
+                value = scanner.nextLine();
+                if (value.isBlank() || value.isEmpty()) {
+                    System.out.println("La valeur ne peut pas être vide.");
+                } else {
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("La valeur doit être une chaine de caractère.");
+                scanner.nextLine();
+            }
+        }
+
+        return value;
+    }
+
+    public static String askForString() {
+        return askForString("");
+    }
 }

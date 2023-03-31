@@ -18,7 +18,7 @@ public class Level0 extends AbstractLevel {
         String HAGRID_ARRIVAL_MESSAGE = "Vous entendez frapper à la porte. En l'ouvrant, vous trouvez un homme gigantesque, un demi-géant, avec une barbe sauvage et des yeux pétillants.\n\"Bonjour, je suis Rubeus Hagrid gardien des clés et des lieux à Poudlard\", dit-il en souriant. \"Je viens chercher un jeune sorcier de 11 ans pour l'emmener à Poudlard.\n" + ConsoleColors.BLUE + "Et vous êtes...?" + ConsoleColors.RESET;
         ScrollingText.printWithDelay(HAGRID_ARRIVAL_MESSAGE);
 
-        String name = scanner.nextLine();
+        String name = InteractionUtils.askForString();
 
         String FURNITURE_MESSAGE = "Hagrid sourit à votre réponse, puis reprend : \"Très bien, " + ConsoleColors.RED + name + ConsoleColors.RESET + ". Avant de partir pour Poudlard, il y a quelques formalités à régler.\nTout d'abord, il vous faut  vos fournitures : un chaudron standard en étain, un animal de compagnie et une baguette. Suivez-moi !\"\n" + ConsoleColors.ITALIC + "\n\tHagrid vous emmène à Londres à l'arrière d'un bar et vous fait découvrir un lieu magique nommé le chemin de traverse.\n" + ConsoleColors.RESET;
         ScrollingText.printWithDelay(FURNITURE_MESSAGE);
@@ -57,7 +57,7 @@ public class Level0 extends AbstractLevel {
         String ANIMAL_NAME = ConsoleColors.BLUE + "\nHagrid vous demande alors comment vous allez l'appeler :" + ConsoleColors.RESET;
         ScrollingText.printWithDelay(ANIMAL_NAME, 0);
 
-        String nameAnimal = scanner.nextLine();
+        String nameAnimal = InteractionUtils.askForString();
 
         String ARRIVAL_AT_HOGWARTS = "Dites bonjour à " + ConsoleColors.RED + nameAnimal + ConsoleColors.RESET + " votre " + ConsoleColors.RED + animalChosen.type + ConsoleColors.RESET + " !\n" + ConsoleColors.ITALIC + "\n\tHagrid vous amène alors à la gare de Londres en vous donnant votre billet pour Poudlard voie 9_3/4" + ConsoleColors.RESET + "\n\nVous demandez à un groupe de jeunes un peu plus âgés qui ont le même style de bagage que vous : \"Comment se rendre à la voie 9_3/4\"? \nTrès gentiment, ils vous montrent le chemin : il faut foncer dans un pilier ! \nVous foncez dans le pilier avec un peu d'appréhension, mais vous arrivez bien sur le quai. Le train s'apprête à partir, vous décidez alors de monter à bord du Poudlard Express. \nVous rejoignez votre cabine, déposez vos affaires et : ";
         ScrollingText.printWithDelay(ARRIVAL_AT_HOGWARTS);
