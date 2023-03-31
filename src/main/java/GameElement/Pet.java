@@ -1,16 +1,14 @@
 package GameElement;
 
 public enum Pet {
-    Owl(1, "Owl"),
-    Rat(2,"Rat"),
-    Cat(3,"Cat"),
-    Toad(4,"Toad");
+    Owl("Chouette"),
+    Rat("Rat"),
+    Cat("Chat"),
+    Toad("Crapaud");
 
-    public final int index;
     public final String type;
 
-    Pet(int index, String type){
-        this.index = index;
+    Pet(String type) {
         this.type = type;
     }
 }
