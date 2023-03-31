@@ -15,25 +15,25 @@ import utils.ScrollingText;
 
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Level1 extends AbstractLevel {
 
     @Override
     public void startLevel(Wizard wizard) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\nVous arrivez dans le jardin de Poudlard pour votre premier cours, qui est un cours de vol sur balais. Madame Bibine, votre professeur, vous donne les directives \npour faire voler votre balai et très vite vous remarquez avoir quelques facilités par rapport aux autres élèves. Elle doit par la suite s'absenter pour une urgence \net interdit formellement à quiconque de voler. Mais Bartemius Croupton en a décidé autrement, il vole le collier de Fleur Delacour et s'enfuit avec. \nIl vous met alors au défi de venir le chercher. Que décidez-vous de faire ?");
+        String IntroLvl1 = "\nVous arrivez dans le jardin de Poudlard pour votre premier cours, qui est un cours de vol sur balais. Madame Bibine, votre professeur, vous donne les directives \npour faire voler votre balai et très vite vous remarquez avoir quelques facilités par rapport aux autres élèves. Elle doit par la suite s'absenter pour une urgence \net interdit formellement à quiconque de voler. Mais Bartemius Croupton en a décidé autrement, il vole le collier de Fleur Delacour et s'enfuit avec. \nIl vous met alors au défi de venir le chercher. Que décidez-vous de faire ?";
+        ScrollingText.printWithDelay(IntroLvl1);
         flyingLesson(wizard);
         exploreOrMakeNewFriend(wizard);
 
-        System.out.println("Vous assistez au cours de levitation où vous apprenez le sort WINGARDIUM LEVIOSA. Vous avez un peu de mal alors que votre amie Fleur réussit du premier coup. \nElle essaie donc de vous aider en vous donnant une meilleure prononciation : \"WINGARDIUM LEVI-OOO-SA\", mais cela fait rire vos camarades. \nElle quitte donc le cours pour aller pleurer dans les toilettes. Le professeur vous explique les modalités pour utiliser le sort lorsque nous somme un élève \nde premiere année : \"il vous faut être à 7 mètres ou moins pour que le sort est une chance de réussir, tout en sachant que plus vous êtes \nproche de l'objet à déplacer plus vos chances sont élevés\n");
+        String LearnWingardium = "Vous assistez au cours de levitation où vous apprenez le sort WINGARDIUM LEVIOSA. Vous avez un peu de mal alors que votre amie Fleur réussit du premier coup. \nElle essaie donc de vous aider en vous donnant une meilleure prononciation : \"WINGARDIUM LEVI-OOO-SA\", mais cela fait rire vos camarades. \nElle quitte donc le cours pour aller pleurer dans les toilettes. Le professeur vous explique les modalités pour utiliser le sort lorsque nous somme un élève \nde premiere année : \"il vous faut être à 7 mètres ou moins pour que le sort est une chance de réussir, tout en sachant que plus vous êtes \nproche de l'objet à déplacer plus vos chances sont élevés\n";
+        ScrollingText.printWithDelay(LearnWingardium);
         wizard.addSpell(new WindgardiumLeviosa());
 
         List<Friend> friendsWithYou = wizard.getFriendsSameHome(List.of("Fleur Delacour"));
         String friendsString = friendsWithYou.stream().map(Friend::getName).reduce((a, b) -> a + " et " + b).orElse("personne");
 
-        System.out.println("Quelque minutes plus tard un professeur arrive en paniquant dans votre cours, il annonce qu'un Troll c'est échappé et ce balade dans l'école. \nTous les élèves se mettent à crier dans tout les sens. Mais pas vous, vous pensez directement à Fleur qui est parti pleurer au toilette et n'a pas l'information. \nAinsi, à la place de suivre tout les autres et évacuer l'école pour se rendre dans le jardin vous allez en direction des toilettes des filles pour aider votre amie.\nVous réussissez à convaincre " + friendsString + "de venir avec vous.");
-        System.out.println("Vous arrivez proche des toilettes et etendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. \nVous engagez alors le combat pour sauver votre amie.");
+        String TrollComing = "Quelque minutes plus tard un professeur arrive en paniquant dans votre cours, il annonce qu'un Troll c'est échappé et ce balade dans l'école. \nTous les élèves se mettent à crier dans tout les sens. Mais pas vous, vous pensez directement à Fleur qui est parti pleurer au toilette et n'a pas l'information. \nAinsi, à la place de suivre tout les autres et évacuer l'école pour se rendre dans le jardin vous allez en direction des toilettes des filles pour aider votre amie.\nVous réussissez à convaincre " + friendsString + "de venir avec vous.\nVous arrivez proche des toilettes et entendant crier vous courez alors encore plus vite et voyer le troll entrain de fracasser les toilettes. \nVous engagez alors le combat pour sauver votre amie.";
+        ScrollingText.printWithDelay(TrollComing);
         Troll enemy = new Troll();
         wizard.fight(enemy);
         if (!wizard.isAlive()) return;
@@ -65,62 +65,71 @@ public class Level1 extends AbstractLevel {
         winnerHouse(wizard);
 
 
-        String GO_MARKET = "\nVous passez brillamment votre première année et rentrer chez vous durant les vacances. Plusieurs semaines s'écoulent, voilà arriver la rentrée.";
+        String GO_MARKET = "\nVous passez brillamment votre première année et rentrer chez vous durant les vacances." + ConsoleColors.ITALIC + "\n\tPlusieurs semaines s'écoulent, voilà déjà la rentrée arriver." + ConsoleColors.RESET;
         ScrollingText.printWithDelay(GO_MARKET);
-        //TODO Italic
 
     }
 
     private void flyingLesson(Wizard wizard) {
-
-        System.out.println(ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET);
-        System.out.println("1 : Réconforter Fleur Delacour\n2 : Désobéir et s'envoler pour aller récupérer le collier");
+        String Question = ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET;
+        ScrollingText.printWithDelay(Question, 0);
+        String Choice = "1 : Réconforter Fleur Delacour\n2 : Désobéir et s'envoler pour aller récupérer le collier";
+        ScrollingText.printWithDelay(Choice, 0);
 
         int choice = InteractionUtils.askForInt(1, 2);
 
         if (choice == 1) {
-            System.out.println("\nVous ne répondait pas à la provocation de Bartemius Croupton et essayer réconforter Fleur Delacour, cela fonctionne assez bien mais elle reste triste. Vous lui donnez alors 20 mornilles pour qu'elle puisse ce racheter un collier. ");
+            String Choice1 = "\nVous ne répondait pas à la provocation de Bartemius Croupton et essayer réconforter Fleur Delacour, cela fonctionne assez bien mais elle reste triste. Vous lui donnez alors 20 mornilles pour qu'elle puisse ce racheter un collier.\nMadame Bibine revient, félicite la classe pour son sérieux et termine son cours. Elle vous libère quelque minutes en avance car vous avez était discipliné.";
+            ScrollingText.printWithDelay(Choice1, 0);
             wizard.setMoney(wizard.getMoney() - 20);
-            System.out.println("Madame Bibine revient, félicite la classe pour son sérieux et termine son cours. Elle vous libère quelque minutes en avance car vous avez était discipliné");
+
         }
         if (choice == 2) {
-            System.out.println("\nVous vous engagez dans une course-poursuite contre Bartemius Croupton. Vous parvenez à le rattraper, mais il décide alors de lancer le collier en direction du lac. \nVous accélérez et réussissez à rattraper le collier juste avant qu'il ne tombe dans l'eau. Vous revenez donc avec le groupe, cependant Madame Bibine est revenu et vous êtes donc \npuni : votre maison perd 20 points. Malgré tout, votre professeur vous propose d'intégrer l'équipe de Quidditch car elle a été impressionnée par votre performance.\n");
+            String Choice2 = "\nVous vous engagez dans une course-poursuite contre Bartemius Croupton. Vous parvenez à le rattraper, mais il décide alors de lancer le collier en direction du lac. \nVous accélérez et réussissez à rattraper le collier juste avant qu'il ne tombe dans l'eau. Vous revenez donc avec le groupe, cependant Madame Bibine est revenu et vous êtes donc \npuni : votre maison perd 20 points. Malgré tout, votre professeur vous propose d'intégrer l'équipe de Quidditch car elle a été impressionnée par votre performance.\n\nAprès quelques explications en retenu votre professeur comprend les motivations de ce vol interdit, elle vous laisse donc partir quelque minutes en avance.";
+            ScrollingText.printWithDelay(Choice2, 0);
             wizard.setHousePoints(wizard.getHousePoints() - 20);
             wizard.addKnowledge(Knowledge.quidditch);
-            System.out.println("Après quelques explications en retenu votre professeur comprend les motivations de ce vol interdit, elle vous laisse donc partir quelque minutes en avance.");
+
         }
     }
 
     private void exploreOrMakeNewFriend(Wizard wizard) {
-
-        System.out.println(ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET);
-        System.out.println("1 : Explorer l'école\n2 : Se faire de nouveaux amis");
+        String Question = ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET;
+        ScrollingText.printWithDelay(Question, 0);
+        String Choice = "1 : Explorer l'école\n2 : Se faire de nouveaux amis";
+        ScrollingText.printWithDelay(Choice, 0);
 
         int choice = InteractionUtils.askForInt(1, 2);
 
         if (choice == 1) {
-            System.out.println("\nVous explorez l'école avec votre ami Fleur Delacour. Vous vous perdez plus ou moins et vous vous retrouver devant une porte verrouillé au 3ème étage \ndans la zone interdite au élève. Soudain vous entendez, des bruits de pas derriere vous. Fleur Delacour utilise un sort qu'elle connait qui permet de déverrouiller \ndes portes : \"Aloomora\". Vous vous cachez derrière celle-ci. Vous vous retournez et apercevais un énorme chien à trois têtes qui dort sur une trappe. \nVous ne faite pas de bruit et attendais un peu jusqu'a ce qu'il n'y ai plus de bruit de pas.\n");
+            String Choice1 = "\nVous explorez l'école avec votre ami Fleur Delacour. Vous vous perdez plus ou moins et vous vous retrouver devant une porte verrouillé au 3ème étage \ndans la zone interdite au élève. Soudain vous entendez, des bruits de pas derriere vous. Fleur Delacour utilise un sort qu'elle connait qui permet de déverrouiller \ndes portes : \"Aloomora\". Vous vous cachez derrière celle-ci. Vous vous retournez et apercevais un énorme chien à trois têtes qui dort sur une trappe. \nVous ne faite pas de bruit et attendais un peu jusqu'a ce qu'il n'y ai plus de bruit de pas.\n";
+            ScrollingText.printWithDelay(Choice1, 0);
             wizard.addKnowledge(Knowledge.fluffy);
             wizard.addSpell(new Aloomora());
         }
         if (choice == 2) {
-            System.out.println("\nVous essayer de sociabiliser, sympathisé avec un élève de votre maison prénommé Dean Thomas.");
+            String Choice2 = "\nVous essayer de sociabiliser, sympathisé avec un élève de votre maison prénommé Dean Thomas.";
+            ScrollingText.printWithDelay(Choice2, 0);
             wizard.addFriend(new Friend("Dean Thomas", wizard.getHouse()));
         }
     }
 
     private void tryCape(Wizard wizard) {
-        System.out.println(ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET);
-        System.out.println("1 : Nicolas Flammel le créateur de la pierre philosopahale\n2 : Le chien à trois têtes - Fluffy");
+        String Question = ConsoleColors.BLUE + "\nChoisissez ce que vous voulez faire : " + ConsoleColors.RESET;
+        ScrollingText.printWithDelay(Question, 0);
+        String Choice = "1 : Nicolas Flammel le créateur de la pierre philosopahale\n2 : Le chien à trois têtes - Fluffy";
+        ScrollingText.printWithDelay(Choice, 0);
 
         int choice = InteractionUtils.askForInt(1, 2);
 
         if (choice == 1) {
-            System.out.println("\nVous lisez et apprenez que cette pierre allonge énormément l'espérance de vie  de plus elle permet de transformer n'importe qu'elle métal en or.");
+            String Choice1 = "\nVous lisez et apprenez que cette pierre allonge énormément l'espérance de vie  de plus elle permet de transformer n'importe qu'elle métal en or.";
+            ScrollingText.printWithDelay(Choice1, 0);
             wizard.addKnowledge(Knowledge.philosopherStone);
         }
         if (choice == 2) {
-            System.out.println("\nVous lisez et apprenez que cette créature est très puissante mais qu'elle a un point faible. En effet, si elle entend de la musique celle-ci s'endort.\n");
+            String Choice2 = "\nVous lisez et apprenez que cette créature est très puissante mais qu'elle a un point faible. En effet, si elle entend de la musique celle-ci s'endort.\n";
+            ScrollingText.printWithDelay(Choice2, 0);
             wizard.addKnowledge(Knowledge.fluffySleep);
         }
 
@@ -133,7 +142,6 @@ public class Level1 extends AbstractLevel {
         if (win) {
             String MEET_QUIRRELL = "\nUne porte s'ouvre devant vous, vous passez cette porte et vous voyez le professeur Quirrell celui-ci agit bizarrement, on dirait qu'il à deux personnalités, \nil enlève sont turban et cela fait apparaitre un autre visage. Vous comprenez qu'il s'agit de Voldemort mais trop faible pour avoir son propre corps, \ncelui cherchait la pierre philosophale. Il ordonne alors au professeur Quirrell de vous tuez. Vous essayez de vous défendre : pour cela vous devez gagnez ce mini-jeu.";
             ScrollingText.printWithDelay(MEET_QUIRRELL);
-            //TODO defense
             boolean defend = wizard.defend(wizard);
             if (defend) {
                 String DEFENSE_WIN = "\nVous arrivez à vous défendre et faite fuir Voldemort, celui abandonne la pierre philosophale mais vous etes à bout de force. Vous vous effondrez de fatigue et \nvous réveillez à l'hôpital. Le professeur Dumbledore est présent à votre réveil et choisi et vous explique qu'il à briser la pierre philosophale car elle était \ntrop puissante et trop dangereuse mais ils vous offre 100 morilles car celle-ci vous appartenez.";
@@ -163,18 +171,21 @@ public class Level1 extends AbstractLevel {
 
     public static void simulateQuidditchMatch(Wizard wizard) {
         if (wizard.getKnowledges().contains(Knowledge.quidditch)) {
-            System.out.println("\nVous allez jouez un match de Quidditch avec votre maison : " + wizard.getHouse());
-            Boolean resultat = RockPaperScissors.Quidditch(wizard);
-            if (resultat) {
-                System.out.println("\nVotre maison : " + wizard.getHouse() + " remporte 30 points");
+            String PlayQuidditch = "\nVous allez jouez un match de Quidditch avec votre maison : " + wizard.getHouse();
+            ScrollingText.printWithDelay(PlayQuidditch);
+            Boolean result = RockPaperScissors.Quidditch(wizard);
+            if (result) {
+                String Win = "\nVotre maison : " + wizard.getHouse() + " remporte le match et donc 30 points";
+                ScrollingText.printWithDelay(Win);
                 wizard.setHousePoints(wizard.getHousePoints() + 30);
             } else {
-                System.out.println("\nVotre maison : " + wizard.getHouse() + " perd 15 points");
+                String Lose = "\nVotre maison : " + wizard.getHouse() + " perd le match et donc 15 points";
+                ScrollingText.printWithDelay(Lose);
                 wizard.setHousePoints(wizard.getHousePoints() - 15);
             }
         } else {
-            System.out.println("\nVous assistez à un match de Quidditch de votre maison, cependant ils sont désavantagé car il leur manque un joueur.");
-            System.out.println("\nVotre maison : " + wizard.getHouse() + " perd le match et donc 30 points");
+            String NoQuidditch = "\nVous assistez à un match de Quidditch de votre maison, cependant ils sont désavantagé car il leur manque un joueur.\n\nVotre maison : " + wizard.getHouse() + " perd le match et donc 30 points.";
+            ScrollingText.printWithDelay(NoQuidditch);
             wizard.setHousePoints(wizard.getHousePoints() - 30);
         }
     }
@@ -208,7 +219,6 @@ public class Level1 extends AbstractLevel {
             if (!wizard.isAlive()) {
                 return;
             }
-            //TODO GAIN ARGENT ?
         }
     }
 
